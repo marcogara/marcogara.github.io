@@ -1,0 +1,22 @@
+/* Add this to your CSS file or in a <style> tag in the <head> of your HTML file */
+a {
+    display: inline-block;
+    padding: 8px 16px; /* Adjust the padding as needed */
+    font-size: 14px;  /* Adjust the font size as needed */
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a img {
+    height: 40px; /* Adjust the height of the GitHub logo image */
+    width: 120px; /* Adjust the width of the GitHub logo image */
+    vertical-align: middle; /* Align the image vertically with the text */
+    margin-right: 5px; /* Add a small margin to separate the image from text */
+}
+
+a:hover {
+    background-color: #555;
+}
