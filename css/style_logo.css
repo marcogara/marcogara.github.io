@@ -23,12 +23,12 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: center; /* Center align menu items */
+    display: flex;
+    justify-content: center; /* Center align menu items horizontally */
 }
 
 nav ul li {
-    display: block; /* Display menu items as blocks for mobile */
-    margin-bottom: 10px; /* Add space between menu items on mobile */
+    margin-right: 20px;
 }
 
 nav a {
@@ -37,7 +37,6 @@ nav a {
     font-weight: bold;
     /* Increase padding to make the button bigger */
     padding: 12px 20px; /* Adjust the values as needed */
-    display: block; /* Display menu items as blocks for mobile */
 }
 
 /* Style the "About Me" section */
@@ -58,7 +57,6 @@ nav a {
     font-size: 16px;
     line-height: 1.5;
 }
-
 
 /* Style the "About Me" and "Projects" sections */
 section {
@@ -102,13 +100,13 @@ a:hover {
 
 /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin-bottom: 10px;
+    nav ul {
+        flex-direction: column; /* Display menu items vertically for mobile */
+        align-items: center; /* Center align menu items vertically */
     }
 
-    nav a {
-        padding: 12px 20px;
-        display: block;
+    nav ul li {
+        margin-right: 0; /* Remove right margin for mobile */
+        margin-bottom: 10px; /* Add space between menu items on mobile */
     }
 }
