@@ -4,7 +4,14 @@ body {
     color: #fff; /* Set text color to white */
     margin: 0; /* Remove default margin */
     padding: 20px; /* Add padding to the entire page */
-    font-family: Arial, sans-serif; /* Use a readable font */
+    font-family: 'Inconsolata', sans-serif; /* Use a readable font */
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* Style the header and navigation menu */
@@ -27,18 +34,45 @@ nav a {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+    /* Increase padding to make the button bigger */
+    padding: 12px 20px; /* Adjust the values as needed */
 }
+
+/* Style the "About Me" section */
+#about {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #444;
+}
+
+#about h1 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#about p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
 
 /* Style the "About Me" and "Projects" sections */
 section {
     margin: 20px 0;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #444;
 }
 
 h1, h2 {
     color: #fff;
+}
+
+p {
+    font-size: 16px; /* Adjust the font size as needed */
+    line-height: 1.5; /* Improve readability with proper line height */
 }
 
 /* Style the GitHub button */
@@ -49,7 +83,7 @@ a {
     background-color: #0074d9; /* GitHub blue */
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s;
 }
 
