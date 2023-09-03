@@ -3,7 +3,35 @@
 
 
 
-styling file structure
+<project-folder>
+    <css>
+        <common>
+            <styles.css></styles.css>
+        </common>
+        <mobile>
+            <mobile.css></mobile.css>
+        </mobile>
+        <desktop>
+            <desktop.css></desktop.css>
+        </desktop>
+        <header>
+            <header.css></header.css>
+        </header>
+        <main-content>
+            <main-content.css></main-content.css>
+        </main-content>
+        <footer>
+            <footer.css></footer.css>
+        </footer>
+    </css>
+    <index.html></index.html>
+</project-folder>
+
+
+
+
+
+
 
 project-folder/
 ├── css/
