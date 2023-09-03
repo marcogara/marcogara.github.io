@@ -1,0 +1,41 @@
+/* styles.css */
+/* Apply a dark background color to the entire page */
+body {
+    background-color: #333;
+    color: #fff; /* Set text color to white */
+    margin: 0; /* Remove default margin */
+    padding: 20px; /* Add padding to the entire page */
+    font-family: 'Inconsolata', sans-serif; /* Use a readable font */
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('../../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*        src: url('../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');                                      */
+
+/* Style the GitHub button */
+a {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #0074d9; /* GitHub blue */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+a img {
+    height: 40px;
+    width: 120px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

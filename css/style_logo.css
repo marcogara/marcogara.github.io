@@ -97,16 +97,3 @@ a img {
 a:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
-
-/* Media query for mobile devices */
-@media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column; /* Display menu items vertically for mobile */
-        align-items: center; /* Center align menu items vertically */
-    }
-
-    nav ul li {
-        margin-right: 0; /* Remove right margin for mobile */
-        margin-bottom: 10px; /* Add space between menu items on mobile */
-    }
-}

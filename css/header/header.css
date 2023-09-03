@@ -1,0 +1,25 @@
+/* header.css */
+/* Style the header and navigation menu */
+header {
+    background-color: #222;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center align menu items horizontally */
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    /* Increase padding to make the button bigger */
+    padding: 12px 20px; /* Adjust the values as needed */
+}
