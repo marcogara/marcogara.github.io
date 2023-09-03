@@ -23,11 +23,12 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
+    text-align: center; /* Center align menu items */
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: block; /* Display menu items as blocks for mobile */
+    margin-bottom: 10px; /* Add space between menu items on mobile */
 }
 
 nav a {
@@ -36,6 +37,7 @@ nav a {
     font-weight: bold;
     /* Increase padding to make the button bigger */
     padding: 12px 20px; /* Adjust the values as needed */
+    display: block; /* Display menu items as blocks for mobile */
 }
 
 /* Style the "About Me" section */
@@ -96,4 +98,17 @@ a img {
 
 a:hover {
     background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        padding: 12px 20px;
+        display: block;
+    }
 }
