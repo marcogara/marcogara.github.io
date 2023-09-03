@@ -34,3 +34,31 @@ p {
     font-size: 16px; /* Adjust the font size as needed */
     line-height: 1.5; /* Improve readability with proper line height */
 }
+
+/* Apply styles to key feature containers with class "key-features" */
+.key-features ul li {
+    margin-bottom: 10px;
+}
+
+.key-features ul li strong {
+    font-weight: bold;
+    margin-right: 8px;
+    line-height: 1.5;
+}
+
+.github-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0074d9; /* GitHub blue */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.github-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
