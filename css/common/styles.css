@@ -22,7 +22,8 @@ a {
     display: inline-block;
     padding: 8px 16px;
     font-size: 14px;
-    background-color: #0074d9; /* GitHub blue */
+    background-color: #5AF; /* GitHub blue */
+    /* background-color: #0074d9; /* GitHub blue */
     color: #fff;
     text-decoration: none;
     border-radius: 10px;
