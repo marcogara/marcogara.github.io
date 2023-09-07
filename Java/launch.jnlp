@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://your-server.com/your-app">
+    <information>
+        <title>Your Java Application</title>
+        <vendor>Your Vendor</vendor>
+        <description>Your Application Description</description>
+    </information>
+    <resources>
+        <!-- Specify the JAR file(s) containing your Java application -->
+        <jar href="your-app.jar" main="true" />
+    </resources>
+    <application-desc main-class="your.package.MainClass" />
+</jnlp>
