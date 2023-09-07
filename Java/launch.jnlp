@@ -8,6 +8,6 @@
     <resources>
         <!-- Specify the JAR file(s) containing your Java application -->
         <jar href="DiceRoll.jar" main="true" />
-        <application-desc main-class="DiceRollGUI" />
     </resources>
+        <application-desc main-class="DiceRollGUI" />
 </jnlp>
