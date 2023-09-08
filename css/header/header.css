@@ -2,6 +2,7 @@ header {
     background-color: #222;
     padding: 10px;
     display: flex;
+    border-radius: 10px;
     justify-content: space-between; /* Move the logo to the left and menu to the right */
     align-items: center; /* Vertically align items */
 }
@@ -28,4 +29,12 @@ img {
     height: auto; /* Maintain the aspect ratio */
     margin-right: 20px; /* Add right margin to separate the logo from the text */
     margin-left: 20px;
+}
+
+/* Style the quote */
+.quote {
+    color: #fff;
+    text-align: right; /* Align the text to the right */
+    flex-grow: 1; /* Allow the quote to take up available space */
+    padding-right: 50px;
 }
