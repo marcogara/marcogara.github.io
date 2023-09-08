@@ -1,10 +1,11 @@
+/* Header layout for desktop */
 header {
     background-color: #222;
     padding: 10px;
     display: flex;
     border-radius: 10px;
-    justify-content: space-between; /* Move the logo to the left and menu to the right */
-    align-items: center; /* Vertically align items */
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
@@ -23,18 +24,19 @@ nav a {
     font-weight: bold;
 }
 
-/* Style the logo */
+/* Style the logo for desktop */
 img {
-    max-width: 100%; /* Ensure the logo doesn't exceed its container's width */
-    height: auto; /* Maintain the aspect ratio */
-    margin-right: 20px; /* Add right margin to separate the logo from the text */
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
     margin-left: 20px;
 }
 
 /* Style the quote */
 .quote {
     color: #fff;
-    text-align: right; /* Align the text to the right */
-    flex-grow: 1; /* Allow the quote to take up available space */
+    text-align: right;
+    flex-grow: 1;
     padding-right: 50px;
 }
+
