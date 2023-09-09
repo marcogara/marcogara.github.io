@@ -15,12 +15,14 @@ nav ul {
 }
 
 nav ul li {
+   
     display: inline;
     margin-right: 2%; /* Adjust the right margin as needed */
-    font-size: 1.2rem; /* Adjust the font size as needed */
+    font-size: 1rem; /* Adjust the font size as needed */
 }
 
 nav a {
+    
     text-decoration: none;
     color: #fff;
     font-weight: bold;
@@ -28,10 +30,10 @@ nav a {
 
 /* Style the logo for desktop */
 img {
-    max-width: 15%; /* Adjust the logo's maximum width as needed */
+    max-width: 100%;
     height: auto;
-    margin-right: 2%; /* Adjust the right margin as needed */
-    margin-left: 2%; /* Adjust the left margin as needed */
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 /* Style the quote */
@@ -41,4 +43,6 @@ img {
     flex-grow: 1;
     padding-right: 2%; /* Adjust the right padding as needed */
 }
+
+
 
