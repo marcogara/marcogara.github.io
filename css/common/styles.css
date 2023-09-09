@@ -3,7 +3,7 @@
 body {
     background-color: #333;
     color: #fff; /* Set text color to white */
-    margin: 0; /* Remove default margin */
+    margin-top: 20px; /* Remove default margin */
     font-family: 'Inconsolata', sans-serif; /* Use a readable font */
     padding: 0; /* Remove default padding */
     /* Center the content vertically and horizontally */
