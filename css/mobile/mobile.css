@@ -1,9 +1,15 @@
 /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
+    header {
+        flex-direction: column; /* Display header items vertically for mobile */
+        align-items: center; /* Center align header items vertically */
+        padding-left: 0; /* Remove left padding for mobile */
+    }
+
     nav ul {
-        flex-direction: column;
-        align-items: center;
-        padding-left: 0;
+        flex-direction: column; /* Display menu items vertically for mobile */
+        align-items: center; /* Center align menu items vertically */
+        padding-left: 0; /* Remove left padding for mobile */
     }
 
     nav ul li {
@@ -31,6 +37,5 @@
     /* Ensure margin between horizontal menu items */
     nav ul li + li {
         margin-left: 10px;
-
     }
 }
