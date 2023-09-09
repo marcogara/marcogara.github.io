@@ -11,11 +11,13 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
+    display: flex; /* Display menu items in a row */
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 2%; /* Adjust the right margin as needed */
+    font-size: 1.2rem; /* Adjust the font size as needed */
 }
 
 nav a {
@@ -26,10 +28,10 @@ nav a {
 
 /* Style the logo for desktop */
 img {
-    max-width: 100%;
+    max-width: 15%; /* Adjust the logo's maximum width as needed */
     height: auto;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 2%; /* Adjust the right margin as needed */
+    margin-left: 2%; /* Adjust the left margin as needed */
 }
 
 /* Style the quote */
@@ -37,6 +39,6 @@ img {
     color: #fff;
     text-align: right;
     flex-grow: 1;
-    padding-right: 50px;
+    padding-right: 2%; /* Adjust the right padding as needed */
 }
 
