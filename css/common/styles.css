@@ -4,8 +4,29 @@ body {
     background-color: #333;
     color: #fff; /* Set text color to white */
     margin: 0; /* Remove default margin */
-    padding: 20px; /* Add padding to the entire page */
     font-family: 'Inconsolata', sans-serif; /* Use a readable font */
+    padding: 0; /* Remove default padding */
+    /* Center the content vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Set a background color or image if desired */
+   
+    /* background-image: url('your-background-image.jpg'); */
+    /* background-size: cover; */
+}
+
+.container {
+    width: 75vw; /* 100% of viewport width */
+    height: 80vh; /* 80% of viewport height */
+    /*max-width: 1400px; /* Set a maximum width for your content */
+    /*width: 80%;
+    padding: 20px; /* Add margin and padding to the content */
+    box-sizing: border-box; /* Include padding and border in the width */
+
+    /* Add a background color if desired */
+    background-color: #333;
 }
 
 @font-face {
@@ -14,8 +35,6 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-
-/*        src: url('../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');                                      */
 
 /* Style the GitHub button */
 a {
