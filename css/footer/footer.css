@@ -3,19 +3,22 @@ footer {
     background-color: #222;
     padding: 10px;
     display: flex;
-    border-radius: 10px;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align elements to the left */
     align-items: center;
+    border-radius: 10px;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: flex;
+    gap: 20px; /* Add gap between list items (buttons) */
 }
 
 nav a {
@@ -28,9 +31,15 @@ nav a {
 img {
     max-width: 100%;
     height: auto;
-    margin-right: 20px;
     margin-left: 20px;
 }
+
+
+
+
+
+
+
 
 /* Style the copyright text */
 .copyright {
