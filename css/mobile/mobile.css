@@ -45,8 +45,8 @@
     img {
         max-width: 100%;
         height: auto;
-        margin-right: 20px;
-        margin-left: 20px;
+        margin-right: 2%;    /* was 20px */
+        margin-left: 2%;   /* was 20px */
     }
 
     /* Adjust quote padding for mobile */
