@@ -1,9 +1,20 @@
 /* Media query for mobile devices */
 @media screen and (max-width: 768px) {
+    /*
+        header {
+        flex-direction: column; /* Display header items vertically for mobile 
+        align-items: center; /* Center align header items vertically 
+        padding-left: 0; /* Remove left padding for mobile 
+    }
+    */
+
     header {
-        flex-direction: column; /* Display header items vertically for mobile */
-        align-items: center; /* Center align header items vertically */
-        padding-left: 0; /* Remove left padding for mobile */
+        background-color: #222;
+        padding: 10px;
+        display: flex;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
     }
 
     nav ul {
@@ -33,7 +44,7 @@
 
     /* Style the logo for mobile */
     img {
-        width: auto;  /* was 60% */
+        width: 40%;  /* was 60% */
         max-width: 200px;
         height: auto;
         margin-bottom: 10px;
