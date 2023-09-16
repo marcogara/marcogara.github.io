@@ -8,13 +8,6 @@ header {
     align-items: center;
 }
 
-.logo {
-    max-width: 100%;
-    height: auto;
-    margin-right: 20px;
-
-}
-
 nav ul li {
     display: inline;
     margin-right: 20px; /* Adjust the right margin as needed */
@@ -41,7 +34,6 @@ img {
     margin-right: 20px;
     margin-left: 20px;
 }
-
 
 
 /* Style the quote */
