@@ -19,6 +19,18 @@
         text-align: center;
     }
 
+    .container {
+        width: 95vw; /* 100% of viewport width */
+        height: 80vh; /* 80% of viewport height */
+        /*max-width: 1400px; /* Set a maximum width for your content */
+        /*width: 80%;
+        padding: 20px; /* Add margin and padding to the content */
+        box-sizing: border-box; /* Include padding and border in the width */
+    
+        /* Add a background color if desired */
+        background-color: #333;
+    }
+
     /* Style the logo for mobile */
     img {
         width: 60%;
