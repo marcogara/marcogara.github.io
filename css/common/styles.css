@@ -107,13 +107,13 @@ a:active {
 
 /* Style the download link */
 .github-button[download] {
-    background-color: #205c26; /* Button background color for download link */
+    background-color: #000; /* Black background color */
     color: white; /* Button text color for download link */
     text-decoration: none; /* Remove underline for download link */
 }
 
 /* Style the download link on hover */
 .github-button[download]:hover {
-    background-color: #08320d; /* Darker green on hover for download link */
+    background-color: #333; /* Darker shade of black on hover */
 }
 
