@@ -47,12 +47,6 @@
         margin-left: 10px;
     }
 
-    /* Style the button container */
-.button-container {
-    text-align: left; /* Center-align the buttons horizontally */
-    margin-top: 20px; /* Add margin to create space above the buttons */
-}
-
     /* Style the GitHub button */
 .github-button {
     background-color: #0074d9; /* Button background color */
