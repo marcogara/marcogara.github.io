@@ -78,3 +78,42 @@ a:active {
     /* mit mause wird diese formatierung angezeigt */
 }
 
+
+/* Style the button container */
+.button-container {
+    text-align: left; /* Center-align the buttons horizontally */
+    margin-top: 20px; /* Add margin to create space above the buttons */
+}
+
+/* Style the GitHub button */
+.github-button {
+    background-color: #0074d9; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding to the buttons */
+    margin-right: 60px; /* Add margin to create space between buttons */
+    cursor: pointer; /* Add cursor pointer on hover */
+    font-size: 16px; /* Adjust font size as needed */
+    border-radius: 5px; /* Add button border-radius for rounded corners */
+    transition: background-color 0.3s; /* Add a smooth color transition on hover */
+
+    /* Other button styles can be added as needed */
+}
+
+/* Style the button on hover */
+.github-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style the download link */
+.github-button[download] {
+    background-color: #205c26; /* Button background color for download link */
+    color: white; /* Button text color for download link */
+    text-decoration: none; /* Remove underline for download link */
+}
+
+/* Style the download link on hover */
+.github-button[download]:hover {
+    background-color: #08320d; /* Darker green on hover for download link */
+}
+
