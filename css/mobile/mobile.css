@@ -51,6 +51,11 @@
 .github-button {
     background-color: #0074d9; /* Button background color */
     color: white; /* Button text color */
+
+    display: block; /* Make the button visible */
+    text-align: center; /* Center-align the button horizontally */
+    margin: 0 auto; /* Center the button horizontally */
+
     border: none; /* Remove button border */
     padding: 10px 20px; /* Add padding to the buttons */
     margin-bottom: 20px; /* Add margin to create space between buttons */
@@ -61,4 +66,10 @@
 
     /* Other button styles can be added as needed */
 }
+    /* Style the GitHub button */
+    .github-button img {
+        display: block; /* Make sure the image is centered */
+        margin: 0 auto; /* Center the image horizontally */
+        max-width: 100%; /* Ensure the image fits within the container */
+    }
 }
