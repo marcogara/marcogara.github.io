@@ -72,4 +72,10 @@
         margin: 0 auto; /* Center the image horizontally */
         max-width: 100%; /* Ensure the image fits within the container */
     }
+
+    /* Change background color on :active (tap) for mobile */
+button:active {
+    background-color: #2980b9;
+}
+
 }
