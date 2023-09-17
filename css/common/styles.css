@@ -63,4 +63,18 @@ a img {
 
 a:hover {
     background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.2); /* Increase the size by 20% on hover */
 }
+
+a:focus {
+    color:white;
+    background-color: #0074d9; /* Similar blue for focus */
+    /* mit tab man kann überspringen zwischen die link */
+}
+
+a:active {
+    color:gold;
+    background-color: #0056b3;
+    /* mit mause wird diese formatierung angezeigt */
+}
+
