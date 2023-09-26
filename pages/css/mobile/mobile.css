@@ -1,0 +1,81 @@
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    header {
+        background-color: #222;
+        padding: 10px;
+        display: flex;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column; /* Display menu items vertically for mobile */
+        align-items: center; /* Center align menu items vertically */
+        padding-left: 0; /* Remove left padding for mobile */
+    }
+
+    nav ul li {
+        margin-right: 0;
+        font-size: 8px; /* Adjust the font size as needed */
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .container {
+        width: 100vw; /* 100% of viewport width */
+        height: 80vh; /* 80% of viewport height */
+        background-color: #333;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    /* Quote takes the entire width and centers its content */
+    .quote {
+        text-align: center;
+        width: 100%;
+        padding: 0 10px; /* Add some horizontal padding for better readability */
+    }
+
+    /* Ensure margin between horizontal menu items */
+    nav ul li + li {
+        margin-left: 10px;
+    }
+
+    /* Style the GitHub button */
+.github-button {
+    background-color: #0074d9; /* Button background color */
+    color: white; /* Button text color */
+
+    display: block; /* Make the button visible */
+    text-align: center; /* Center-align the button horizontally */
+    margin: 0 auto; /* Center the button horizontally */
+
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding to the buttons */
+    margin-bottom: 20px; /* Add margin to create space between buttons */
+    cursor: pointer; /* Add cursor pointer on hover */
+    font-size: 16px; /* Adjust font size as needed */
+    border-radius: 5px; /* Add button border-radius for rounded corners */
+    transition: background-color 0.3s; /* Add a smooth color transition on hover */
+
+    /* Other button styles can be added as needed */
+}
+    /* Style the GitHub button */
+    .github-button img {
+        display: block; /* Make sure the image is centered */
+        margin: 0 auto; /* Center the image horizontally */
+        max-width: 100%; /* Ensure the image fits within the container */
+    }
+
+    /* Change background color on :active (tap) for mobile */
+button:active {
+    background-color: #2980b9;
+}
+
+}

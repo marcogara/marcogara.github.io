@@ -1,0 +1,48 @@
+/* Header layout for desktop */
+header {
+    background-color: #222;
+    padding: 10px;
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* Adjust the right margin as needed */
+ 
+    font-size: 1.2rem; /* Adjust the font size as needed */
+}
+nav ul {
+   
+    list-style: none;
+    padding: 0;
+    display: flex; /* Display menu items in a row */
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Style the logo for desktop */
+img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+/* Style the quote */
+.quote {
+    color: #fff;
+    text-align: right;
+    flex-grow: 1;
+    padding-right: 2%; /* Adjust the right padding as needed */
+}
+
+
+

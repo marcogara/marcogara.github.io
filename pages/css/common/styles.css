@@ -1,0 +1,119 @@
+/* styles.css */
+/* Apply a dark background color to the entire page */
+body {
+    background-color: #333;
+    color: #fff; /* Set text color to white */
+    margin-top: 20px; /* Remove default margin */
+    font-family: 'Inconsolata', sans-serif; /* Use a readable font */
+    padding: 0; /* Remove default padding */
+    /* Center the content vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Set a background color or image if desired */
+   
+    /* background-image: url('your-background-image.jpg'); */
+    /* background-size: cover; */
+}
+
+.container {
+    width: 75vw; /* 100% of viewport width */
+    height: 80vh; /* 80% of viewport height */
+    /*max-width: 1400px; /* Set a maximum width for your content */
+    /*width: 80%;
+    padding: 20px; /* Add margin and padding to the content */
+    box-sizing: border-box; /* Include padding and border in the width */
+
+    /* Add a background color if desired */
+    background-color: #333;
+}
+
+.projects-title{
+    background-color: #222;
+
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('../../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Style the GitHub button */
+a {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #5AF; /* GitHub blue */
+    /* background-color: #0074d9; /* GitHub blue */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+a img {
+    height: 40px;
+    width: 120px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.2); /* Increase the size by 20% on hover */
+}
+
+a:focus {
+    color:white;
+    background-color: #0074d9; /* Similar blue for focus */
+    /* mit tab man kann überspringen zwischen die link */
+}
+
+a:active {
+    color:gold;
+    background-color: #0056b3;
+    /* mit mause wird diese formatierung angezeigt */
+}
+
+
+/* Style the button container */
+.button-container {
+    text-align: left; /* Center-align the buttons horizontally */
+    margin-top: 20px; /* Add margin to create space above the buttons */
+}
+
+/* Style the GitHub button */
+.github-button {
+    background-color: #0074d9; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding to the buttons */
+    margin-right: 60px; /* Add margin to create space between buttons */
+    cursor: pointer; /* Add cursor pointer on hover */
+    font-size: 16px; /* Adjust font size as needed */
+    border-radius: 5px; /* Add button border-radius for rounded corners */
+    transition: background-color 0.3s; /* Add a smooth color transition on hover */
+
+    /* Other button styles can be added as needed */
+}
+
+/* Style the button on hover */
+.github-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style the download link */
+.github-button[download] {
+    background-color: #000; /* Black background color */
+    color: white; /* Button text color for download link */
+    text-decoration: none; /* Remove underline for download link */
+}
+
+/* Style the download link on hover */
+.github-button[download]:hover {
+    background-color: #333; /* Darker shade of black on hover */
+}
+
