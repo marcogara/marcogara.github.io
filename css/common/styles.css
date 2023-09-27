@@ -33,6 +33,10 @@ body {
     background-color: #222;
 
 }
+.glossary-title{
+    background-color: #222;
+
+}
 
 @font-face {
     font-family: 'Inconsolata';
@@ -40,6 +44,19 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+
+/* Apply margin-bottom to dt elements */
+dt {
+    margin-bottom: 10px;
+}
+
+/* Apply margin-bottom to dt elements */
+dd {
+    margin-bottom: 20px;
+}
+
+
+
 
 /* Style the GitHub button */
 a {
