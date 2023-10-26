@@ -38,6 +38,11 @@ body {
 
 }
 
+.books-title{
+    background-color: #222;
+
+}
+
 @font-face {
     font-family: 'Inconsolata';
     src: url('../../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');
