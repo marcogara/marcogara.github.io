@@ -42,6 +42,15 @@ body {
     background-color: #222;
 
 }
+/* Center and pad the 'bolg' section */
+.bolg {
+    text-align: center; /* Center-align text content */
+    padding: 120px; /* Add padding to all sides of the section */
+    background-color: #403164; /* Add a background color if desired */
+}
+
+
+
 
 @font-face {
     font-family: 'Inconsolata';
