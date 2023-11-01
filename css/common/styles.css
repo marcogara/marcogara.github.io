@@ -44,10 +44,20 @@ body {
 }
 /* Center and pad the 'bolg' section */
 .bolg {
-    text-align: center; /* Center-align text content */
-    padding: 120px; /* Add padding to all sides of the section */
+    text-align:left; /* Center-align text content */
+    padding-left: 420px; /* Add padding to all sides of the section */
+    padding-right: 420px; /* Add padding to all sides of the section */
     background-color: #403164; /* Add a background color if desired */
 }
+/* Add vertical space between sections */
+article p:first-child {
+    margin-top: 80px; /* Adjust the value as needed */
+}
+
+article p:last-child {
+    margin-bottom: 80px; /* Adjust the value as needed */
+}
+
 
 
 
