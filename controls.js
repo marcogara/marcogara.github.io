@@ -27,7 +27,6 @@ class Controls{
                     event.preventDefault(); // Prevent default behavior (scrolling)
                     break;    
             }
-            console.table(this);
         }
         document.onkeyup=(event)=>{
             switch(event.key){
@@ -44,7 +43,6 @@ class Controls{
                     this.reverse=false;
                     break;    
             }
-            console.table(this);
         }
     }
     

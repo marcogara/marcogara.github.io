@@ -15,7 +15,11 @@ class Car{
     }
 
     update(){
-        if(this.controls.forward){
+        this.#move();
+    }
+
+    #move(){
+                if(this.controls.forward){
             this.speed+=this.acc;
         }
         if(this.controls.reverse){
@@ -40,17 +44,19 @@ class Car{
             this.speed=0;
         }
 
-        if(this.controls.left){
-            this.angle+=0.03;
+        if(this.speed!=0){
+            const flip=this.speed>0?1:-1;
+            if(this.controls.left){
+                this.angle+=0.03*flip;
+            }
+    
+            if(this.controls.right){
+                this.angle-=0.03*flip;
+            }
         }
 
-        if(this.controls.right){
-            this.angle-=0.03;
-        }
-
-
-
-        this.y-=this.speed;
+        this.x-=Math.sin(this.angle)*this.speed;
+        this.y-=Math.cos(this.angle)*this.speed;
     }
 
     draw(ctx){
