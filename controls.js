@@ -20,9 +20,11 @@ class Controls{
                     break;    
                 case "ArrowUp":
                     this.forward=true;
+                    event.preventDefault(); // Prevent default behavior (scrolling)
                     break;
                 case "ArrowDown":
                     this.reverse=true;
+                    event.preventDefault(); // Prevent default behavior (scrolling)
                     break;    
             }
             console.table(this);
