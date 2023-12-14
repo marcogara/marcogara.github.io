@@ -163,3 +163,14 @@ a:active {
     background-color: #333; /* Darker shade of black on hover */
 }
 
+
+.projects-car{
+    background-color: darkgrey;
+    overflow: hidden;
+    text-align: center;
+    
+}
+
+#myCanvas{
+    background: lightgray;
+}
