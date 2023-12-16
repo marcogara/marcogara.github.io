@@ -12,6 +12,9 @@ class Car{
         this.angle=0;
 
         this.controls=new Controls();
+
+        this.img=new Image();
+        this.img.src="car.png"
     }
 
     update(){
@@ -63,14 +66,14 @@ class Car{
         ctx.save();
         ctx.translate(this.x,this.y);
         ctx.rotate(-this.angle)
-        ctx.beginPath();
-        ctx.rect(
+        ctx.drawImage(this.img,
             -this.width/2,
             -this.height/2,
             this.width,
-            this.height
-        )
-        ctx.fill();
+            this.height);
+        // ctx.beginPath();
+
+
 
         ctx.restore();
     }
