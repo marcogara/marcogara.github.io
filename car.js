@@ -11,14 +11,20 @@ class Car{
         this.friction=0.05;
         this.angle=0;
 
+        
+        this.sensor=new Sensor(this);
+
         this.controls=new Controls();
 
         this.img=new Image();
         this.img.src="car.png"
+
+
     }
 
     update(){
         this.#move();
+        this.sensor.update();
     }
 
     #move(){
@@ -62,19 +68,27 @@ class Car{
         this.y-=Math.cos(this.angle)*this.speed;
     }
 
-    draw(ctx){
+    draw(ctx,drawSensor=false){
         ctx.save();
         ctx.translate(this.x,this.y);
         ctx.rotate(-this.angle)
+
+
         ctx.drawImage(this.img,
             -this.width/2,
             -this.height/2,
             this.width,
-            this.height);
+            this.height
+        );
+            
         // ctx.beginPath();
 
-
-
         ctx.restore();
+
+        // if(this.sensor && drawSensor){
+           //  this.sensor.draw(ctx);
+        // }
+
+        this.sensor.draw(ctx);
     }
 }
