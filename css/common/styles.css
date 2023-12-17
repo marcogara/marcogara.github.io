@@ -171,6 +171,10 @@ a:active {
     
 }
 
-#myCanvas{
+#carCanvas{
     background: lightgray;
+}
+
+#networkCanvas{
+    background: black;
 }
