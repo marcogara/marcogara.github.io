@@ -17,14 +17,14 @@ const traffic=[
 animate();
 
 
-function animate(){
+function animate(time){
     for(let i=0;i<traffic.length;i++){
         traffic[i].update(road.borders,[]);
     }
     car.update(road.borders,traffic);
 
-    carCanvas.height=window.innerHeight;
-    networkCanvas.height=window.innerHeight;
+    carCanvas.height=window.innerHeight-200;
+    networkCanvas.height=window.innerHeight-200;
 
     carCtx.save();
     carCtx.translate(0,-car.y+carCanvas.height*0.7);
@@ -37,6 +37,7 @@ function animate(){
 
     carCtx.restore();
 
+    networkCtx.lineDashOffset=-time/50;
     Visualizer.drawNetwork(networkCtx,car.brain);
     requestAnimationFrame(animate);
 }
