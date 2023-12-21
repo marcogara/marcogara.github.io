@@ -241,11 +241,17 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express",
         <h2> Car Project</h2>
 
         <p>Selfdriving car JavaScript project.</p>
+
         <div class="car">
             <canvas id="carCanvas"></canvas>
+            <div id="verticalButtons" class="car-buttons">
+                <button onclick="save()">💾</button>
+                <button onclick="discard()">🗑️</button>
+            </div>
+            
             <canvas id="networkCanvas"></canvas>
+        </div>
             <script src="visualizer.js"></script>
-
             <script src="sensor.js"></script>
             <script src="utilis.js"></script>
             <script src="car.png"></script>
@@ -254,7 +260,6 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express",
             <script src="car.js"></script>
             <script src="controls.js"></script>
             <script src="main.js"></script>
-        </div>
     </section>
 
     <section id="contact">

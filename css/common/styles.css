@@ -164,17 +164,35 @@ a:active {
 }
 
 
-.projects-car{
-    background-color: darkgrey;
-    overflow: hidden;
-    text-align: center;
-    
+.car {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#carCanvas{
+.car-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align buttons to the right side */
+    margin-right: 20px; /* Adjust margin as needed */
+}
+
+.car-buttons button {
+    border: none;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px 5px 7px 5px;
+    cursor: pointer;
+}
+
+.car-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#carCanvas {
     background: lightgray;
 }
 
-#networkCanvas{
+#networkCanvas {
     background: black;
 }
