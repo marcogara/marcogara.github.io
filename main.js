@@ -65,9 +65,10 @@ function animate(time){
     for(let i=0;i<cars.length;i++){
         cars[i].update(road.borders,traffic);
     }
+    
     bestCar=cars.find(
-        c=>c.y==Math.min(
-            ...cars.map(c=>c.y)
+        c=>c.fitness==Math.max(
+            ...cars.map(c=>c.fitness)
         ));
 
     carCanvas.height=window.innerHeight-200;
