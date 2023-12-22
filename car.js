@@ -85,7 +85,34 @@ class Car{
                 this.controls.reverse=outputs[3];
             }
         }
-        
+    }
+
+    update(road,traffic){
+        if(!this.damaged){
+            const old={x:this.x,y:this.y}
+            this.#move();
+            this.fitness+=old.y-this.y;
+            
+            const laneWidth=road.width/road.laneCount;
+            const penalty=Math.abs((this.x-road.left)%laneWidth-laneWidth/2);
+            this.fitness-=penalty*0.05;
+            this.polygon=this.#createPolygon();
+            this.damaged=this.#assesDamage(road.borders,traffic);
+        }
+        if(this.sensor){
+            this.sensor.update(road.borders,traffic);
+            const offsets=this.sensor.readings.map(
+                s=>s==null?0:1-s.offset
+            );
+            const outputs=NeuralNetwork.feedForward(offsets,this.brain);
+
+            if(this.useBrain){
+                this.controls.forward=outputs[0];
+                this.controls.left=outputs[1];
+                this.controls.right=outputs[2];
+                this.controls.reverse=outputs[3];
+            }
+        }
     }
 
 
