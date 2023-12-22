@@ -36,7 +36,7 @@ const traffic=[
     new Car(road.getLaneCenter(2),-1100,30,50,"DUMMY",2,getRandomColor()),
 
 ];
-// car.draw(ctx);
+
 
 animate();
 
