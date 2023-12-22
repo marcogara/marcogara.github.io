@@ -47,5 +47,10 @@ function polysIntersect(poly1, poly2){
         return "rgba("+R+","+G+","+B+","+alpha+")";
     }
 
+    function getRandomColor(){
+        const hue=45+Math.random()*290;
+        return "hsl("+hue+",100%, 60%)";
+    }
+
                 
                 

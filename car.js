@@ -1,5 +1,29 @@
+    /*
+MIT License
+
+Copyright (c) 2022 Radu Mariescu-Istodor
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+© 2022 GitHub, Inc.
+*/
 class Car{
-    constructor(x,y,width,height,controlType,maxSpeed=3){
+    constructor(x,y,width,height,controlType,maxSpeed=3,color="orange"){
         this.x=x;
         this.y=y;
         this.width=width;
@@ -11,6 +35,7 @@ class Car{
         this.friction=0.05;
         this.angle=0;
         this.damage=false;
+        this.fitness=0;
 
         this.useBrain=controlType=="AI";
 
@@ -20,13 +45,24 @@ class Car{
                 [this.sensor.rayCount,6,4]
             );
         }
-
         this.controls=new Controls(controlType);
 
         this.img=new Image();
         this.img.src="car.png"
 
+        this.mask=document.createElement("canvas");
+        this.mask.width=width;
+        this.mask.height=height;
 
+        const maskCtx=this.mask.getContext("2d");
+        this.img.onload=()=>{
+            maskCtx.fillStyle=color;
+            maskCtx.rect(0,0,this.width,this.height);
+            maskCtx.fill();
+
+            maskCtx.globalCompositeOperation="destination-atop";
+            maskCtx.drawImage(this.img,0,0,this.width,this.height);
+        }
     }
 
     update(roadBorders,traffic){
@@ -51,6 +87,7 @@ class Car{
         }
         
     }
+
 
     #assesDamage(roadBorders,traffic){
         for(let i=0;i<roadBorders.length;i++){
@@ -131,42 +168,34 @@ class Car{
     }
 
     draw(ctx,color,drawSensor=false){
-        if(this.damage){
-            ctx.fillStyle="grey";
-        }else{
-            ctx.fillStyle=color;
-        }
-        ctx.beginPath();
-        ctx.moveTo(this.polygon[0].x,this.polygon[0].y);
-        for(let i=0;i<this.polygon.length;i++){
-            ctx.lineTo(this.polygon[i].x,this.polygon[i].y);
-        }
-        ctx.fill();
 
         if(this.sensor && drawSensor){
             this.sensor.draw(ctx);
         }
 
-        // ctx.save();
-        // ctx.translate(this.x,this.y);
-        // ctx.rotate(-this.angle)
+        ctx.save();
+        ctx.translate(this.x,this.y);
+        ctx.rotate(-this.angle)
 
+        if(!this.damage){
+            ctx.drawImage(this.mask,
+                -this.width/2,
+                -this.height/2,
+                this.width,
+                this.height
+             );
+            ctx.globalCompositeOperation="multiply";
+        }
 
-        // ctx.drawImage(this.img,
-           // -this.width/2,
-            // -this.height/2,
-            // this.width,
-            // this.height
-        // );
-            
-        // ctx.beginPath();
-
-        // ctx.restore();
-
-        // if(this.sensor && drawSensor){
-           //  this.sensor.draw(ctx);
-        // }
+         ctx.drawImage(this.img,
+            -this.width/2,
+            -this.height/2,
+            this.width,
+            this.height
+         );
+        ctx.restore();
 
         
+
     }
 }
