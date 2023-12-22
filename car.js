@@ -65,28 +65,6 @@ class Car{
         }
     }
 
-    update(roadBorders,traffic){
-        if(!this.damage){
-            this.#move();
-            this.polygon=this.#createPolygon();
-            this.damage=this.#assesDamage(roadBorders,traffic);
-        }
-        if(this.sensor){
-            this.sensor.update(roadBorders,traffic);
-            const offsets=this.sensor.readings.map(
-                s=>s==null?0:1-s.offset
-            );
-            const outputs=NeuralNetwork.feedForward(offsets,this.brain);
-
-            if(this.useBrain){
-                this.controls.forward=outputs[0];
-                this.controls.left=outputs[1];
-                this.controls.right=outputs[2];
-                this.controls.reverse=outputs[3];
-            }
-        }
-    }
-
     update(road,traffic){
         if(!this.damaged){
             const old={x:this.x,y:this.y}
@@ -184,7 +162,6 @@ class Car{
             if(this.controls.left){
                 this.angle+=0.03*flip;
             }
-    
             if(this.controls.right){
                 this.angle-=0.03*flip;
             }
@@ -194,7 +171,7 @@ class Car{
         this.y-=Math.cos(this.angle)*this.speed;
     }
 
-    draw(ctx,color,drawSensor=false){
+    draw(ctx,drawSensor=false){
 
         if(this.sensor && drawSensor){
             this.sensor.draw(ctx);
@@ -209,8 +186,7 @@ class Car{
                 -this.width/2,
                 -this.height/2,
                 this.width,
-                this.height
-             );
+                this.height);
             ctx.globalCompositeOperation="multiply";
         }
 
@@ -221,8 +197,6 @@ class Car{
             this.height
          );
         ctx.restore();
-
-        
 
     }
 }
