@@ -78,25 +78,37 @@
     background-color: #2980b9;
 }
 
-/* Media query for mobile devices */
-@media screen and (max-width: 768px) {
-    .car {
-        flex-direction: column; /* Stack elements vertically on small screens */
-        align-items: center;
-    }
-
-    .car-buttons {
-        align-items: center; /* Center buttons on small screens */
-        margin: 10px 0; /* Add margin for spacing between buttons and canvases */
-    }
-
-    #carCanvas,
-    #networkCanvas {
-        width: 100%; /* Make canvases fill the entire width of the screen */
-        max-width: 300px; /* Set a maximum width for the canvases */
-        margin-bottom: 10px; /* Add margin for spacing between canvases */
-    }
+.car {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.car-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align buttons to the right side */
+    /* margin-right: 20px; /* Adjust margin as needed */
+}
+
+.car-buttons button {
+    border: none;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px 5px 7px 5px;
+    cursor: pointer;
+}
+
+.car-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#carCanvas {
+    background: lightgray;
+}
+
+#networkCanvas {
+    background: black;
+}
 
 }
