@@ -64,9 +64,6 @@ article p:last-child {
 }
 
 
-
-
-
 @font-face {
     font-family: 'Inconsolata';
     src: url('../../font/static/Inconsolata_ExtraExpanded-Medium.ttf') format('truetype');
@@ -83,9 +80,6 @@ dt {
 dd {
     margin-bottom: 20px;
 }
-
-
-
 
 /* Style the GitHub button */
 a {
