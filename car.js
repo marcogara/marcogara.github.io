@@ -115,8 +115,8 @@ class Car{
     }
 
     #move(){
-                if(this.controls.forward){
-            this.speed+=this.acc;
+        if(this.controls.forward){
+        this.speed+=this.acc;
         }
         if(this.controls.reverse){
             this.speed-=this.acc;
@@ -180,6 +180,5 @@ class Car{
             this.height
          );
         ctx.restore();
-
     }
 }
