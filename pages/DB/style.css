@@ -1,0 +1,18 @@
+/* for db page umpload image */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    height: 100vh;
+
+}
+#display_image{
+    width: 375px;
+    height: 211px;
+    border: solid rgb(7, 75, 43);
+    background-position: center;
+    background-size: cover;
+}
+
