@@ -8,11 +8,23 @@ body{
     height: 100vh;
 
 }
-#display_image{
+/* Apply styles to each image container */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    height: auto; /* Adjust the height as needed */
+}
+
+/* Apply styles to the display area for each image */
+.display-image {
     width: 375px;
     height: 211px;
     border: solid rgb(7, 75, 43);
     background-position: center;
     background-size: cover;
+    margin-bottom: 10px; /* Add margin between image containers */
 }
 
