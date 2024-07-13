@@ -93,8 +93,9 @@ p {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: #fff;
+    color: #222;
     width: 450px;
-    height: 220px;
+    height: 420px;
     z-index: 2;
     text-align:center ;
     padding: 20px;
