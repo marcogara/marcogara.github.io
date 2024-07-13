@@ -76,6 +76,8 @@ p {
     background-color: #333; /* Darker shade of black on hover */
 }
 
+
+/* Popup window styles */
 .popup .overlay {
     position:fixed;
     top: 0px;
@@ -132,5 +134,6 @@ p {
     color: #222;    /* Example color */
     /* Add more styles as needed */
 }
+/* Popup window styles end*/
 
 
