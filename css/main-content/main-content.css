@@ -127,4 +127,10 @@ p {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.popup-title {
+    font-size: 24px; /* Example size */
+    color: #222;    /* Example color */
+    /* Add more styles as needed */
+}
+
 
