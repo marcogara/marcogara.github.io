@@ -83,6 +83,7 @@
     <script>
         function togglePopup(){
             document.getElementById("popup-1").classList.toggle("active");
+            document.body.classList.toggle("popup-open");
             if (document.getElementById("popup-1").classList.contains   ("active")) {
                 document.getElementById("normalw").value = "";
                 document.getElementById("smallw").value = "";

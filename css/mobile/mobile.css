@@ -118,16 +118,24 @@
 /* Popup window styles */
 @media screen and (max-width: 768px) {
     .popup .content {
-        padding: 15px;
+        width: 90%;
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding-bottom: 60px; /* Add extra padding at the bottom */
     }
 
+    body.popup-open {
+        position: fixed;
+        width: 100%;
+    }
+
+    input[type="number"] {
+        font-size: 16px; /* Prevent zoom on input focus in iOS */
+    }
     .popup .close-btn {
         right: 10px;
         top: 10px;
-    }
-
-    .framed-output {
-        width: 100%;
     }
 }
 /* Popup window styles end*/
