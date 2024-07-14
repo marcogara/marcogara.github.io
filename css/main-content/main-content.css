@@ -154,6 +154,31 @@ p {
 input[type="number"] {
     width: 60px;
 }
+
+@media screen and (max-width: 768px) {
+    .popup .content {
+        width: 90%;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .popup-title {
+        font-size: 20px;
+    }
+
+    .input-label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
 /* Popup window styles end*/
 
 

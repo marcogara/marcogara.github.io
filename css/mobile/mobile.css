@@ -115,4 +115,21 @@
 }
 }
 
+/* Popup window styles */
+@media screen and (max-width: 768px) {
+    .popup .content {
+        padding: 15px;
+    }
+
+    .popup .close-btn {
+        right: 10px;
+        top: 10px;
+    }
+
+    .framed-output {
+        width: 100%;
+    }
+}
+/* Popup window styles end*/
+
 
