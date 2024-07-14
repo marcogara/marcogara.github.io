@@ -54,16 +54,42 @@
             <div class="overlay"></div>
             <div class="content">
                 <div class="close-btn" onclick="togglePopup()">&times;</div>
-                <h1 class="popup-title">Title</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat harum quam ducimus fuga ab possimus maxime numquam consequuntur aut vero molestias reprehenderit et aspernatur ad accusantium, autem provident modi mollitia.</p>
+                <h1 class="popup-title">Calculator</h1>
+                <br>
+                <form id="windowForm">
+                    <label for="normalw">Normal Windows(20 €/Pc.):</label>
+                    <input type="number" id="normalw" name="normalw" size="5" min="0"><br><br>
+                    <label for="smallw">Small Windows(10 €/Pc.):</label>
+                    <input type="number" id="smallw" name="smallw" size="5" min="0"><br><br>
+                    <label for="doublew">Double Windows (30 €/Pc.):</label>
+                    <input type="number" id="doublew" name="doublew" size="5" min="0"><br><br>
+                    <input type="button" value="Calculate" onclick="calculateTotal()">
+                  </form>
+                  <br>
+                    <label for="totalCost">Total Cost:</label><br><br>
+                    <output id="totalCost" name="totalCost"></output>
             </div>
         </div>
-        <button onclick="togglePopup()">Show Popup</button>
+        <button onclick="togglePopup()">Show Calculator</button>
     </section>
 
     <script>
         function togglePopup(){
             document.getElementById("popup-1").classList.toggle("active");
+            if (document.getElementById("popup-1").classList.contains   ("active")) {
+                document.getElementById("normalw").value = "";
+                document.getElementById("smallw").value = "";
+                document.getElementById("doublew").value = "";
+                document.getElementById("totalCost").value = "";
+            }
+        }
+
+        function calculateTotal() {
+        var normalw = parseInt(document.getElementById('normalw').value)*20 || 0;
+        var smallw = parseInt(document.getElementById('smallw').value)*10 || 0;
+        var doublew = parseInt(document.getElementById('doublew').value)*30 || 0;
+        var total = normalw + smallw + doublew;
+        document.getElementById('totalCost').value = total + " €";
         }
     </script> 
 
