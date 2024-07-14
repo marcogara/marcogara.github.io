@@ -177,6 +177,12 @@ input[type="number"] {
         width: 100%;
         margin-bottom: 10px;
     }
+
+    .calculate-btn {
+        font-size: 20px;
+        padding: 12px 24px;
+         width: 100%;
+    }
 }
 
 /* Popup window styles end*/
