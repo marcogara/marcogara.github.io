@@ -138,10 +138,12 @@
     }
 
     input[type="number"] {
+        width: 100px;
         font-size: 16px; /* Prevent zoom on input focus in iOS */
-        width: 50%;
-        margin-bottom: 10px;
-        }
+        text-align: center;
+        margin: 0 auto 10px;
+        display: block;
+    }
 
     .popup .close-btn {
         right: 10px;
