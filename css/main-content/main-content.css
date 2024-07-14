@@ -96,7 +96,7 @@ p {
     transform: translate(-50%, -50%) scale(0);
     background: #fff;
     color: #222;
-    width: 450px;
+    width: 500px;
     height: 420px;
     z-index: 2;
     text-align:center ;
@@ -144,6 +144,16 @@ p {
     margin-top: 5px;
 }
 
+.input-label {
+    display: inline-block;
+    width: 350px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 60px;
+}
 /* Popup window styles end*/
 
 
