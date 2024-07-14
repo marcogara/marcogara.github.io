@@ -62,11 +62,11 @@
                 <h1 class="popup-title">Calculator</h1>
                 <br>
                 <form id="windowForm">
-                    <label for="normalw">Normal Windows(20 €/Pc.):</label>
+                    <label for="normalw">Normal Windows (20 €/pc.):</label>
                     <input type="number" id="normalw" name="normalw" size="5" min="0"><br><br>
-                    <label for="smallw">Small Windows(10 €/Pc.):</label>
+                    <label for="smallw">Small Windows (10 €/pc.):</label>
                     <input type="number" id="smallw" name="smallw" size="5" min="0"><br><br>
-                    <label for="doublew">Double Windows (30 €/Pc.):</label>
+                    <label for="doublew">Double Windows (30 €/pc.):</label>
                     <input type="number" id="doublew" name="doublew" size="5" min="0"><br><br>
                     <label for="paidParking">Paid parking in my area:</label>
                     <input type="checkbox" id="paidParking" name="paidParking"><br><br>
@@ -74,10 +74,10 @@
                   </form>
                   <br>
                     <label for="totalCost">Total Cost:</label><br><br>
-                    <output id="totalCost" name="totalCost"></output>
+                    <output id="totalCost" name="totalCost" class="framed-output">...</output>
             </div>
         </div>
-        <button onclick="togglePopup()">Show Calculator</button>
+        <button class="github-button" onclick="togglePopup()">Window Cleaning Quote Calculator</button>
     </section>
 
     <script>
@@ -87,7 +87,8 @@
                 document.getElementById("normalw").value = "";
                 document.getElementById("smallw").value = "";
                 document.getElementById("doublew").value = "";
-                document.getElementById("totalCost").value = "";
+                document.getElementById("totalCost").textContent = "...";
+                document.getElementById("paidParking").checked = false;
             }
         }
 

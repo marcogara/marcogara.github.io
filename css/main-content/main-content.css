@@ -134,6 +134,16 @@ p {
     color: #222;    /* Example color */
     /* Add more styles as needed */
 }
+
+.framed-output {
+    display: inline-block;
+    min-width: 100px;
+    min-height: 20px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 5px;
+}
+
 /* Popup window styles end*/
 
 
