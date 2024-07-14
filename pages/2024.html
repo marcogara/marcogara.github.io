@@ -68,6 +68,8 @@
                     <input type="number" id="smallw" name="smallw" size="5" min="0"><br><br>
                     <label for="doublew">Double Windows (30 €/Pc.):</label>
                     <input type="number" id="doublew" name="doublew" size="5" min="0"><br><br>
+                    <label for="paidParking">Paid parking in my area:</label>
+                    <input type="checkbox" id="paidParking" name="paidParking"><br><br>
                     <input type="button" value="Calculate" onclick="calculateTotal()">
                   </form>
                   <br>
@@ -93,7 +95,8 @@
         var normalw = parseInt(document.getElementById('normalw').value)*20 || 0;
         var smallw = parseInt(document.getElementById('smallw').value)*10 || 0;
         var doublew = parseInt(document.getElementById('doublew').value)*30 || 0;
-        var total = normalw + smallw + doublew;
+        var paidParking = document.getElementById('paidParking').checked ? 10 : 0;
+        var total = normalw + smallw + doublew + paidParking;
         document.getElementById('totalCost').value = total + " €";
         }
     </script> 
