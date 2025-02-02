@@ -66,8 +66,32 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express",
         </div>
     </section>
     
+    
+
+        <canvas id="mapCanvas"></canvas>
+        <script>
+            window.onload = function() {
+                const canvas = document.getElementById("mapCanvas");
+                const ctx = canvas.getContext("2d");
+    
+                // Set canvas size
+                canvas.width = 1000; // Adjust width
+                canvas.height = 700; // Adjust height
+    
+                // Load map image
+                const mapImage = new Image();
+                mapImage.src = "Winkel_triple_projection_SW.jpg"; // Replace with your map image path
+    
+                mapImage.onload = function() {
+                    ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
+                };
+            };
+        </script>
+    
+<p></p>
 
     <iframe width="710" height="700" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="https://calculator.carbonfootprint.com/calculator.aspx"></iframe>
+
 
     <section id="projects-title"class="projects-title">
         <h1>Projects</h1>

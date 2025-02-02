@@ -19,6 +19,13 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+#mapCanvas {
+    display: block;
+    margin: auto;
+    border: 2px solid #333; /* Optional: Adds a border around the map */
+    background: #ddd; /* Fallback in case image doesn't load */
+}
+
 #about h1 {
     color: #fff;
     font-size: 24px;
