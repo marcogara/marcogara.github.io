@@ -30,6 +30,8 @@ function startGame() {
 
         introAudio = new Audio("audiogameAudio/intro.mp3");
         questionAudio = new Audio("audiogameAudio/question1.mp3");
+        dogAudio = new Audio("audiogameAudio/big-dog-barking-112717.mp3");
+        
 
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -69,6 +71,7 @@ if (recognition) {
 
         if (transcript.includes("yes")) {
             console.log("User said YES!");
+            playAudio(dogAudio);
             playAudio(questionAudio);
         } else if (transcript.includes("no")) {
             console.log("User said NO! Playing intro again...");
