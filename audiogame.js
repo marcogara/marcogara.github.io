@@ -31,7 +31,7 @@ function startGame() {
         introAudio = new Audio("audiogameAudio/intro.mp3");
         questionAudio = new Audio("audiogameAudio/question1.mp3");
         dogAudio = new Audio("audiogameAudio/big-dog-barking-112717.mp3");
-        
+        carAudio = new Audio("audiogameAudio/car-horn-6408.mp3");
 
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -71,8 +71,7 @@ if (recognition) {
 
         if (transcript.includes("yes")) {
             console.log("User said YES!");
-            playAudio(dogAudio);
-            playAudio(questionAudio);
+            playAudioSequence(dogAudio, carAudio, questionAudio);
         } else if (transcript.includes("no")) {
             console.log("User said NO! Playing intro again...");
             playAudio(introAudio);
@@ -85,6 +84,30 @@ if (recognition) {
         console.error("Recognition error:", event.error);
     };
 }
+
+function playAudioSequence(...audioElements) {
+    let index = 0;
+
+    function playNext() {
+        if (index < audioElements.length) {
+            const audio = audioElements[index];
+            audio.currentTime = 0;
+            audio.play().catch(e => console.error("Audio play failed:", e));
+            audio.onended = () => {
+                index++;
+                playNext();
+            };
+        }
+    }
+
+    playNext();
+}
+
+function playAudio(audio) {
+    audio.currentTime = 0;
+    audio.play().catch(e => console.error("Audio play failed:", e));
+}
+
 
 function playAudio(audio) {
     recognition.stop();
