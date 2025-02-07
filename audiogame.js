@@ -5,23 +5,48 @@ let questionAudio = new Audio("audiogameAudio/question1.mp3"); // Load the quest
 document.getElementById("playButton").addEventListener("click", startGame);
 document.getElementById("stopButton").addEventListener("click", stopGame);
 
-// Speech Recognition Setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition;
+
 if (!SpeechRecognition) {
     console.error("Speech recognition is not supported in this browser.");
 } else {
-    const recognition = new SpeechRecognition();
+    recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
 }
 
-recognition.lang = "en-US"; // Set language
-recognition.continuous = false; // Stop after one result
-recognition.interimResults = false; // Only final results
+function startGame() {
+    if (!gameRunning) {
+        // ... other code ...
+
+        if (!recognition) {
+            console.error("Speech recognition is not supported in this browser.");
+            document.getElementById("result").innerText = "Speech recognition is not supported in this browser.";
+            return;
+        }
+
+        // ... rest of the function ...
+    }
+}
 
 function startGame() {
     if (!gameRunning) {
         gameRunning = true;
         document.getElementById("playButton").disabled = true;
         document.getElementById("stopButton").disabled = false;
+
+        // Add the check for speech recognition support here
+        if (!recognition) {
+            console.error("Speech recognition is not supported in this browser.");
+            document.getElementById("result").innerText = "Speech recognition is not supported in this browser.";
+            return;
+        }
+
+        // Initialize audio here
+        introAudio = new Audio("audiogameAudio/intro.mp3");
+        questionAudio = new Audio("audiogameAudio/question1.mp3");
 
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -38,26 +63,29 @@ function startGame() {
 
         // Play intro audio
         introAudio.currentTime = 0; // Reset audio to start
-        introAudio.play();
+        introAudio.play().catch(e => console.error("Audio play failed:", e));
     }
 }
 
-// When the intro audio finishes, start listening
+
 introAudio.onended = () => {
     console.log("Intro finished, starting voice recognition...");
-
-    // Start listening after 5 seconds timeout
-    setTimeout(() => {
-        recognition.start();
-
-        // Stop recognition after 5 seconds if no response
+    if (recognition) {
+        setTimeout(() => {
+            recognition.start();
+                    // Stop recognition after 5 seconds if no response
         setTimeout(() => {
             recognition.stop();
             console.log("Timeout: No response detected.");
             document.getElementById("result").innerText = "Didn't detect a response.";
         }, 5000);
-    }, 500);
+        }, 500);
+    } else {
+        console.error("Speech recognition is not supported.");
+    }
 };
+
+
 
 // When speech is recognized
 recognition.onresult = (event) => {
@@ -79,15 +107,11 @@ recognition.onresult = (event) => {
 };
 
 // Handle errors
-recognition.onerror = (event) => {
-    console.log("Error occurred:", event.error);
-};
-
 // Function to play an audio file and stop recognition
 function playAudio(audio) {
     recognition.stop(); // Ensure recognition is stopped before playing audio
     audio.currentTime = 0; // Reset audio
-    audio.play();
+    audio.play().catch(e => console.error("Audio play failed:", e));
 }
 
 // Stop game function
