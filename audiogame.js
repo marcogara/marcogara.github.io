@@ -68,13 +68,13 @@ if (recognition) {
         recognition.stop();
 
         if (transcript.includes("yes")) {
-            document.getElementById("result").innerText = "User said YES!";
+            console.log("User said YES!");
             playAudio(questionAudio);
         } else if (transcript.includes("no")) {
-            document.getElementById("result").innerText = "User said NO! Playing intro again...";
+            console.log("User said NO! Playing intro again...");
             playAudio(introAudio);
         } else {
-            document.getElementById("result").innerText = "Didn't detect YES or NO.";
+            console.log("Didn't detect YES or NO.");
         }
     };
 
