@@ -11,9 +11,9 @@ const questions = [
         introAudio: "audiogameAudio/intro.mp3",
         yesResponse: {
             audio: [
-                "audiogameAudio/question1.mp3",
                 "audiogameAudio/big-dog-barking-112717.mp3",
-                "audiogameAudio/car-horn-6408.mp3"
+                "audiogameAudio/car-horn-6408.mp3",
+                "audiogameAudio/question1.mp3"
             ],
             nextQuestion: 0 // For now, we'll loop back to the start
         },
