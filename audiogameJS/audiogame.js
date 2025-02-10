@@ -43,6 +43,7 @@ const audioManager = {
     },
     playAudioSequence: async function(srcArray) {
         for (const src of srcArray) {
+            console.log(`Playing: ${src}`); // Add this line for debugging
             await this.playAudio(src);
         }
     },
@@ -134,6 +135,7 @@ const gameManager = {
         const question = questions[gameState.currentQuestion];
         if (answer.includes("yes")) {
             canvasManager.drawText("User said YES!");
+            console.log("Playing audio sequence"); // Add this line for debugging
             await audioManager.playAudioSequence(question.yesResponse.audio);
             gameState.currentQuestion = question.yesResponse.nextQuestion;
         } else if (answer.includes("no")) {
