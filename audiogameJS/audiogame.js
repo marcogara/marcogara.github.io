@@ -19,7 +19,6 @@ const questions = [
             correctAnswer: ["car", "carhorn", "horn"], // List of valid answers
             correctAudio: "audiogameAudio/if_carhorn_correct.mp3", // Play if answer is correct
             incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3", // Play if answer is incorrect
-            nextQuestion: 0 // For now, we'll loop back to the start
         },
         noResponse: {
             audio: "audiogameAudio/intro.mp3",
