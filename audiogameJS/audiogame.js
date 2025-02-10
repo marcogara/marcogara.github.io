@@ -1,177 +1,110 @@
-// Game state
-const gameState = {
-    currentQuestion: 0,
-    score: 0,
-    isRunning: false
-};
+let gameRunning = false;
+let introAudio = new Audio("audiogameAudio/intro.mp3"); // Load the intro audio
+let questionAudio = new Audio("audiogameAudio/question2.mp3"); // Load the question audio
 
-// Question structure
-const questions = [
-    {
-        introAudio: "audiogameAudio/intro.mp3",
-        yesResponse: {
-            audio: "audiogameAudio/question2.mp3",
-            correctAnswer: ["car", "carhorn", "horn"],
-            correctAudio: "audiogameAudio/if_carhorn_correct.mp3",
-            incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3",
-        },
-        noResponse: {
-            audio: "audiogameAudio/intro.mp3",
-            nextQuestion: 0
-        }
-    },
-    // Add more questions here in the future
-];
+document.getElementById("playButton").addEventListener("click", startGame);
+document.getElementById("stopButton").addEventListener("click", stopGame);
 
-// Audio manager
-const audioManager = {
-    audioElements: {},
-    loadAudio: function(src) {
-        if (!this.audioElements[src]) {
-            this.audioElements[src] = new Audio(src);
-        }
-    },
-    playAudio: function(src) {
-        return new Promise((resolve) => {
-            const audio = this.audioElements[src];
-            audio.onended = resolve;
-            audio.currentTime = 0;
-            audio.play().catch(e => console.error("Audio play failed:", e));
-        });
-    },
-    stopAll: function() {
-        Object.values(this.audioElements).forEach(audio => {
-            audio.pause();
-            audio.currentTime = 0;
-        });
-    }
-};
-
-// Speech recognition manager
-const speechRecognitionManager = {
-    recognition: null,
-    init: function() {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            this.recognition = new SpeechRecognition();
-            this.recognition.lang = "en-US";
-            this.recognition.continuous = false;
-            this.recognition.interimResults = false;
-        } else {
-            console.error("Speech recognition is not supported in this browser.");
-        }
-    },
-    start: function() {
-        return new Promise((resolve, reject) => {
-            if (!this.recognition) {
-                reject("Speech recognition not initialized");
-                return;
-            }
-            this.recognition.start();
-            this.recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript.toLowerCase();
-                resolve(transcript);
-            };
-            this.recognition.onerror = (event) => {
-                reject(event.error);
-            };
-        });
-    },
-    stop: function() {
-        if (this.recognition) {
-            this.recognition.stop();
-        }
-    }
-};
-
-// Canvas manager
-const canvasManager = {
-    canvas: null,
-    ctx: null,
-    init: function() {
-        this.canvas = document.getElementById("gameCanvas");
-        this.ctx = this.canvas.getContext("2d");
-        this.canvas.width = 400;
-        this.canvas.height = 400;
-    },
-    drawText: function(text) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "24px Arial";
-        this.ctx.textAlign = "center";
-        this.ctx.textBaseline = "middle";
-        this.ctx.fillText(text, this.canvas.width / 2, this.canvas.height / 2);
-    }
-};
-
-// Game flow manager
-const gameManager = {
-    async startGame() {
-        gameState.isRunning = true;
-        gameState.currentQuestion = 0;
-        gameState.score = 0;
-        canvasManager.drawText("Audiogame is playing");
-        await audioManager.playAudio(questions[0].introAudio);
-        await this.askQuestion();
-    },
-    async askQuestion() {
-        try {
-            const answer = await speechRecognitionManager.start();
-            await this.processAnswer(answer);
-        } catch (error) {
-            console.error("Error in speech recognition:", error);
-            canvasManager.drawText("Speech recognition error. Please try again.");
-        }
-    },
-    async processAnswer(answer) {
-        const question = questions[gameState.currentQuestion];
-        if (answer.includes("yes")) {
-            canvasManager.drawText("User said YES!");
-            await audioManager.playAudio(question.yesResponse.audio);
-            const secondAnswer = await speechRecognitionManager.start();
-            const isCorrect = question.yesResponse.correctAnswer.some(correct => secondAnswer.includes(correct));
-            if (isCorrect) {
-                canvasManager.drawText("Correct answer!");
-                await audioManager.playAudio(question.yesResponse.correctAudio);
-            } else {
-                canvasManager.drawText("Incorrect answer!");
-                await audioManager.playAudio(question.yesResponse.incorrectAudio);
-            }
-        } else if (answer.includes("no")) {
-            canvasManager.drawText("User said NO! Playing intro again...");
-            await audioManager.playAudio(question.noResponse.audio);
-            gameState.currentQuestion = question.noResponse.nextQuestion;
-        } else {
-            canvasManager.drawText("Didn't detect YES or NO.");
-        }
-        
-        if (gameState.isRunning) {
-            await this.askQuestion();
-        }
-    },
-    stopGame() {
-        gameState.isRunning = false;
-        speechRecognitionManager.stop();
-        audioManager.stopAll();
-        canvasManager.drawText("Game stopped");
-    }
-};
-
-// Initialize the game
-function init() {
-    speechRecognitionManager.init();
-    canvasManager.init();
-    
-    // Load audio files
-    audioManager.loadAudio(questions[0].introAudio);
-    audioManager.loadAudio(questions[0].yesResponse.audio);
-    audioManager.loadAudio(questions[0].yesResponse.correctAudio);
-    audioManager.loadAudio(questions[0].yesResponse.incorrectAudio);
-    audioManager.loadAudio(questions[0].noResponse.audio);
-    
-    document.getElementById("playButton").addEventListener("click", () => gameManager.startGame());
-    document.getElementById("stopButton").addEventListener("click", () => gameManager.stopGame());
+// Speech Recognition Setup
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SpeechRecognition) {
+    console.error("Speech recognition is not supported in this browser.");
+} else {
+    const recognition = new SpeechRecognition();
 }
 
-// Call init when the DOM is loaded
-document.addEventListener("DOMContentLoaded", init);
+recognition.lang = "en-US"; // Set language
+recognition.continuous = false; // Stop after one result
+recognition.interimResults = false; // Only final results
+
+function startGame() {
+    if (!gameRunning) {
+        gameRunning = true;
+        document.getElementById("playButton").disabled = true;
+        document.getElementById("stopButton").disabled = false;
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 400;
+        canvas.height = 400;
+
+        // Draw text
+        ctx.fillStyle = "white"; // Text color
+        ctx.font = "24px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("Audiogame is playing", canvas.width / 2, canvas.height / 2);
+
+        // Play intro audio
+        introAudio.currentTime = 0; // Reset audio to start
+        introAudio.play();
+    }
+}
+
+// When the intro audio finishes, start listening
+introAudio.onended = () => {
+    console.log("Intro finished, starting voice recognition...");
+
+    // Start listening after 5 seconds timeout
+    setTimeout(() => {
+        recognition.start();
+
+        // Stop recognition after 5 seconds if no response
+        setTimeout(() => {
+            recognition.stop();
+            console.log("Timeout: No response detected.");
+            document.getElementById("result").innerText = "Didn't detect a response.";
+        }, 5000);
+    }, 500);
+};
+
+// When speech is recognized
+recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript.toLowerCase();
+    console.log("Recognized:", transcript);
+
+    // Stop recognition immediately
+    recognition.stop();
+
+    if (transcript.includes("yes")) {
+        document.getElementById("result").innerText = "User said YES!";
+        playAudio(questionAudio);
+    } else if (transcript.includes("no")) {
+        document.getElementById("result").innerText = "User said NO! Playing intro again...";
+        playAudio(introAudio);
+    } else {
+        document.getElementById("result").innerText = "Didn't detect YES or NO.";
+    }
+};
+
+// Handle errors
+recognition.onerror = (event) => {
+    console.log("Error occurred:", event.error);
+};
+
+// Function to play an audio file and stop recognition
+function playAudio(audio) {
+    recognition.stop(); // Ensure recognition is stopped before playing audio
+    audio.currentTime = 0; // Reset audio
+    audio.play();
+}
+
+// Stop game function
+function stopGame() {
+    if (gameRunning) {
+        gameRunning = false;
+        document.getElementById("playButton").disabled = false;
+        document.getElementById("stopButton").disabled = true;
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Stop audio
+        introAudio.pause();
+        questionAudio.pause();
+        introAudio.currentTime = 0; 
+        questionAudio.currentTime = 0;
+    }
+}
