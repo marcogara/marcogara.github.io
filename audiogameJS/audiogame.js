@@ -11,10 +11,14 @@ const questions = [
         introAudio: "audiogameAudio/intro.mp3",
         yesResponse: {
             audio: [
+                "audiogameAudio/question1Together.mp3",
                 "audiogameAudio/big-dog-barking-112717.mp3",
                 "audiogameAudio/car-horn-6408.mp3",
                 "audiogameAudio/question1.mp3"
             ],
+            correctAnswer: ["car", "carhorn", "horn"], // List of valid answers
+            correctAudio: "audiogameAudio/if_carhorn_correct.mp3", // Play if answer is correct
+            incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3", // Play if answer is incorrect
             nextQuestion: 0 // For now, we'll loop back to the start
         },
         noResponse: {
