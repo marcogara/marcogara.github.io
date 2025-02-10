@@ -10,12 +10,10 @@ const questions = [
     {
         introAudio: "audiogameAudio/intro.mp3",
         yesResponse: {
-            audio: [
-                "audiogameAudio/question1Together.mp3"
-            ],
-            correctAnswer: ["car", "carhorn", "horn"], // List of valid answers
-            correctAudio: "audiogameAudio/if_carhorn_correct.mp3", // Play if answer is correct
-            incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3", // Play if answer is incorrect
+            audio: "audiogameAudio/question2.mp3",
+            correctAnswer: ["car", "carhorn", "horn"],
+            correctAudio: "audiogameAudio/if_carhorn_correct.mp3",
+            incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3",
         },
         noResponse: {
             audio: "audiogameAudio/intro.mp3",
@@ -40,12 +38,6 @@ const audioManager = {
             audio.currentTime = 0;
             audio.play().catch(e => console.error("Audio play failed:", e));
         });
-    },
-    playAudioSequence: async function(srcArray) {
-        for (const src of srcArray) {
-            console.log(`Playing: ${src}`); // Add this line for debugging
-            await this.playAudio(src);
-        }
     },
     stopAll: function() {
         Object.values(this.audioElements).forEach(audio => {
@@ -135,9 +127,16 @@ const gameManager = {
         const question = questions[gameState.currentQuestion];
         if (answer.includes("yes")) {
             canvasManager.drawText("User said YES!");
-            console.log("Playing audio sequence"); // Add this line for debugging
-            await audioManager.playAudioSequence(question.yesResponse.audio);
-            gameState.currentQuestion = question.yesResponse.nextQuestion;
+            await audioManager.playAudio(question.yesResponse.audio);
+            const secondAnswer = await speechRecognitionManager.start();
+            const isCorrect = question.yesResponse.correctAnswer.some(correct => secondAnswer.includes(correct));
+            if (isCorrect) {
+                canvasManager.drawText("Correct answer!");
+                await audioManager.playAudio(question.yesResponse.correctAudio);
+            } else {
+                canvasManager.drawText("Incorrect answer!");
+                await audioManager.playAudio(question.yesResponse.incorrectAudio);
+            }
         } else if (answer.includes("no")) {
             canvasManager.drawText("User said NO! Playing intro again...");
             await audioManager.playAudio(question.noResponse.audio);
@@ -165,7 +164,9 @@ function init() {
     
     // Load audio files
     audioManager.loadAudio(questions[0].introAudio);
-    questions[0].yesResponse.audio.forEach(src => audioManager.loadAudio(src));
+    audioManager.loadAudio(questions[0].yesResponse.audio);
+    audioManager.loadAudio(questions[0].yesResponse.correctAudio);
+    audioManager.loadAudio(questions[0].yesResponse.incorrectAudio);
     audioManager.loadAudio(questions[0].noResponse.audio);
     
     document.getElementById("playButton").addEventListener("click", () => gameManager.startGame());
