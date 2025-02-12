@@ -40,11 +40,6 @@ const audioManager = {
             audio.play().catch(e => console.error("Audio play failed:", e));
         });
     },
-    playAudioSequence: async function(srcArray) {
-        for (const src of srcArray) {
-            await this.playAudio(src);
-        }
-    },
     stopAll: function() {
         Object.values(this.audioElements).forEach(audio => {
             audio.pause();
