@@ -133,7 +133,7 @@ const gameManager = {
         const question = questions[gameState.currentQuestion];
         if (answer.includes("yes")) {
             canvasManager.drawText("User said YES!");
-            await audioManager.playAudioSequence(question.yesResponse.audio);
+            await audioManager.playAudio(question.yesResponse.audio);
             gameState.currentQuestion = question.yesResponse.nextQuestion;
         } else if (answer.includes("no")) {
             canvasManager.drawText("User said NO! Playing intro again...");
