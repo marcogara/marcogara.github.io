@@ -71,15 +71,16 @@ const gameManager = {
         canvasManager.drawText("Say Yes or No");
         try {
             const answer = await speechRecognitionManager.start();
-            this.processAnswer(answer);
+            await this.processAnswer(answer);
         } catch (error) {
             console.error("Speech recognition error:", error);
             canvasManager.drawText("Speech recognition error");
         }
     },
-    processAnswer(answer) {
+    async processAnswer(answer) {
         if (answer.includes("yes")) {
-            canvasManager.drawText("User said YES.......");
+            canvasManager.drawText("User said YES...");
+            await audioManager.playAudio('question2');
         } else if (answer.includes("no")) {
             canvasManager.drawText("User said NO");
         } else {
@@ -92,6 +93,7 @@ const gameManager = {
         canvasManager.drawText("Game stopped");
     }
 };
+
 
 // Canvas manager
 const canvasManager = {
@@ -120,10 +122,12 @@ function init() {
     
     // Load audio files
     audioManager.loadAudio('intro', "audiogameAudio/intro.mp3");
+    audioManager.loadAudio('question2', "audiogameAudio/question2.mp3");
     
     document.getElementById("playButton").addEventListener("click", () => gameManager.startGame());
     document.getElementById("stopButton").addEventListener("click", () => gameManager.stopGame());
 }
+
 
 // Call init when the DOM is loaded
 document.addEventListener("DOMContentLoaded", init);
