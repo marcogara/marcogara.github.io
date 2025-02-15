@@ -15,6 +15,9 @@ const questions = [
                 "audiogameAudio/car-horn-6408.mp3",
                 "audiogameAudio/question1.mp3"
             ],
+            correctAnswers: ["car", "carhorn", "horn"],
+            correctAudio: "audiogameAudio/if_carhorn_correct.mp3",
+            incorrectAudio: "audiogameAudio/if_carhorn_uncorrect.mp3",
             nextQuestion: 0 // For now, we'll loop back to the start
         },
         noResponse: {
@@ -135,6 +138,22 @@ const gameManager = {
         if (answer.includes("yes")) {
             canvasManager.drawText("User said YES!");
             await audioManager.playAudioSequence(question.yesResponse.audio);
+            
+            // Ask for the second answer after playing the question
+            canvasManager.drawText("Please answer the question");
+            const secondAnswer = await speechRecognitionManager.start();
+            
+            // Check if the second answer is correct
+            const isCorrect = question.yesResponse.correctAnswers.some(correct => secondAnswer.includes(correct));
+            
+            if (isCorrect) {
+                canvasManager.drawText("Correct answer!");
+                await audioManager.playAudio(question.yesResponse.correctAudio);
+            } else {
+                canvasManager.drawText("Incorrect answer!");
+                await audioManager.playAudio(question.yesResponse.incorrectAudio);
+            }
+            
             gameState.currentQuestion = question.yesResponse.nextQuestion;
         } else if (answer.includes("no")) {
             canvasManager.drawText("User said NO! Playing intro again...");
@@ -164,6 +183,8 @@ function init() {
     // Load audio files
     audioManager.loadAudio(questions[0].introAudio);
     questions[0].yesResponse.audio.forEach(src => audioManager.loadAudio(src));
+    audioManager.loadAudio(questions[0].yesResponse.correctAudio);
+    audioManager.loadAudio(questions[0].yesResponse.incorrectAudio);
     audioManager.loadAudio(questions[0].noResponse.audio);
     
     document.getElementById("playButton").addEventListener("click", () => gameManager.startGame());
