@@ -22,6 +22,47 @@
     <link rel="stylesheet" href="css/main-content/main-content.css">
     <link rel="stylesheet" href="css/footer/footer.css">
 
+    <style>
+        .project-container {
+          display: flex;
+          justify-content: space-around;
+          padding: 20px;
+        }
+        
+        .project-box {
+          width: 30%;
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-decoration: none; /* Remove underline from the link */
+          color: inherit; /* Inherit the color from the parent element */
+        }
+        
+        .project-box:hover {
+          background-color: #333; /* Optional hover effect */
+        }
+        
+        .project-box img {
+    width: 300px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .project-box img {
+        max-width: 80%; /* Smaller images on smaller screens */
+        height: auto;
+    }
+}
+
+
+
+        </style>
+        
+
 </head>
 <body>
     
@@ -66,7 +107,22 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express",
         </div>
     </section>
 
-    
+    <div class="project-container">
+        <a href="#project_car" class="project-box">
+          <img src="carAI.png" alt="Self driving Car">
+          <p>Self driving Car</p>
+        </a>
+        <a href="page/2025/developer-portfolio-website/index.html" class="project-box">
+          <img src="SuperMario.png" alt="Portfolio-template-Website">
+          <p>Portfolio-template-Website</p>
+        </a>
+        <a href="#mapCanvas" class="project-box">
+          <img src="Winkel_triple_projection_SW.jpg" alt="Map">
+          <p>Map</p>
+        </a>
+      </div>
+      
+      
     <div id="gameContainer">
         <canvas id="gameCanvas"></canvas>
         <h1>Audio Game</h1>
