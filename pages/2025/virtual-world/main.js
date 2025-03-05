@@ -44,7 +44,7 @@ function generateCars(N){
     const startPoints = world.markings.filter((m) => m instanceof Start);
     const startPoint = startPoints.length > 0
       ? startPoints[0].center
-      : new Point(950, 1900);
+      : new Point(820, 2500);
     const dir = startPoints.length > 0
       ? startPoints[0].directionVector
       : new Point(0, 1);
