@@ -3,9 +3,6 @@ carCanvas.width=window.innerWidth - 330;
 const networkCanvas=document.getElementById("networkCanvas");
 networkCanvas.width=300;
 
-carCanvas.height=window.innerHeight;
-networkCanvas.height=window.innerHeight;
-
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
@@ -16,7 +13,7 @@ const world = worldInfo
    : new World(new Graph());
 const viewport = new Viewport(carCanvas, world.zoom, world.offset);
 
-const N=100;
+const N=1;
 const cars=generateCars(N);
 let bestCar=cars[0];
 if(localStorage.getItem("bestBrain")){
@@ -47,15 +44,15 @@ function generateCars(N){
     const startPoints = world.markings.filter((m) => m instanceof Start);
     const startPoint = startPoints.length > 0
       ? startPoints[0].center
-      : new Point(100, 100);
+      : new Point(950, 1900);
     const dir = startPoints.length > 0
       ? startPoints[0].directionVector
-      : new Point(0, -1);
+      : new Point(0, 1);
     const startAngle = - angle(dir) + Math.PI / 2;
     
     const cars=[];
     for(let i=1;i<=N;i++){
-        cars.push(new Car(startPoint.x, startPoint.y,30,50,"AI",startAngle));
+        cars.push(new Car(startPoint.x, startPoint.y,30,50,"KEYS",startAngle));
     }
     return cars;
 }
@@ -72,6 +69,9 @@ function animate(time){
             ...cars.map(c=>c.fittness)
         ));
 
+    carCanvas.height=window.innerHeight;
+    networkCanvas.height=window.innerHeight;    
+
     world.cars = cars;
     world.bestCar = bestCar;
 
@@ -85,6 +85,14 @@ function animate(time){
     for(let i=0;i<traffic.length;i++){
         traffic[i].draw(carCtx);
     }
+
+    carCtx.globalAlpha=0.2;
+    for(let i=0;i<cars.length;i++){
+        cars[i].draw(carCtx);
+    }
+
+    carCtx.globalAlpha=1;
+    bestCar.draw(carCtx,true);
 
     networkCtx.lineDashOffset=-time/50;
     networkCtx.clearRect(0, 0, networkCanvas.width, networkCanvas.height);
