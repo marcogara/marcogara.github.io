@@ -9,6 +9,12 @@ class Polygon {
       }
    }
 
+   static load(info) {
+      return new Polygon(
+         info.points.map((i) => new Point(i.x, i.y))
+      );
+   }
+
    static union(polys) {
       Polygon.multiBreak(polys);
       const keptSegments = [];
@@ -64,6 +70,25 @@ class Polygon {
       }
    }
 
+   distanceToPoint(point) {
+      return Math.min(...this.segments.map((s) => s.distanceToPoint(point)));
+   }
+
+   distanceToPoly(poly) {
+      return Math.min(...this.points.map((p) => poly.distanceToPoint(p)));
+   }
+
+   intersectsPoly(poly) {
+      for (let s1 of this.segments) {
+         for (let s2 of poly.segments) {
+            if (getIntersection(s1.p1, s1.p2, s2.p1, s2.p2)) {
+               return true;
+            }
+         }
+      }
+      return false;
+   }
+
    containsSegment(seg) {
       const midpoint = average(seg.p1, seg.p2);
       return this.containsPoint(midpoint);
@@ -89,12 +114,13 @@ class Polygon {
 
    draw(
       ctx,
-      { stroke = "blue", lineWidth = 2, fill = "rgba(0,0,255,0.3)" } = {}
+      { stroke = "blue", lineWidth = 2, fill = "rgba(0,0,255,0.3)", join = "miter" } = {}
    ) {
       ctx.beginPath();
       ctx.fillStyle = fill;
       ctx.strokeStyle = stroke;
       ctx.lineWidth = lineWidth;
+      ctx.lineJoin = join;
       ctx.moveTo(this.points[0].x, this.points[0].y);
       for (let i = 1; i < this.points.length; i++) {
          ctx.lineTo(this.points[i].x, this.points[i].y);
