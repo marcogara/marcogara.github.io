@@ -91,40 +91,88 @@
     <p>This game is simple, accessible, and not too long. Kids can easily type and reproduce this code to create a fun guessing game. Here's a breakdown of the game:</p> <ol> <li>The program generates a random number between 1 and 100.</li> <li>It prompts the player to guess the number.</li> <li>After each guess, it provides feedback (too high, too low, or correct).</li> <li>The game continues until the player guesses correctly.</li> <li>Finally, it displays the number of attempts taken to guess the correct number.</li> </ol> <p>This game introduces important programming concepts such as variables, loops, conditional statements, and user input. It's a great starting point for kids to learn Java while creating an interactive and engaging game.</p>
 
     <pre><code>
-        import java.util.Random;
-        import java.util.Scanner;
+    import java.util.Random;
+    import java.util.Scanner;
 
-        public class GuessTheNumber {
-        public static void main(String[] args) {
-            Random random = new Random();
-            int secretNumber = random.nextInt(100) + 1;
-            int attempts = 0;
-            boolean guessedCorrectly = false;
+    public class GuessTheNumber {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int secretNumber = random.nextInt(100) + 1;
+        int attempts = 0;
+        boolean guessedCorrectly = false;
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Welcome to Guess the Number!");
-            System.out.println("I'm thinking of a number between 1 and 100.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to Guess the Number!");
+        System.out.println("I'm thinking of a number between 1 and 100.");
 
-            while (!guessedCorrectly) {
-                System.out.print("Enter your guess: ");
-                int guess = scanner.nextInt();
-                attempts++;
+        while (!guessedCorrectly) {
+            System.out.print("Enter your guess: ");
+            int guess = scanner.nextInt();
+            attempts++;
 
-                if (guess == secretNumber) {
-                    guessedCorrectly = true;
-                } else if (guess < secretNumber) {
-                    System.out.println("Too low! Try again.");
-                } else {
-                    System.out.println("Too high! Try again.");
-                }
-            }
-
-            System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
-            scanner.close();
+            if (guess == secretNumber) {
+                guessedCorrectly = true;
+            } else if (guess < secretNumber) {
+                System.out.println("Too low! Try again.");
+            } else {
+                System.out.println("Too high! Try again.");
             }
         }
 
+        System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+        scanner.close();
+        }
+    }
+
     </code></pre>
+    <pre><code>
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class RockPaperScissors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        
+        String[] choices = {"Rock", "Paper", "Scissors"};
+        
+        System.out.println("Welcome to Rock Paper Scissors!");
+        
+        while (true) {
+            System.out.print("Enter your choice (Rock/Paper/Scissors) or 'quit' to exit: ");
+            String playerChoice = scanner.nextLine().toLowerCase();
+            
+            if (playerChoice.equals("quit")) {
+                break;
+            }
+            
+            if (!playerChoice.equals("rock") && !playerChoice.equals("paper") && !playerChoice.equals("scissors")) {
+                System.out.println("Invalid choice. Please try again.");
+                continue;
+            }
+            
+            int computerIndex = random.nextInt(3);
+            String computerChoice = choices[computerIndex];
+            
+            System.out.println("Computer chose: " + computerChoice);
+            
+            if (playerChoice.equals(computerChoice.toLowerCase())) {
+                System.out.println("It's a tie!");
+            } else if ((playerChoice.equals("rock") && computerChoice.equals("Scissors")) ||
+                       (playerChoice.equals("paper") && computerChoice.equals("Rock")) ||
+                       (playerChoice.equals("scissors") && computerChoice.equals("Paper"))) {
+                System.out.println("You win!");
+            } else {
+                System.out.println("Computer wins!");
+            }
+        }
+        
+        System.out.println("Thanks for playing!");
+        scanner.close();
+        }
+    }
+</code></pre>
+
 
         
     <div class="button-container">
