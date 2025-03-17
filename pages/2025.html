@@ -171,8 +171,44 @@
         scanner.close();
         }
     }
-</code></pre>
+    </code></pre>
+    <pre><code>
+    import java.util.Random;
+    import java.util.Scanner;
 
+    public class GuessMyColor {
+        public static void main(String[] args) {
+            Random random = new Random();
+            String[] colors = {"Red", "Blue", "Green", "Yellow", "Purple"};
+            String secretColor = colors[random.nextInt(colors.length)];
+            int attempts = 0;
+            boolean guessedCorrectly = false;
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Welcome to Guess My Color!");
+
+            while (!guessedCorrectly && attempts < 5) {
+                System.out.print("Guess a color (Red, Blue, Green, Yellow, Purple): ");
+                String guess = scanner.nextLine().trim();
+                attempts++;
+
+                if (guess.equalsIgnoreCase(secretColor)) {
+                    guessedCorrectly = true;
+                } else {
+                    System.out.println("Try again!");
+                }
+            }
+
+            if (guessedCorrectly) {
+                System.out.println("Congratulations! You guessed the color in " + attempts + " attempts.");
+            } else {
+                System.out.println("Sorry, you didn't guess it. The color was " + secretColor + ".");
+            }
+            scanner.close();
+        }
+    }
+
+    </code></pre>
 
         
     <div class="button-container">
