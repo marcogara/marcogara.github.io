@@ -347,6 +347,104 @@ public class Hangman {
     }
 }
 </code></pre>
+<pre><code>
+import java.util.Scanner;
+
+public class ConnectFour {
+    private static char[][] board = new char[6][7];
+    private static char currentPlayer = 'X';
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        initializeBoard();
+
+        while (true) {
+            printBoard();
+            System.out.println("Player " + currentPlayer + ", choose a column (1-7): ");
+            int column = scanner.nextInt() - 1;
+
+            if (dropPiece(column)) {
+                if (checkWin()) {
+                    printBoard();
+                    System.out.println("Player " + currentPlayer + " wins!");
+                    break;
+                }
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            } else {
+                System.out.println("Column is full. Try again.");
+            }
+        }
+        scanner.close();
+    }
+
+    private static void initializeBoard() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                board[i][j] = '-';
+            }
+        }
+    }
+
+    private static void printBoard() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static boolean dropPiece(int column) {
+        for (int i = 5; i >= 0; i--) {
+            if (board[i][column] == '-') {
+                board[i][column] = currentPlayer;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkWin() {
+        // Check horizontal locations for win
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i][j + 1] && board[i][j] == board[i][j + 2] && board[i][j] == board[i][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check vertical locations for win
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i + 1][j] && board[i][j] == board[i + 2][j] && board[i][j] == board[i + 3][j]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check positively sloped diagonals
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i + 1][j + 1] && board[i][j] == board[i + 2][j + 2] && board[i][j] == board[i + 3][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check negatively sloped diagonals
+        for (int i = 3; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i - 1][j + 1] && board[i][j] == board[i - 2][j + 2] && board[i][j] == board[i - 3][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+}
+</code></pre>
 
     <div class="button-container">
         <!-- GitHub Button -->
