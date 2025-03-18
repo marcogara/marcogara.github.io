@@ -49,6 +49,8 @@
         <h1>Java game for Kids</h1>
     </section>
 
+    <h2>Why Build This Game?</h2> <p>Learning to code is most fun when you're creating something you can play with! By typing and building these simple games, you're not just learning Java programming concepts—you're also developing problem-solving skills and understanding how code works in real-world applications.</p> <p>The best way to learn is by doing. As you type each line of code, you'll see how it all comes together to create a working game. You'll learn about variables, loops, and conditional statements in a hands-on way that makes sense. Plus, you can modify the game to make it your own, which is a great way to experiment and learn even more!</p> <p>So, get started and build your own games. You'll be amazed at how quickly you can create something cool and fun!</p>
+
     <p>How to get started fast: Find an Online Java Compiler</p>
 
     <p>
@@ -256,7 +258,46 @@
 
 <p>This game is very basic and easy to modify, making it perfect for young kids to start learning Java.</p>
 
+<pre><code>
+    import java.util.Scanner;
+
+    public class MathQuiz {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
         
+        System.out.println("Welcome to the Math Quiz!");
+        
+        for (int i = 0; i < 5; i++) {
+            int num1 = (int) (Math.random() * 10) + 1;
+            int num2 = (int) (Math.random() * 10) + 1;
+            
+            System.out.println("What is " + num1 + " + " + num2 + "?");
+            int answer = scanner.nextInt();
+            
+            if (answer == num1 + num2) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Sorry, that's incorrect. The answer is " + (num1 + num2) + ".");
+            }
+        }
+        
+        System.out.println("Quiz finished! Your score: " + score + " out of 5.");
+        scanner.close();
+        }
+    }
+</code></pre>
+<h2>How Kids Can Modify This Game</h2> <ol> <li><strong>Change the Number of Questions:</strong> Adjust the loop to ask more or fewer questions by changing the number in the for loop condition.</li>
+    <li><strong>Modify the Difficulty:</strong> Change the range of random numbers by adjusting the values in the Math.random() * 10 part. For example, * 20 would give numbers up to 20.</li>
+
+    <li><strong>Add Different Operations:</strong> Include subtraction, multiplication, or division questions by modifying the arithmetic operation in the question and answer check.</li>
+    
+    <li><strong>Implement a Difficulty Level:</strong> Ask the player to choose an easy, medium, or hard difficulty at the start, then adjust the number range accordingly.</li>
+    
+    <li><strong>Add a Time Limit:</strong> Implement a timer for each question or for the entire quiz to add an extra challenge.</li>
+
+</ol> <p>This game is simple to understand and modify, making it an excellent starting point for kids to learn Java programming concepts while creating their own math quiz variations.</p>
     <div class="button-container">
         <!-- GitHub Button -->
         <a href="https://github.com/marcogara/developer-portfolio-website" target="_blank" class="github-button">View on GitHub</a>
