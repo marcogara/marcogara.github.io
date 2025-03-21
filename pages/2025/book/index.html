@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025</title>
+    <link rel="icon" href="../../../assets/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- https://favicon.io/favicon-generator/ to install all the settings on different devices of the favicon-->
+
+    <!-- Link common styles -->
+    <link rel="stylesheet" href="../../../css/common/styles.css">
+
+    <!-- Load mobile styles for screens with a maximum width of 768px -->
+    <link rel="stylesheet" href="..../..//css/mobile/mobile.css" media="screen and (max-width: 768px)">
+
+    <!-- Load desktop styles for screens with a minimum width of 769px -->
+    <link rel="stylesheet" href="../../../css/desktop/desktop.css" media="screen and (min-width: 769px)">
+
+    <!-- Link component-specific styles -->
+    <link rel="stylesheet" href="../../../css/header/header.css">
+    <link rel="stylesheet" href="../../../css/main-content/main-content.css">
+    <link rel="stylesheet" href="../../../css/footer/footer.css">
+</head>
+<body>
+<div class="container">   
+    <header>
+        <div class="logo">
+            <img src="../../../assets/favicon/apple-touch-icon.png" alt="Logo" width="100" height="50">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#project">Projects</a></li>
+                <li><a href="#glossary">Glossary</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="quote">
+            <p>"Perfection is lots of little things done well" - Marco Pierre White</p>
+        </div>
+    </header>
+    <section id=about>
+        <h1>Here you find the book</h1>
+
+        <p>Zum PDF Datei <a href="../JAVA CODING FOR KIDS.pdf" target="_blank">JAVA CODING FOR KIDS</a></p>
+    </section>
+
+    <section id="projects-title"class="projects-title">
+        <h1>Java game for Kids</h1>
+    </section>
+
+    <h2>Why Build This Game?</h2> <p>Learning to code is most fun when you're creating something you can play with! By typing and building these simple games, you're not just learning Java programming concepts—you're also developing problem-solving skills and understanding how code works in real-world applications.</p> <p>The best way to learn is by doing. As you type each line of code, you'll see how it all comes together to create a working game. You'll learn about variables, loops, and conditional statements in a hands-on way that makes sense. Plus, you can modify the game to make it your own, which is a great way to experiment and learn even more!</p> <p>So, get started and build your own games. You'll be amazed at how quickly you can create something cool and fun!</p>
+
+    <p>How to get started fast: Find an Online Java Compiler</p>
+
+    <p>
+        Open a Web Browser:
+        <br>
+        Use a browser like Google Chrome, Firefox, or Safari.
+    </p>
+    
+    <p>
+        Search for "Online Java Compiler":
+        <br>
+        Type these exact words in the search bar and press Enter.
+    </p>
+    
+    <p>
+        Choose a Compiler:
+        <br>
+        Look at the search results and pick a compiler that looks easy to use. Some popular options include:
+        <ul>
+            <li><strong>JDoodle</strong>: Known for its simplicity and ease of use.</li>
+            <li><strong>TutorialsPoint</strong>: Offers a comprehensive environment with features like code execution and sharing.</li>
+            <li><strong>OneCompiler</strong>: Provides a robust editor with features like auto-completion and error checking.</li>
+        </ul>
+    </p>
+    
+    <p>
+        If you have the possibility to set up an IDE (Integrated Development Environment) locally with the help of a parent or friend, you should try that! IDEs like IntelliJ IDEA or Eclipse make coding easier and provide powerful tools to help you learn Java.
+    </p>
+    
+    <p>
+        However, if setting up an IDE feels too complicated right now, don’t worry! You can start coding online using one of the compilers mentioned above. It’s simple, quick, and perfect for beginners.
+    </p>
+    
+    <p>
+        By following these steps, you can begin your Java coding journey with ease!
+    </p>
+    
+    
+
+    <p>This game is simple, accessible, and not too long. Kids can easily type and reproduce this code to create a fun guessing game. Here's a breakdown of the game:</p> <ol> <li>The program generates a random number between 1 and 100.</li> <li>It prompts the player to guess the number.</li> <li>After each guess, it provides feedback (too high, too low, or correct).</li> <li>The game continues until the player guesses correctly.</li> <li>Finally, it displays the number of attempts taken to guess the correct number.</li> </ol> <p>This game introduces important programming concepts such as variables, loops, conditional statements, and user input. It's a great starting point for kids to learn Java while creating an interactive and engaging game.</p>
+
+    <pre><code>
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class GuessTheNumber {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int secretNumber = random.nextInt(100) + 1;
+        int attempts = 0;
+        boolean guessedCorrectly = false;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to Guess the Number!");
+        System.out.println("I'm thinking of a number between 1 and 100.");
+
+        while (!guessedCorrectly) {
+            System.out.print("Enter your guess: ");
+            int guess = scanner.nextInt();
+            attempts++;
+
+            if (guess == secretNumber) {
+                guessedCorrectly = true;
+            } else if (guess < secretNumber) {
+                System.out.println("Too low! Try again.");
+            } else {
+                System.out.println("Too high! Try again.");
+            }
+        }
+
+        System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+        scanner.close();
+        }
+    }
+
+    </code></pre>
+    <pre><code>
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class RockPaperScissors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        
+        String[] choices = {"Rock", "Paper", "Scissors"};
+        
+        System.out.println("Welcome to Rock Paper Scissors!");
+        
+        while (true) {
+            System.out.print("Enter your choice (Rock/Paper/Scissors) or 'quit' to exit: ");
+            String playerChoice = scanner.nextLine().toLowerCase();
+            
+            if (playerChoice.equals("quit")) {
+                break;
+            }
+            
+            if (!playerChoice.equals("rock") && !playerChoice.equals("paper") && !playerChoice.equals("scissors")) {
+                System.out.println("Invalid choice. Please try again.");
+                continue;
+            }
+            
+            int computerIndex = random.nextInt(3);
+            String computerChoice = choices[computerIndex];
+            
+            System.out.println("Computer chose: " + computerChoice);
+            
+            if (playerChoice.equals(computerChoice.toLowerCase())) {
+                System.out.println("It's a tie!");
+            } else if ((playerChoice.equals("rock") && computerChoice.equals("Scissors")) ||
+                       (playerChoice.equals("paper") && computerChoice.equals("Rock")) ||
+                       (playerChoice.equals("scissors") && computerChoice.equals("Paper"))) {
+                System.out.println("You win!");
+            } else {
+                System.out.println("Computer wins!");
+            }
+        }
+        
+        System.out.println("Thanks for playing!");
+        scanner.close();
+        }
+    }
+    </code></pre>
+    <pre><code>
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class GuessMyColor {
+        public static void main(String[] args) {
+            Random random = new Random();
+            String[] colors = {"Red", "Blue", "Green", "Yellow", "Purple"};
+            String secretColor = colors[random.nextInt(colors.length)];
+            int attempts = 0;
+            boolean guessedCorrectly = false;
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Welcome to Guess My Color!");
+
+            while (!guessedCorrectly && attempts < 5) {
+                System.out.print("Guess a color (Red, Blue, Green, Yellow, Purple): ");
+                String guess = scanner.nextLine().trim();
+                attempts++;
+
+                if (guess.equalsIgnoreCase(secretColor)) {
+                    guessedCorrectly = true;
+                } else {
+                    System.out.println("Try again!");
+                }
+            }
+
+            if (guessedCorrectly) {
+                System.out.println("Congratulations! You guessed the color in " + attempts + " attempts.");
+            } else {
+                System.out.println("Sorry, you didn't guess it. The color was " + secretColor + ".");
+            }
+            scanner.close();
+        }
+    }
+
+    </code></pre>
+
+    <h2>How Kids Can Modify This Game</h2>
+
+    <ol>
+        <li><strong>Add More Colors:</strong> Add more colors to the <code>colors</code> array to make the game more challenging.</li>
+    
+        <li><strong>Change the Number of Attempts:</strong> Adjust the number of attempts allowed.</li>
+    
+        <li><strong>Use Different Themes:</strong> Instead of colors, use animals, fruits, or any other theme that kids enjoy.</li>
+    
+        <li><strong>Add Hints:</strong> Provide hints if the guess is close (e.g., "Your guess is a similar color").</li>
+    </ol>
+    
+    <p>This game is easy to understand and modify, making it perfect for kids to learn Java basics while having fun!</p>
+
+
+    <pre><code>
+
+    import java.util.Scanner;
+
+    public class HelloName {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("What is your name? ");
+        String name = scanner.nextLine();
+        
+        System.out.println("Hello, " + name + "!");
+        
+        scanner.close();
+        }
+    }
+
+    </code></pre>
+
+    <h2>How Kids Can Modify This Game</h2>
+
+<ol>
+    <li><strong>Change the Greeting:</strong> Instead of "Hello", use "Hi", "Hey", or any other greeting.</li>
+
+    <li><strong>Add a Question:</strong> Ask the player for their favorite color or animal and include it in the greeting.</li>
+
+    <li><strong>Use Different Languages:</strong> Greet the player in different languages (e.g., Spanish, French).</li>
+</ol>
+
+<p>This game is very basic and easy to modify, making it perfect for young kids to start learning Java.</p>
+
+<pre><code>
+    import java.util.Scanner;
+
+    public class MathQuiz {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+        
+        System.out.println("Welcome to the Math Quiz!");
+        
+        for (int i = 0; i < 5; i++) {
+            int num1 = (int) (Math.random() * 10) + 1;
+            int num2 = (int) (Math.random() * 10) + 1;
+            
+            System.out.println("What is " + num1 + " + " + num2 + "?");
+            int answer = scanner.nextInt();
+            
+            if (answer == num1 + num2) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Sorry, that's incorrect. The answer is " + (num1 + num2) + ".");
+            }
+        }
+        
+        System.out.println("Quiz finished! Your score: " + score + " out of 5.");
+        scanner.close();
+        }
+    }
+</code></pre>
+<h2>How Kids Can Modify This Game</h2> <ol> <li><strong>Change the Number of Questions:</strong> Adjust the loop to ask more or fewer questions by changing the number in the for loop condition.</li>
+    <li><strong>Modify the Difficulty:</strong> Change the range of random numbers by adjusting the values in the Math.random() * 10 part. For example, * 20 would give numbers up to 20.</li>
+
+    <li><strong>Add Different Operations:</strong> Include subtraction, multiplication, or division questions by modifying the arithmetic operation in the question and answer check.</li>
+    
+    <li><strong>Implement a Difficulty Level:</strong> Ask the player to choose an easy, medium, or hard difficulty at the start, then adjust the number range accordingly.</li>
+    
+    <li><strong>Add a Time Limit:</strong> Implement a timer for each question or for the entire quiz to add an extra challenge.</li>
+
+</ol> <p>This game is simple to understand and modify, making it an excellent starting point for kids to learn Java programming concepts while creating their own math quiz variations.</p>
+
+
+
+<pre><code>
+
+import java.util.Scanner;
+
+public class Hangman {
+    private static String[] words = {"java", "programming", "computer", "code", "developer"};
+    private static String word = words[(int) (Math.random() * words.length)];
+    private static String asterisk = new String(new char[word.length()]).replace("\0", "*");
+    private static int count = 0;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (count < 7 && asterisk.contains("*")) {
+            System.out.println("Guess any letter in the word");
+            System.out.println(asterisk);
+            String guess = sc.next();
+            hang(guess);
+        }
+        sc.close();
+    }
+
+    public static void hang(String guess) {
+        String newasterisk = "";
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == guess.charAt(0)) {
+                newasterisk += guess.charAt(0);
+            } else if (asterisk.charAt(i) != '*') {
+                newasterisk += word.charAt(i);
+            } else {
+                newasterisk += "*";
+            }
+        }
+
+        if (asterisk.equals(newasterisk)) {
+            count++;
+            System.out.println("Wrong guess, try again");
+        } else {
+            asterisk = newasterisk;
+        }
+        if (asterisk.equals(word)) {
+            System.out.println("Correct! You win! The word was " + word);
+        }
+    }
+}
+</code></pre>
+<h2>"Hangman" Game: Strings and Loops</h2>
+<pre><code>
+import java.util.Scanner;
+
+public class ConnectFour {
+    private static char[][] board = new char[6][7];
+    private static char currentPlayer = 'X';
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        initializeBoard();
+
+        while (true) {
+            printBoard();
+            System.out.println("Player " + currentPlayer + ", choose a column (1-7): ");
+            int column = scanner.nextInt() - 1;
+
+            if (dropPiece(column)) {
+                if (checkWin()) {
+                    printBoard();
+                    System.out.println("Player " + currentPlayer + " wins!");
+                    break;
+                }
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            } else {
+                System.out.println("Column is full. Try again.");
+            }
+        }
+        scanner.close();
+    }
+
+    private static void initializeBoard() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                board[i][j] = '-';
+            }
+        }
+    }
+
+    private static void printBoard() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static boolean dropPiece(int column) {
+        for (int i = 5; i >= 0; i--) {
+            if (board[i][column] == '-') {
+                board[i][column] = currentPlayer;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkWin() {
+        // Check horizontal locations for win
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i][j + 1] && board[i][j] == board[i][j + 2] && board[i][j] == board[i][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check vertical locations for win
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i + 1][j] && board[i][j] == board[i + 2][j] && board[i][j] == board[i + 3][j]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check positively sloped diagonals
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i + 1][j + 1] && board[i][j] == board[i + 2][j + 2] && board[i][j] == board[i + 3][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        // Check negatively sloped diagonals
+        for (int i = 3; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != '-' && board[i][j] == board[i - 1][j + 1] && board[i][j] == board[i - 2][j + 2] && board[i][j] == board[i - 3][j + 3]) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+}
+</code></pre>
+
+<p>Zum PDF Datei <a href="../JAVA CODING FOR KIDS.pdf" target="_blank">JAVA CODING FOR KIDS</a></p>
+
+    <div class="button-container">
+        <!-- GitHub Button -->
+        <a href="https://github.com/marcogara/developer-portfolio-website" target="_blank" class="github-button">View on GitHub</a>
+    </div>
+
+    <section id="projects-title"class="projects-title">
+        <h1>Portfolio-template-Website</h1>
+    </section>
+
+    <a href="2025/developer-portfolio-website/index.html" target="_blank" class="github-button">go to website</a>
+
+    <div class="button-container">
+        <!-- GitHub Button -->
+        <a href="https://github.com/marcogara/developer-portfolio-website" target="_blank" class="github-button">View on GitHub</a>
+    </div>
+   
+  
+
+    <section id="contact">
+        <h1>Contact Me</h1>
+        <div class="contact-info">
+            <p>If you'd like to get in touch with me, please feel free to send me an email.</p>
+            <p class="email">I'd love to hear from you!&emsp;&emsp;&emsp;&emsp;<a href="mailto:marcogara24@gmail.com" class="email-button">marcogara24@gmail.com</a></p>
+        </div>
+    </section>
+    <footer>
+        <div class="logo">
+            <img src="../assets/favicon/apple-touch-icon.png" alt="Logo" width="100" height="50">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#project">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </footer>    
+        <div class="copyright">
+                <p>&copy; 2025 Marco Garagna</p>
+            </div>
+</div>
+</body>
+</html>
