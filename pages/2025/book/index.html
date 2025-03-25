@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025</title>
+    <title>book</title>
     <link rel="icon" href="../../../assets/favicon/favicon.ico" type="image/x-icon">
 
     <!-- https://favicon.io/favicon-generator/ to install all the settings on different devices of the favicon-->
@@ -49,7 +49,7 @@
         <h1>Java game for Kids</h1>
     </section>
 
-    <h2>Why Build This Game?</h2> <p>Learning to code is most fun when you're creating something you can play with! By typing and building these simple games, you're not just learning Java programming concepts—you're also developing problem-solving skills and understanding how code works in real-world applications.</p> <p>The best way to learn is by doing. As you type each line of code, you'll see how it all comes together to create a working game. You'll learn about variables, loops, and conditional statements in a hands-on way that makes sense. Plus, you can modify the game to make it your own, which is a great way to experiment and learn even more!</p> <p>So, get started and build your own games. You'll be amazed at how quickly you can create something cool and fun!</p>
+    <h2>Why Build These Games?</h2> <p>Learning to code is most fun when you're creating something you can play with! By typing and building these simple games, you're not just learning Java programming concepts—you're also developing problem-solving skills and understanding how code works in real-world applications.</p> <p>The best way to learn is by doing. As you type each line of code, you'll see how it all comes together to create a working game. You'll learn about variables, loops, and conditional statements in a hands-on way that makes sense. Plus, you can modify the game to make it your own, which is a great way to experiment and learn even more!</p> <p>So, get started and build your own games. You'll be amazed at how quickly you can create something cool and fun!</p>
 
     <p>How to get started fast: Find an Online Java Compiler</p>
 
@@ -92,125 +92,126 @@
 
     <p>This game is simple, accessible, and not too long. Kids can easily type and reproduce this code to create a fun guessing game. Here's a breakdown of the game:</p> <ol> <li>The program generates a random number between 1 and 100.</li> <li>It prompts the player to guess the number.</li> <li>After each guess, it provides feedback (too high, too low, or correct).</li> <li>The game continues until the player guesses correctly.</li> <li>Finally, it displays the number of attempts taken to guess the correct number.</li> </ol> <p>This game introduces important programming concepts such as variables, loops, conditional statements, and user input. It's a great starting point for kids to learn Java while creating an interactive and engaging game.</p>
 
-    <pre><code>
-    import java.util.Random;
-    import java.util.Scanner;
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Random</span><span style="color: #d0d0d0">;</span>
+    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-    public class GuessTheNumber {
-    public static void main(String[] args) {
-        Random random = new Random();
-        int secretNumber = random.nextInt(100) + 1;
-        int attempts = 0;
-        boolean guessedCorrectly = false;
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">GuessTheNumber</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Random</span> <span style="color: #d0d0d0">random</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Random();</span>
+        <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">secretNumber</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">random.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">(</span><span style="color: #3677a9">100</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">;</span>
+        <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">attempts</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span>
+        <span style="color: #6ab825; font-weight: bold">boolean</span> <span style="color: #d0d0d0">guessedCorrectly</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">;</span>
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Guess the Number!");
-        System.out.println("I'm thinking of a number between 1 and 100.");
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Welcome to Guess the Number!&quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;I&#39;m thinking of a number between 1 and 100.&quot;</span><span style="color: #d0d0d0">);</span>
 
-        while (!guessedCorrectly) {
-            System.out.print("Enter your guess: ");
-            int guess = scanner.nextInt();
-            attempts++;
+        <span style="color: #6ab825; font-weight: bold">while</span> <span style="color: #d0d0d0">(!guessedCorrectly)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">print</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Enter your guess: &quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">guess</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">();</span>
+            <span style="color: #d0d0d0">attempts++;</span>
 
-            if (guess == secretNumber) {
-                guessedCorrectly = true;
-            } else if (guess < secretNumber) {
-                System.out.println("Too low! Try again.");
-            } else {
-                System.out.println("Too high! Try again.");
-            }
-        }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(guess</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">secretNumber)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">guessedCorrectly</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(guess</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">secretNumber)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Too low! Try again.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Too high! Try again.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
 
-        System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
-        scanner.close();
-        }
-    }
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Congratulations! You guessed the number in &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">attempts</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; attempts.&quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+</pre></div>
+<p></p>
 
-    </code></pre>
-    <pre><code>
-    import java.util.Random;
-    import java.util.Scanner;
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Random</span><span style="color: #d0d0d0">;</span>
+    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-    public class RockPaperScissors {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">RockPaperScissors</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">Random</span> <span style="color: #d0d0d0">random</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Random();</span>
         
-        String[] choices = {"Rock", "Paper", "Scissors"};
+        <span style="color: #d0d0d0">String[]</span> <span style="color: #d0d0d0">choices</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #ed9d13">&quot;Rock&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Paper&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Scissors&quot;</span><span style="color: #d0d0d0">};</span>
         
-        System.out.println("Welcome to Rock Paper Scissors!");
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Welcome to Rock Paper Scissors!&quot;</span><span style="color: #d0d0d0">);</span>
         
-        while (true) {
-            System.out.print("Enter your choice (Rock/Paper/Scissors) or 'quit' to exit: ");
-            String playerChoice = scanner.nextLine().toLowerCase();
+        <span style="color: #6ab825; font-weight: bold">while</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">print</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Enter your choice (Rock/Paper/Scissors) or &#39;quit&#39; to exit: &quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">playerChoice</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextLine</span><span style="color: #d0d0d0">().</span><span style="color: #bbbbbb">toLowerCase</span><span style="color: #d0d0d0">();</span>
             
-            if (playerChoice.equals("quit")) {
-                break;
-            }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;quit&quot;</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">break</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span>
             
-            if (!playerChoice.equals("rock") && !playerChoice.equals("paper") && !playerChoice.equals("scissors")) {
-                System.out.println("Invalid choice. Please try again.");
-                continue;
-            }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(!playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;rock&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">!playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;paper&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">!playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;scissors&quot;</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Invalid choice. Please try again.&quot;</span><span style="color: #d0d0d0">);</span>
+                <span style="color: #6ab825; font-weight: bold">continue</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span>
             
-            int computerIndex = random.nextInt(3);
-            String computerChoice = choices[computerIndex];
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">computerIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">random.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">(</span><span style="color: #3677a9">3</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">computerChoice</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">choices[computerIndex];</span>
             
-            System.out.println("Computer chose: " + computerChoice);
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Computer chose: &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">computerChoice);</span>
             
-            if (playerChoice.equals(computerChoice.toLowerCase())) {
-                System.out.println("It's a tie!");
-            } else if ((playerChoice.equals("rock") && computerChoice.equals("Scissors")) ||
-                       (playerChoice.equals("paper") && computerChoice.equals("Rock")) ||
-                       (playerChoice.equals("scissors") && computerChoice.equals("Paper"))) {
-                System.out.println("You win!");
-            } else {
-                System.out.println("Computer wins!");
-            }
-        }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(computerChoice.</span><span style="color: #bbbbbb">toLowerCase</span><span style="color: #d0d0d0">()))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;It&#39;s a tie!&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">((playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;rock&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">computerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Scissors&quot;</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">||</span>
+                       <span style="color: #d0d0d0">(playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;paper&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">computerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Rock&quot;</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">||</span>
+                       <span style="color: #d0d0d0">(playerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;scissors&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">computerChoice.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Paper&quot;</span><span style="color: #d0d0d0">)))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;You win!&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Computer wins!&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
         
-        System.out.println("Thanks for playing!");
-        scanner.close();
-        }
-    }
-    </code></pre>
-    <pre><code>
-    import java.util.Random;
-    import java.util.Scanner;
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Thanks for playing!&quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+    
+</pre></div>
+<p></p>
 
-    public class GuessMyColor {
-        public static void main(String[] args) {
-            Random random = new Random();
-            String[] colors = {"Red", "Blue", "Green", "Yellow", "Purple"};
-            String secretColor = colors[random.nextInt(colors.length)];
-            int attempts = 0;
-            boolean guessedCorrectly = false;
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Random</span><span style="color: #d0d0d0">;</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Welcome to Guess My Color!");
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">GuessMyColor</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">Random</span> <span style="color: #d0d0d0">random</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Random();</span>
+            <span style="color: #d0d0d0">String[]</span> <span style="color: #d0d0d0">colors</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #ed9d13">&quot;Red&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Blue&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Green&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Yellow&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;Purple&quot;</span><span style="color: #d0d0d0">};</span>
+            <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">secretColor</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">colors[random.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">(colors.</span><span style="color: #bbbbbb">length</span><span style="color: #d0d0d0">)];</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">attempts</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #6ab825; font-weight: bold">boolean</span> <span style="color: #d0d0d0">guessedCorrectly</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">;</span>
 
-            while (!guessedCorrectly && attempts < 5) {
-                System.out.print("Guess a color (Red, Blue, Green, Yellow, Purple): ");
-                String guess = scanner.nextLine().trim();
-                attempts++;
+            <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Welcome to Guess My Color!&quot;</span><span style="color: #d0d0d0">);</span>
 
-                if (guess.equalsIgnoreCase(secretColor)) {
-                    guessedCorrectly = true;
-                } else {
-                    System.out.println("Try again!");
-                }
-            }
+            <span style="color: #6ab825; font-weight: bold">while</span> <span style="color: #d0d0d0">(!guessedCorrectly</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">attempts</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">print</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Guess a color (Red, Blue, Green, Yellow, Purple): &quot;</span><span style="color: #d0d0d0">);</span>
+                <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">guess</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextLine</span><span style="color: #d0d0d0">().</span><span style="color: #bbbbbb">trim</span><span style="color: #d0d0d0">();</span>
+                <span style="color: #d0d0d0">attempts++;</span>
 
-            if (guessedCorrectly) {
-                System.out.println("Congratulations! You guessed the color in " + attempts + " attempts.");
-            } else {
-                System.out.println("Sorry, you didn't guess it. The color was " + secretColor + ".");
-            }
-            scanner.close();
-        }
-    }
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(guess.</span><span style="color: #bbbbbb">equalsIgnoreCase</span><span style="color: #d0d0d0">(secretColor))</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #d0d0d0">guessedCorrectly</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Try again!&quot;</span><span style="color: #d0d0d0">);</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">}</span>
 
-    </code></pre>
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(guessedCorrectly)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Congratulations! You guessed the color in &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">attempts</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; attempts.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Sorry, you didn&#39;t guess it. The color was &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">secretColor</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+</pre></div>
+
 
     <h2>How Kids Can Modify This Game</h2>
 
@@ -226,25 +227,22 @@
     
     <p>This game is easy to understand and modify, making it perfect for kids to learn Java basics while having fun!</p>
 
+<!-- HTML generated using hilite.me -->
+ <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-    <pre><code>
-
-    import java.util.Scanner;
-
-    public class HelloName {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+<span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">HelloName</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
         
-        System.out.print("What is your name? ");
-        String name = scanner.nextLine();
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">print</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;What is your name? &quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextLine</span><span style="color: #d0d0d0">();</span>
         
-        System.out.println("Hello, " + name + "!");
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Hello, &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;!&quot;</span><span style="color: #d0d0d0">);</span>
         
-        scanner.close();
-        }
-    }
-
-    </code></pre>
+        <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+</pre></div>
 
     <h2>How Kids Can Modify This Game</h2>
 
@@ -258,36 +256,36 @@
 
 <p>This game is very basic and easy to modify, making it perfect for young kids to start learning Java.</p>
 
-<pre><code>
-    import java.util.Scanner;
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-    public class MathQuiz {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int score = 0;
+<span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">MathQuiz</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">score</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span>
         
-        System.out.println("Welcome to the Math Quiz!");
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Welcome to the Math Quiz!&quot;</span><span style="color: #d0d0d0">);</span>
         
-        for (int i = 0; i < 5; i++) {
-            int num1 = (int) (Math.random() * 10) + 1;
-            int num2 = (int) (Math.random() * 10) + 1;
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">num1</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">(Math.</span><span style="color: #bbbbbb">random</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">*</span> <span style="color: #3677a9">10</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">num2</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">(Math.</span><span style="color: #bbbbbb">random</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">*</span> <span style="color: #3677a9">10</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">;</span>
             
-            System.out.println("What is " + num1 + " + " + num2 + "?");
-            int answer = scanner.nextInt();
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;What is &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">num1</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; + &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">num2</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;?&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">answer</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">();</span>
             
-            if (answer == num1 + num2) {
-                System.out.println("Correct!");
-                score++;
-            } else {
-                System.out.println("Sorry, that's incorrect. The answer is " + (num1 + num2) + ".");
-            }
-        }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(answer</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">num1</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">num2)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Correct!&quot;</span><span style="color: #d0d0d0">);</span>
+                <span style="color: #d0d0d0">score++;</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Sorry, that&#39;s incorrect. The answer is &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">(num1</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">num2)</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
         
-        System.out.println("Quiz finished! Your score: " + score + " out of 5.");
-        scanner.close();
-        }
-    }
-</code></pre>
+        <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Quiz finished! Your score: &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">score</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; out of 5.&quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+</pre></div>
+    
 <h2>How Kids Can Modify This Game</h2> <ol> <li><strong>Change the Number of Questions:</strong> Adjust the loop to ask more or fewer questions by changing the number in the for loop condition.</li>
     <li><strong>Modify the Difficulty:</strong> Change the range of random numbers by adjusting the values in the Math.random() * 10 part. For example, * 20 would give numbers up to 20.</li>
 
@@ -299,153 +297,151 @@
 
 </ol> <p>This game is simple to understand and modify, making it an excellent starting point for kids to learn Java programming concepts while creating their own math quiz variations.</p>
 
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
+<span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">Hangman</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #d0d0d0">String[]</span> <span style="color: #d0d0d0">words</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span><span style="color: #ed9d13">&quot;java&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;programming&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;computer&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;code&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;developer&quot;</span><span style="color: #d0d0d0">};</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">word</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">words[(</span><span style="color: #6ab825; font-weight: bold">int</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">(Math.</span><span style="color: #bbbbbb">random</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">*</span> <span style="color: #d0d0d0">words.</span><span style="color: #bbbbbb">length</span><span style="color: #d0d0d0">)];</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">asterisk</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">String(</span><span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #6ab825; font-weight: bold">char</span><span style="color: #d0d0d0">[word.</span><span style="color: #bbbbbb">length</span><span style="color: #d0d0d0">()]).</span><span style="color: #bbbbbb">replace</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;\0&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;*&quot;</span><span style="color: #d0d0d0">);</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">count</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span>
 
-<pre><code>
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">sc</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
 
-import java.util.Scanner;
+        <span style="color: #6ab825; font-weight: bold">while</span> <span style="color: #d0d0d0">(count</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">7</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">asterisk.</span><span style="color: #bbbbbb">contains</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;*&quot;</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Guess any letter in the word&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(asterisk);</span>
+            <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">guess</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">sc.</span><span style="color: #bbbbbb">next</span><span style="color: #d0d0d0">();</span>
+            <span style="color: #d0d0d0">hang(guess);</span>
+        <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">sc.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+    <span style="color: #d0d0d0">}</span>
 
-public class Hangman {
-    private static String[] words = {"java", "programming", "computer", "code", "developer"};
-    private static String word = words[(int) (Math.random() * words.length)];
-    private static String asterisk = new String(new char[word.length()]).replace("\0", "*");
-    private static int count = 0;
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">hang</span><span style="color: #d0d0d0">(String</span> <span style="color: #d0d0d0">guess)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">newasterisk</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;&quot;</span><span style="color: #d0d0d0">;</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">word.</span><span style="color: #bbbbbb">length</span><span style="color: #d0d0d0">();</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(word.</span><span style="color: #bbbbbb">charAt</span><span style="color: #d0d0d0">(i)</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">guess.</span><span style="color: #bbbbbb">charAt</span><span style="color: #d0d0d0">(</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">newasterisk</span> <span style="color: #d0d0d0">+=</span> <span style="color: #d0d0d0">guess.</span><span style="color: #bbbbbb">charAt</span><span style="color: #d0d0d0">(</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(asterisk.</span><span style="color: #bbbbbb">charAt</span><span style="color: #d0d0d0">(i)</span> <span style="color: #d0d0d0">!=</span> <span style="color: #ed9d13">&#39;*&#39;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">newasterisk</span> <span style="color: #d0d0d0">+=</span> <span style="color: #d0d0d0">word.</span><span style="color: #bbbbbb">charAt</span><span style="color: #d0d0d0">(i);</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">newasterisk</span> <span style="color: #d0d0d0">+=</span> <span style="color: #ed9d13">&quot;*&quot;</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        while (count < 7 && asterisk.contains("*")) {
-            System.out.println("Guess any letter in the word");
-            System.out.println(asterisk);
-            String guess = sc.next();
-            hang(guess);
-        }
-        sc.close();
-    }
-
-    public static void hang(String guess) {
-        String newasterisk = "";
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == guess.charAt(0)) {
-                newasterisk += guess.charAt(0);
-            } else if (asterisk.charAt(i) != '*') {
-                newasterisk += word.charAt(i);
-            } else {
-                newasterisk += "*";
-            }
-        }
-
-        if (asterisk.equals(newasterisk)) {
-            count++;
-            System.out.println("Wrong guess, try again");
-        } else {
-            asterisk = newasterisk;
-        }
-        if (asterisk.equals(word)) {
-            System.out.println("Correct! You win! The word was " + word);
-        }
-    }
-}
-</code></pre>
+        <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(asterisk.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(newasterisk))</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">count++;</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Wrong guess, try again&quot;</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">asterisk</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">newasterisk;</span>
+        <span style="color: #d0d0d0">}</span>
+        <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(asterisk.</span><span style="color: #bbbbbb">equals</span><span style="color: #d0d0d0">(word))</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Correct! You win! The word was &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">word);</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>
+        
 <h2>"Hangman" Game: Strings and Loops</h2>
-<pre><code>
-import java.util.Scanner;
 
-public class ConnectFour {
-    private static char[][] board = new char[6][7];
-    private static char currentPlayer = 'X';
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">java.util.Scanner</span><span style="color: #d0d0d0">;</span>
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        initializeBoard();
+<span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">class</span> <span style="color: #447fcf; text-decoration: underline">ConnectFour</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">char</span><span style="color: #d0d0d0">[][]</span> <span style="color: #d0d0d0">board</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #6ab825; font-weight: bold">char</span><span style="color: #d0d0d0">[</span><span style="color: #3677a9">6</span><span style="color: #d0d0d0">][</span><span style="color: #3677a9">7</span><span style="color: #d0d0d0">];</span>
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">char</span> <span style="color: #d0d0d0">currentPlayer</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&#39;X&#39;</span><span style="color: #d0d0d0">;</span>
 
-        while (true) {
-            printBoard();
-            System.out.println("Player " + currentPlayer + ", choose a column (1-7): ");
-            int column = scanner.nextInt() - 1;
+    <span style="color: #6ab825; font-weight: bold">public</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">main</span><span style="color: #d0d0d0">(String[]</span> <span style="color: #d0d0d0">args)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">Scanner</span> <span style="color: #d0d0d0">scanner</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Scanner(System.</span><span style="color: #bbbbbb">in</span><span style="color: #d0d0d0">);</span>
+        <span style="color: #d0d0d0">initializeBoard();</span>
 
-            if (dropPiece(column)) {
-                if (checkWin()) {
-                    printBoard();
-                    System.out.println("Player " + currentPlayer + " wins!");
-                    break;
-                }
-                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
-            } else {
-                System.out.println("Column is full. Try again.");
-            }
-        }
-        scanner.close();
-    }
+        <span style="color: #6ab825; font-weight: bold">while</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #d0d0d0">printBoard();</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Player &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">currentPlayer</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;, choose a column (1-7): &quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">column</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">nextInt</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">-</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">;</span>
 
-    private static void initializeBoard() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                board[i][j] = '-';
-            }
-        }
-    }
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(dropPiece(column))</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(checkWin())</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #d0d0d0">printBoard();</span>
+                    <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Player &quot;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">currentPlayer</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; wins!&quot;</span><span style="color: #d0d0d0">);</span>
+                    <span style="color: #6ab825; font-weight: bold">break</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span>
+                <span style="color: #d0d0d0">currentPlayer</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">(currentPlayer</span> <span style="color: #d0d0d0">==</span> <span style="color: #ed9d13">&#39;X&#39;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">?</span> <span style="color: #ed9d13">&#39;O&#39;</span> <span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&#39;X&#39;</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Column is full. Try again.&quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">scanner.</span><span style="color: #bbbbbb">close</span><span style="color: #d0d0d0">();</span>
+    <span style="color: #d0d0d0">}</span>
 
-    private static void printBoard() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">initializeBoard</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">6</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">7</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&#39;-&#39;</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
 
-    private static boolean dropPiece(int column) {
-        for (int i = 5; i >= 0; i--) {
-            if (board[i][column] == '-') {
-                board[i][column] = currentPlayer;
-                return true;
-            }
-        }
-        return false;
-    }
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">printBoard</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">6</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">7</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">print</span><span style="color: #d0d0d0">(board[i][j]</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot; &quot;</span><span style="color: #d0d0d0">);</span>
+            <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">();</span>
+        <span style="color: #d0d0d0">}</span>
+    <span style="color: #d0d0d0">}</span>
 
-    private static boolean checkWin() {
-        // Check horizontal locations for win
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != '-' && board[i][j] == board[i][j + 1] && board[i][j] == board[i][j + 2] && board[i][j] == board[i][j + 3]) {
-                    return true;
-                }
-            }
-        }
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">boolean</span> <span style="color: #447fcf">dropPiece</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">column)</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">5</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&gt;=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i--)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(board[i][column]</span> <span style="color: #d0d0d0">==</span> <span style="color: #ed9d13">&#39;-&#39;</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #d0d0d0">board[i][column]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">currentPlayer;</span>
+                <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
+        <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">;</span>
+    <span style="color: #d0d0d0">}</span>
 
-        // Check vertical locations for win
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (board[i][j] != '-' && board[i][j] == board[i + 1][j] && board[i][j] == board[i + 2][j] && board[i][j] == board[i + 3][j]) {
-                    return true;
-                }
-            }
-        }
+    <span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">static</span> <span style="color: #6ab825; font-weight: bold">boolean</span> <span style="color: #447fcf">checkWin</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #999999; font-style: italic">// Check horizontal locations for win</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">6</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(board[i][j]</span> <span style="color: #d0d0d0">!=</span> <span style="color: #ed9d13">&#39;-&#39;</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">])</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
 
-        // Check positively sloped diagonals
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != '-' && board[i][j] == board[i + 1][j + 1] && board[i][j] == board[i + 2][j + 2] && board[i][j] == board[i + 3][j + 3]) {
-                    return true;
-                }
-            }
-        }
+        <span style="color: #999999; font-style: italic">// Check vertical locations for win</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">7</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(board[i][j]</span> <span style="color: #d0d0d0">!=</span> <span style="color: #ed9d13">&#39;-&#39;</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">][j]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">][j]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">][j])</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
 
-        // Check negatively sloped diagonals
-        for (int i = 3; i < 6; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != '-' && board[i][j] == board[i - 1][j + 1] && board[i][j] == board[i - 2][j + 2] && board[i][j] == board[i - 3][j + 3]) {
-                    return true;
-                }
-            }
-        }
+        <span style="color: #999999; font-style: italic">// Check positively sloped diagonals</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(board[i][j]</span> <span style="color: #d0d0d0">!=</span> <span style="color: #ed9d13">&#39;-&#39;</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">])</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
 
-        return false;
-    }
-}
-</code></pre>
+        <span style="color: #999999; font-style: italic">// Check negatively sloped diagonals</span>
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">6</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">i++)</span> <span style="color: #d0d0d0">{</span>
+            <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">int</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #3677a9">4</span><span style="color: #d0d0d0">;</span> <span style="color: #d0d0d0">j++)</span> <span style="color: #d0d0d0">{</span>
+                <span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(board[i][j]</span> <span style="color: #d0d0d0">!=</span> <span style="color: #ed9d13">&#39;-&#39;</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">-</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">1</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">-</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">2</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">board[i][j]</span> <span style="color: #d0d0d0">==</span> <span style="color: #d0d0d0">board[i</span> <span style="color: #d0d0d0">-</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">][j</span> <span style="color: #d0d0d0">+</span> <span style="color: #3677a9">3</span><span style="color: #d0d0d0">])</span> <span style="color: #d0d0d0">{</span>
+                    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">;</span>
+                <span style="color: #d0d0d0">}</span>
+            <span style="color: #d0d0d0">}</span>
+        <span style="color: #d0d0d0">}</span>
+
+        <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">;</span>
+    <span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>
+    
 
 <p>Zum PDF Datei <a href="../JAVA CODING FOR KIDS.pdf" target="_blank">JAVA CODING FOR KIDS</a></p>
 
@@ -463,14 +459,14 @@ public class ConnectFour {
     </section>
     <footer>
         <div class="logo">
-            <img src="../assets/favicon/apple-touch-icon.png" alt="Logo" width="100" height="50">
+            <img src="../../../assets/favicon/apple-touch-icon.png" alt="Logo" width="100" height="50">
         </div>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#project">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="../index.html">Home</a></li>
+                <li><a href="../../../index.html">Home</a></li>
             </ul>
         </nav>
     </footer>    
