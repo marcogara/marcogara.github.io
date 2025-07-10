@@ -106,6 +106,127 @@
         min-height: 100vh;
       }
 
+      /* Login Page Styles */
+      .login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: var(--spacing-6);
+      }
+
+      .login-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-xl);
+        padding: var(--spacing-12);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .login-logo {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--spacing-4);
+        background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--primary-600) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+      }
+
+      .login-title {
+        font-size: var(--font-size-2xl);
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-2);
+      }
+
+      .login-subtitle {
+        font-size: var(--font-size-base);
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-8);
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-6);
+      }
+
+      .form-group {
+        text-align: left;
+      }
+
+      .form-label {
+        display: block;
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-2);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: var(--spacing-4);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-md);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        transition: all 0.2s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--accent-cyan);
+        box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+      }
+
+      .form-input::placeholder {
+        color: var(--text-muted);
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: var(--spacing-4);
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: var(--font-size-base);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--primary-600) 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(34, 211, 238, 0.4);
+      }
+
+      .login-btn:active {
+        transform: scale(0.98);
+      }
+
+      .login-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Dashboard Styles */
+      .dashboard {
+        display: none;
+      }
+
+      .dashboard.active {
+        display: block;
+      }
+
       /* Header Styles */
       .header {
         display: flex;
@@ -365,6 +486,10 @@
           padding: var(--spacing-3);
         }
         
+        .login-card {
+          padding: var(--spacing-8);
+        }
+        
         .user-greeting h1 {
           font-size: var(--font-size-xl);
         }
@@ -414,7 +539,9 @@
 
       /* Focus states */
       .action-btn:focus,
-      .notification-icon:focus {
+      .notification-icon:focus,
+      .form-input:focus,
+      .login-btn:focus {
         outline: 2px solid var(--accent-cyan);
         outline-offset: 2px;
       }
@@ -444,7 +571,118 @@
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Login Page -->
+      <div id="login-page" class="login-container">
+        <div class="login-card">
+          <div class="login-logo">💰</div>
+          <h1 class="login-title">Smart Interest</h1>
+          <p class="login-subtitle">Your Supersaving Dashboard</p>
+          
+          <form class="login-form" id="login-form">
+            <div class="form-group">
+              <label for="name-input" class="form-label">What's your name?</label>
+              <input 
+                type="text" 
+                id="name-input" 
+                class="form-input" 
+                placeholder="Enter your name"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <button type="submit" class="login-btn">
+              Continue to Dashboard
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dashboard" class="dashboard">
+        <div class="container">
+          <header class="header">
+            <div class="user-greeting">
+              <h1 id="welcome-message">Welcome back, User</h1>
+              <p class="last-updated" id="last-updated">Last updated: Loading...</p>
+            </div>
+            <div class="notification-icon">
+              <span class="notification-dot"></span>
+              🔔
+            </div>
+          </header>
+
+          <main class="main-content">
+            <div class="balance-section">
+              <div class="card primary-card">
+                <div class="card-header">
+                  <h3 class="card-title">Account Total</h3>
+                  <span class="card-subtitle">Your current balance</span>
+                </div>
+                <div class="card-content">
+                  <div class="balance-amount" id="balance-amount">$25,847.32</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="card rate-card">
+                <div class="card-header">
+                  <h3 class="card-title">Optimize Annual Rate</h3>
+                  <span class="card-subtitle">Projected returns</span>
+                </div>
+                <div class="card-content">
+                  <div class="rate-display">estimates 2% - 4%</div>
+                </div>
+              </div>
+              
+              <div class="card earned-card">
+                <div class="card-header">
+                  <h3 class="card-title">Earned</h3>
+                  <span class="card-subtitle">This month</span>
+                </div>
+                <div class="card-content">
+                  <div class="earned-amount" id="earned-amount">$298.67</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-section">
+              <h2 class="section-title">Interest Overview</h2>
+              
+              <div class="interest-grid">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Accumulated</h3>
+                    <span class="card-subtitle">Total earned to date</span>
+                  </div>
+                  <div class="card-content">
+                    <div class="interest-amount accumulated" id="accumulated-amount">$1,247.85</div>
+                    <div class="interest-growth" id="yearly-growth">+$1,247.85 this year</div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Pending this week</h3>
+                    <span class="card-subtitle">Weekly accrual</span>
+                  </div>
+                  <div class="card-content">
+                    <div class="interest-amount pending" id="pending-amount">$87.43</div>
+                    <div class="interest-note">Next payout in 3 days</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-actions">
+              <button class="action-btn primary">View Details</button>
+              <button class="action-btn secondary">Add Funds</button>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
     
     <script>
       // Mock data for the interest app
@@ -458,6 +696,8 @@
         lastUpdated: new Date().toLocaleString()
       }
 
+      let userName = '';
+
       function formatCurrency(amount) {
         return new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -470,90 +710,33 @@
         return `${rate.toFixed(2)}%`
       }
 
-      function createCard(title, content, subtitle = '', className = '') {
-        return `
-          <div class="card ${className}">
-            <div class="card-header">
-              <h3 class="card-title">${title}</h3>
-              ${subtitle ? `<span class="card-subtitle">${subtitle}</span>` : ''}
-            </div>
-            <div class="card-content">
-              ${content}
-            </div>
-          </div>
-        `
+      function showDashboard(name) {
+        userName = name;
+        
+        // Hide login page and show dashboard
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('dashboard').classList.add('active');
+        
+        // Update welcome message
+        document.getElementById('welcome-message').textContent = `Welcome back, ${name}`;
+        
+        // Update all the financial data
+        updateDashboardData();
+        
+        // Start real-time updates
+        startRealTimeUpdates();
       }
 
-      function renderApp() {
-        const app = document.querySelector('#app')
-        
-        app.innerHTML = `
-          <div class="container">
-            <header class="header">
-              <div class="user-greeting">
-                <h1>Welcome back, John</h1>
-                <p class="last-updated">Last updated: ${userData.lastUpdated}</p>
-              </div>
-              <div class="notification-icon">
-                <span class="notification-dot"></span>
-                🔔
-              </div>
-            </header>
+      function updateDashboardData() {
+        document.getElementById('balance-amount').textContent = formatCurrency(userData.accountTotal);
+        document.getElementById('earned-amount').textContent = formatCurrency(userData.earnedThisMonth);
+        document.getElementById('accumulated-amount').textContent = formatCurrency(userData.interestAccumulated);
+        document.getElementById('pending-amount').textContent = formatCurrency(userData.interestPending);
+        document.getElementById('yearly-growth').textContent = `+${formatCurrency(userData.earnedThisYear)} this year`;
+        document.getElementById('last-updated').textContent = `Last updated: ${userData.lastUpdated}`;
+      }
 
-            <main class="main-content">
-              <div class="balance-section">
-                ${createCard(
-                  'Account Total',
-                  `<div class="balance-amount">${formatCurrency(userData.accountTotal)}</div>`,
-                  'Your current balance',
-                  'primary-card'
-                )}
-              </div>
-
-              <div class="metrics-grid">
-                ${createCard(
-                  'Optimize Annual Rate',
-                  `<div class="rate-display">estimates 2% - 4%</div>`,
-                  'Projected returns',
-                  'rate-card'
-                )}
-                
-                ${createCard(
-                  'Earned',
-                  `<div class="earned-amount">${formatCurrency(userData.earnedThisMonth)}</div>`,
-                  'This month',
-                  'earned-card'
-                )}
-              </div>
-
-              <div class="interest-section">
-                <h2 class="section-title">Interest Overview</h2>
-                
-                <div class="interest-grid">
-                  ${createCard(
-                    'Accumulated',
-                    `<div class="interest-amount accumulated">${formatCurrency(userData.interestAccumulated)}</div>
-                     <div class="interest-growth">+${formatCurrency(userData.earnedThisYear)} this year</div>`,
-                    'Total earned to date'
-                  )}
-                  
-                  ${createCard(
-                    'Pending this week',
-                    `<div class="interest-amount pending">${formatCurrency(userData.interestPending)}</div>
-                     <div class="interest-note">Next payout in 3 days</div>`,
-                    'Weekly accrual'
-                  )}
-                </div>
-              </div>
-
-              <div class="quick-actions">
-                <button class="action-btn primary">View Details</button>
-                <button class="action-btn secondary">Add Funds</button>
-              </div>
-            </main>
-          </div>
-        `
-
+      function startRealTimeUpdates() {
         // Add click handlers for interactive elements
         document.querySelectorAll('.action-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -574,21 +757,48 @@
             }, 10)
           }, 5000)
         }
+
+        // Simulate real-time updates
+        setInterval(() => {
+          userData.interestPending += 0.01
+          userData.lastUpdated = new Date().toLocaleString()
+          
+          const pendingElement = document.getElementById('pending-amount')
+          const lastUpdatedElement = document.getElementById('last-updated')
+          
+          if (pendingElement) {
+            pendingElement.textContent = formatCurrency(userData.interestPending)
+          }
+          if (lastUpdatedElement) {
+            lastUpdatedElement.textContent = `Last updated: ${userData.lastUpdated}`
+          }
+        }, 30000) // Update every 30 seconds
       }
 
-      // Initialize the app
-      renderApp()
-
-      // Simulate real-time updates
-      setInterval(() => {
-        userData.interestPending += 0.01
-        userData.lastUpdated = new Date().toLocaleString()
+      // Handle login form submission
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        const pendingElement = document.querySelector('.interest-amount.pending')
-        if (pendingElement) {
-          pendingElement.textContent = formatCurrency(userData.interestPending)
+        const nameInput = document.getElementById('name-input');
+        const name = nameInput.value.trim();
+        
+        if (name) {
+          showDashboard(name);
         }
-      }, 30000) // Update every 30 seconds
+      });
+
+      // Handle Enter key in name input
+      document.getElementById('name-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          document.getElementById('login-form').dispatchEvent(new Event('submit'));
+        }
+      });
+
+      // Auto-focus the name input when page loads
+      window.addEventListener('load', function() {
+        document.getElementById('name-input').focus();
+      });
     </script>
   </body>
 </html>
