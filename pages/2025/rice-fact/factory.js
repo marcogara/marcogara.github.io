@@ -46,11 +46,11 @@ document.querySelectorAll('.pipe-label, .bag-label').forEach(label => {
 // Flow display logic
 function setFlowValues(active) {
     if (active) {
-        dom.flowValue1.textContent = "2.5 t/h";
-        dom.flowValue2.textContent = "2.2 t/h";
+        dom.flowValueTR_002.textContent = "2.5 t/h";
+        dom.flowValueOUT_005.textContent = "2.2 t/h";
     } else {
-        dom.flowValue1.textContent = "Flow";
-        dom.flowValue2.textContent = "Flow";
+        dom.flowValueTR_002.textContent = "Flow";
+        dom.flowValueOUT_005.textContent = "Flow";
     }
 }
 

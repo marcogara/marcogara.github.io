@@ -8,8 +8,8 @@ export const state = {
 // DOM elements
 export const dom = {
     startBtn: document.getElementById('startBtn'),
-    flowValue1: document.getElementById('flowValue1'),
-    flowValue2: document.getElementById('flowValue2'),
+    flowValueTR_002: document.getElementById('flowValueTR-002'),
+    flowValueOUT_005: document.getElementById('flowValueOUT-005'),
     bag1Fill: document.getElementById('bag1Fill'),
     bag2Fill: document.getElementById('bag2Fill'),
     bag1LevelText: document.getElementById('bag1-level'),
