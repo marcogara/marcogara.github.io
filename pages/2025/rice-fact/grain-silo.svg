@@ -32,6 +32,6 @@
   <rect x="145" y="320" width="10" height="15" fill="#333"/>
   
   <!-- Top vent/cap -->
-  <circle cx="150" cy="85" r="5" fill="#333"/>
-  <rect x="148" y="80" width="4" height="10" fill="#333"/>
+  <circle cx="150" cy="105" r="5" fill="#333"/>
+  <rect x="148" y="105" width="4" height="10" fill="#333"/>
 </svg>
