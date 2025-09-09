@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rice Factory Simulation</title>
+    <style>
+        body { background: #f4f4f4; font-family: Arial, sans-serif; }
+        .label { font-size: 16px; font-weight: bold; }
+        #levelInput {
+            width: 60px;
+            font-size: 16px;
+            text-align: center;
+            margin-left: 10px;
+        }
+        .pipe-label {
+            cursor: pointer;
+            font-size: 12px;
+            fill: #333;
+            font-weight: bold;
+        }
+        .bag-label {
+            cursor: pointer;
+            font-size: 12px;
+            fill: #795548;
+            font-weight: bold;
+        }
+        .bag-level {
+            font-size: 13px;
+            fill: #0074D9;
+            font-weight: bold;
+        }
+        .tooltip {
+            position: absolute;
+            background: #222;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
+        #startBtn {
+            position: absolute;
+            left: 30px;
+            top: 20px;
+            font-size: 18px;
+            padding: 6px 18px;
+            background: #51cf66;
+            color: #222;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 1px 2px 6px #bbb;
+        }
+        #startBtn.running {
+            background: #adb5bd;
+            color: #444;
+        }
+        #startBtn:active {
+            background: #38b000;
+        }
+        .alarm-box {
+            display: inline-block;
+            min-width: 50px;
+            margin: 0 10px;
+            padding: 8px 16px;
+            background: #eee;
+            color: #222;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            border: 2px solid #bbb;
+            text-align: center;
+            vertical-align: middle;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+        .alarm-box.active {
+            background: #ff7675;
+            color: #fff;
+            border: 2px solid #c00;
+            animation: blink 1s steps(2, start) infinite;
+        }
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+        .change-bag-btn {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            background: #eee;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Alarm/error boxes for bags -->
+    <div style="text-align:center; margin-top:10px; margin-bottom:10px;">
+        <span id="alarmBag1" class="alarm-box">BAG-003</span>
+        <span id="alarmBag2" class="alarm-box">BAG-004</span>
+    </div>
+    <button id="startBtn">Start</button>
+    <div style="text-align:center; margin-bottom:10px; margin-top:10px;">
+        <label for="levelInput">Silo Level (%):</label>
+        <input type="number" id="levelInput" min="0" max="100" value="80">
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+    <div id="svg-container" style="position:relative; width:900px; height:500px; margin:auto;">
+        <svg id="factorySVG" width="900" height="500">
+            <!-- Silo -->
+            <rect x="70" y="80" width="120" height="200" rx="40" fill="#b0c4de" stroke="#333" stroke-width="2"/>
+            <ellipse cx="130" cy="80" rx="60" ry="25" fill="#b0c4de" stroke="#333" stroke-width="2"/>
+            <text x="130" y="80" text-anchor="middle" class="label">Silo</text>
+
+            <!-- Silo Level Fill (dynamic) -->
+            <clipPath id="silo-clip">
+                <rect x="70" y="80" width="120" height="200" rx="40"/>
+            </clipPath>
+            <rect id="siloLevelFill" x="70" y="120" width="120" height="160" fill="#ffe066" clip-path="url(#silo-clip)"/>
+            <!-- Level text (dynamic) -->
+            <text id="siloLevelText" x="130" y="210" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">80%</text>
+            
+            <!-- Silo Input Pipe (bottom left side) -->
+            <!--<rect x="50" y="250" width="40" height="25" rx="10" fill="#cccccc" stroke="#888" stroke-width="2"/>-->
+            <!-- Input label with code and tooltip -->
+            <text class="pipe-label" id="input-pipe-label" x="70" y="300" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
+            
+            <!-- Pipe from Silo to Cleaner -->
+            <rect x="190" y="165" width="160" height="40" rx="20" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Pipe label with code and tooltip -->
+            <text class="pipe-label" id="transfer-pipe-label" x="270" y="200" text-anchor="middle" data-desc="Transfer pipe from silo to cleaner">TR-002</text>
+            
+            <!-- Flow Reader (outside the pipe, above) -->
+            <rect x="250" y="130" width="50" height="28" rx="8" fill="#fff" stroke="#0074D9" stroke-width="3"/>
+            <text id="flowValue1" x="275" y="148" text-anchor="middle" font-size="12" fill="#0074D9">Flow</text>
+            
+            <!-- Cleaner -->
+            <rect id="cleanerRect" x="350" y="140" width="120" height="80" rx="15" fill="#98fb98" stroke="#333" stroke-width="2"/>
+            <text x="410" y="185" text-anchor="middle" class="label">Cleaner</text>
+            
+            <!-- Output Pipes (both downwards) -->
+            <!-- Output Pipe 1 (left) -->
+            <rect x="370" y="220" width="30" height="100" rx="15" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Output label with code and tooltip -->
+            <text class="pipe-label" id="out1-pipe-label" x="385" y="340" text-anchor="middle" data-desc="Large waste output from cleaner">OUT-003</text>
+            <!-- Output Pipe 2 (right) -->
+            <rect x="420" y="220" width="30" height="130" rx="15" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Output label with code and tooltip -->
+            <text class="pipe-label" id="out2-pipe-label" x="435" y="380" text-anchor="middle" data-desc="Small waste output from cleaner">OUT-004</text>
+
+            <!-- Bags for OUT-003 and OUT-004 -->
+            <!-- OUT-003 bag -->
+            <g id="bag1">
+                <rect x="370" y="340" width="30" height="60" rx="12" fill="#fff3cd" stroke="#bfa94a" stroke-width="2"/>
+                <rect id="bag1Fill" x="370" y="400" width="30" height="0" fill="#ffe066"/>
+            </g>
+            <!-- OUT-003 bag code and label (outside bag) -->
+            <text class="bag-label" id="bag1-label" x="315" y="370" text-anchor="start" data-desc="large waste">BAG-003</text>
+            <text class="bag-level" id="bag1-level" x="315" y="390" text-anchor="start">0%</text>
+
+            <!-- OUT-004 bag -->
+            <g id="bag2">
+                <rect x="420" y="380" width="30" height="60" rx="12" fill="#fff3cd" stroke="#bfa94a" stroke-width="2"/>
+                <rect id="bag2Fill" x="420" y="440" width="30" height="0" fill="#ffe066"/>
+            </g>
+            <!-- OUT-004 bag code and label (outside bag) -->
+            <text class="bag-label" id="bag2-label" x="465" y="410" text-anchor="start" data-desc="small waste">BAG-004</text>
+            <text class="bag-level" id="bag2-level" x="465" y="430" text-anchor="start">0%</text>
+
+            <!-- Main Output Pipe (from cleaner, right side, horizontal then down) -->
+            <!-- Horizontal part -->
+            <rect x="470" y="170" width="200" height="30" rx="15" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Vertical part -->
+            <rect x="670" y="170" width="30" height="150" rx="15" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Output label with code and tooltip -->
+            <text class="pipe-label" id="out-main-pipe-label" x="685" y="340" text-anchor="middle" data-desc="Clean rice output to next process">OUT-005</text>
+            <!-- Flow Reader for main output (above vertical pipe) -->
+            <rect x="680" y="140" width="50" height="28" rx="8" fill="#fff" stroke="#0074D9" stroke-width="3"/>
+            <text id="flowValue2" x="705" y="158" text-anchor="middle" font-size="12" fill="#0074D9">Flow</text>
+
+            <!-- IN-001 pipe: horizontal, then vertical, then into silo top -->
+            <!-- Horizontal segment (from left) -->
+            <rect x="10" y="260" width="50" height="18" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Vertical segment (upwards, elevator) -->
+            <rect x="45" y="20" width="18" height="258" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Short horizontal segment into silo top -->
+            <rect x="55" y="20" width="65" height="18" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Vertical segment (top) -->
+            <rect x="110" y="20" width="18" height="40" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>
+            <!-- Input label with code and tooltip (near the start of the pipe) -->
+            <text class="pipe-label" id="input-pipe-label" x="25" y="55" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
+        </svg>
+        <button id="changeBag1Btn" class="change-bag-btn" style="position:absolute; left:315px; top:425px;">Change</button>
+        <button id="changeBag2Btn" class="change-bag-btn" style="position:absolute; left:465px; top:465px;">Change</button>
+    </div>
+    <p style="text-align:center;">Hover over pipe and bag codes to see their description.</p>
+    <script src="main.js"></script>
+    <script src="factory.js"></script>
+    <script src="bags.js"></script>
+    <script src="cleanerVibration.js"></script>
+
+
+</body>
+</html>
