@@ -114,3 +114,23 @@ on('stop', stopBagFill);
 
 // Initial display
 updateBagDisplay();
+
+function showTooltip(evt, desc) {
+    dom.tooltip.textContent = desc;
+    dom.tooltip.style.opacity = 1;
+    dom.tooltip.style.left = (evt.clientX + 10) + 'px';
+    dom.tooltip.style.top = (evt.clientY - 10) + 'px';
+}
+function hideTooltip() {
+    dom.tooltip.style.opacity = 0;
+}
+
+document.querySelectorAll('.bag-label').forEach(label => {
+    label.addEventListener('mouseenter', function(evt) {
+        showTooltip(evt, this.getAttribute('data-desc'));
+    });
+    label.addEventListener('mousemove', function(evt) {
+        showTooltip(evt, this.getAttribute('data-desc'));
+    });
+    label.addEventListener('mouseleave', hideTooltip);
+});
