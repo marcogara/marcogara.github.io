@@ -124,43 +124,19 @@
             <rect id="siloLevelFill" x="70" y="120" width="120" height="160" fill="#ffe066" clip-path="url(#silo-clip)"/>
             <!-- Level text (dynamic) -->
             <text id="siloLevelText" x="130" y="210" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">80%</text>
-            
-            <!-- Silo Input Pipe (bottom left side) -->
-             <!-- IN-001 pipe: horizontal, then vertical, then into silo top -->
-            <!-- Horizontal segment (from left) -->
-            <!-- <rect x="0" y="260" width="40" height="18" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/> -->
-            <!-- Vertical segment (upwards, elevator) -->
-            <!-- <rect x="30" y="20" width="18" height="258" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/> -->
-            <!-- Short horizontal segment into silo top -->
-            <!-- <rect x="45" y="20" width="65" height="18" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/> -->
-            <!-- Vertical segment (top) -->
-            <!-- <rect x="110" y="20" width="18" height="40" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>  -->
 
-            <!-- Single continuous pipe -->
-            <path d="M 20,269 L 39,269 L 39,29 L 119,29 L 119,60"
-            fill="none" stroke="#cccccc" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"
-            style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));"/>
-
-            <!-- Outer border for definition -->
-            <path d="M 20,269 L 39,269 L 39,29 L 119,29 L 119,60"
-            fill="none" stroke="#888" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-
-            <!-- Inner pipe -->
-            <path d="M 20,269 L 39,269 L 39,29 L 119,29 L 119,60"
-            fill="none" stroke="#cccccc" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Silo Input Pipe -->
+            <image href="IN-001.svg" x="-40" y="-20" width="400" height="440"/>
 
             <!-- Input label with code and tooltip (near the start of the pipe) -->
-            <text class="pipe-label" id="input-pipe-label" x="30" y="15" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
+            <text class="pipe-label" id="input-pipe-label" x="25" y="15" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
 
             <!-- Input label with code and tooltip -->
-            <text class="pipe-label" id="input-pipe-label" x="60" y="300" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
+            <text class="pipe-label" id="input-pipe-label" x="25" y="300" text-anchor="middle" data-desc="Rice paddy input from storage truck">IN-001</text>
             
             <!-- Pipe from Silo to Cleaner -->
-            <rect x="130" y="355" width="60" height="18" rx="8" fill="#cccccc" stroke="#888" stroke-width="2"/>
-            <!-- Rotated 10 degrees -->
-            <rect x="190" y="355" width="230" height="25" rx="8" fill="#cccccc" stroke="#888" stroke-width="2" 
-                transform="rotate(305 180 364)"/>
-            <rect x="300" y="165" width="50" height="25" rx="20" fill="#cccccc" stroke="#888" stroke-width="2"/>
+             <image href="TR-002.svg" x="40" y="-20" width="400" height="440"/>
+    
             <!-- Pipe label with code and tooltip -->
             <text class="pipe-label" id="transfer-pipe-label" x="255" y="210" text-anchor="middle" data-desc="Transfer pipe from silo to cleaner">TR-002</text>
             
