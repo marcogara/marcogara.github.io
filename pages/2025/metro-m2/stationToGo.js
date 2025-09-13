@@ -41,18 +41,7 @@ function calculateStationDetails(station, currentTime) {
 
 // Main function to display both station options
 function updateStationDisplay() {
-    const stationsToChoose = [
-        {
-            name: "Tino",
-            walkingTime: 8 * 60 * 1000, // 8 minutes in milliseconds
-            timetable: [12, 32, 52] // minutes past each hour
-        },
-        {
-            name: "Am Steinberg",
-            walkingTime: 10 * 60 * 1000, // 10 minutes in milliseconds
-            timetable: [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58] // minutes past each hour
-        }
-    ];
+    const stationsToChoose = Object.values(STATION_CONFIG);
 
     const stationToGoElement = document.getElementById('stationToGo');
     
@@ -134,7 +123,7 @@ function updateStationDisplay() {
             stationToGoElement.innerHTML = displayHTML;
         }
         
-        setTimeout(updateDisplay, 1000);
+        setTimeout(updateDisplay, SIMULATION_CONFIG.displayUpdateInterval);
     };
     
     updateDisplay();
