@@ -1,10 +1,15 @@
 // metroConfig.js - Global configuration constants for metro simulation
 
 // Station names for the metro line
-const METRO_STATIONS = [
+const METRO_STATIONS_A = [
     'Am Steinberg', 'Prenzlauer Prom./Am Steinberg', 'Prenzlauer Allee/Ostseestr.',
     'Enrich-Weinert.Str.',  'S P Allee', 'FroebelStr.', 'PAllee/Danziger', 'Marienburger Str.',
     'Knaackstr.', 'PAllee/Metzer Str.', 'Mollstr.', 'Alex/Mem', 'Alexanderplatz'
+];
+
+const METRO_STATIONS_B = [
+    'Heinersdorf', 'Rothenbachstr.', 'Heinersdorf Kirche',
+    'Am Wasserturm', 'Tino-Schwierzina-Str.', 'Am Steinberg',
 ];
 
 // Station configuration with timetables and walking times
@@ -50,14 +55,16 @@ const SIMULATION_CONFIG = {
 if (typeof module !== 'undefined' && module.exports) {
     // Node.js environment
     module.exports = {
-        METRO_STATIONS,
+        METRO_STATIONS_A,
+        METRO_STATIONS_B,
         STATION_CONFIG,
         STATION_INTERVALS,
         SIMULATION_CONFIG
     };
 } else {
     // Browser environment - make available globally
-    window.METRO_STATIONS = METRO_STATIONS;
+    window.METRO_STATIONS_A = METRO_STATIONS_A;
+    window.METRO_STATIONS_B = METRO_STATIONS_B;
     window.STATION_CONFIG = STATION_CONFIG;
     window.STATION_INTERVALS = STATION_INTERVALS;
     window.SIMULATION_CONFIG = SIMULATION_CONFIG;

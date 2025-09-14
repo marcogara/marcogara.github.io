@@ -1,7 +1,8 @@
  
 class MetroSimulation {
     constructor() {
-        this.stations = METRO_STATIONS;
+        this.stations_a = METRO_STATIONS_A;
+        this.stations_b = METRO_STATIONS_B;
         this.trams = [];
         this.metroLine = document.getElementById('metroLine');
         this.timerElement = document.getElementById('timer');
@@ -10,7 +11,8 @@ class MetroSimulation {
         this.departureInterval = SIMULATION_CONFIG.departureInterval;
         this.journeyDuration = SIMULATION_CONFIG.journeyDuration;
         
-        // Calculate next departure time based on current time and 5-minute intervals
+        this.renderer = new MetroRenderer(this.metroLine, this.stations_a, this.calculateTramPosition.bind(this));
+        
         this.calculateNextDepartureTime();
         
         this.init();
@@ -89,120 +91,18 @@ class MetroSimulation {
         return { currentStation, stationProgress };
     }
 
-    // Get the visual position of a tram on the metro line
-    getTramVisualPosition(departureTime, currentTime) {
-        const { currentStation, stationProgress } = this.calculateTramPosition(departureTime, currentTime);
-        
-        const lineHeight = this.metroLine.offsetHeight;
-        
-        // Map the logical station names to visual positions
-        // The tram route goes from Am Steinberg (top) to Alexanderplatz (bottom)
-        // Visual positions match the reversed station order
-        const stationPositions = {
-            'Am Steinberg': 0, // First station (top)
-            'Prenzlauer Prom./Am Steinberg': 1,
-            'Prenzlauer Allee/Ostseestr.': 2,
-            'Enrich-Weinert.Str.': 3,
-            'S P Allee': 4,
-            'FroebelStr.': 5,
-            'PAllee/Danziger': 6,
-            'Marienburger Str.': 7,
-            'Knaackstr.': 8,
-            'PAllee/Metzer Str.': 9,
-            'Mollstr.': 10,
-            'Alex/Mem': 11,
-            'Alexanderplatz': 12 // Last station (bottom)
-        };
-        
-        const currentStationIndex = stationPositions[currentStation];
-        
-        if (currentStationIndex === undefined) {
-            // If station not found, return end position
-            return lineHeight - 40;
-        }
-        
-        // Calculate position between current and next station
-        const currentStationPos = (currentStationIndex / (this.stations.length - 1)) * (lineHeight - 40);
-        const nextStationIndex = Math.min(currentStationIndex + 1, this.stations.length - 1); // Move down (towards Alexanderplatz)
-        const nextStationPos = (nextStationIndex / (this.stations.length - 1)) * (lineHeight - 40);
-        
-        const finalPosition = currentStationPos + (stationProgress * (nextStationPos - currentStationPos));
-        
-        return finalPosition;
-    }
+    
 
     init() {
-        this.createStations();
+        this.renderer.createStations();
         this.startSimulation();
         this.updateTimer();
     }
 
-    createStations() {
-        const lineHeight = this.metroLine.offsetHeight;
-
-        this.stations.forEach((stationName, index) => {
-            const station = document.createElement('div');
-            station.className = 'station';
-            station.style.top = `${(index / (this.stations.length - 1)) * (lineHeight - 20)}px`;
-            
-            const label = document.createElement('div');
-            label.className = 'station-label';
-            label.textContent = stationName;
-            station.appendChild(label);
-            
-            this.metroLine.appendChild(station);
-        });
-    }
-
     createTram(departureTime) {
-        const tram = document.createElement('div');
-        tram.className = 'tram';
-        this.metroLine.appendChild(tram);
-        
-        const tramData = {
-            element: tram,
-            departureTime: departureTime
-        };
-        
+        const tramData = this.renderer.createTram(departureTime);
         this.trams.push(tramData);
-        this.animateTram(tramData);
-    }
-
-    animateTram(tramData) {
-        const animate = () => {
-            const currentTime = Date.now();
-            const elapsedMinutes = (currentTime - tramData.departureTime) / (60 * 1000);
-            
-            // Check if tram has completed its journey (more than 14 minutes - total route time)
-            if (elapsedMinutes > 14) {
-                // Remove tram when journey is complete
-                tramData.element.remove();
-                const index = this.trams.indexOf(tramData);
-                if (index > -1) {
-                    this.trams.splice(index, 1);
-                }
-                return;
-            }
-            
-            // Hide tram if it hasn't departed yet (elapsed time is negative)
-            if (elapsedMinutes < 0) {
-                tramData.element.style.display = 'none';
-            } else {
-                // Show tram and calculate position
-                tramData.element.style.display = 'block';
-                const tramPosition = this.getTramVisualPosition(tramData.departureTime, currentTime);
-                tramData.element.style.top = `${tramPosition}px`;
-                
-                // Debug logging (only for first tram to avoid spam)
-                if (this.trams.indexOf(tramData) === 0) {
-                    console.log(`Tram elapsed: ${elapsedMinutes.toFixed(2)}min, position: ${tramPosition}px`);
-                }
-            }
-            
-            requestAnimationFrame(animate);
-        };
-        
-        requestAnimationFrame(animate);
+        this.renderer.animateTram(tramData, this.trams);
     }
 
     updateTimer() {
