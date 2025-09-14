@@ -1,8 +1,7 @@
 // metroConfig.js - Global configuration constants for metro simulation
 
-// Station names for the metro line
 const METRO_STATIONS_A = [
-    'Am Steinberg', 'Prenzlauer Prom./Am Steinberg', 'Prenzlauer Allee/Ostseestr.',
+    'Am Steinberg', 'Prenzl. Prom./Am Steinberg', 'Prenzlauer Allee/Ostseestr.',
     'Enrich-Weinert.Str.',  'S P Allee', 'FroebelStr.', 'PAllee/Danziger', 'Marienburger Str.',
     'Knaackstr.', 'PAllee/Metzer Str.', 'Mollstr.', 'Alex/Mem', 'Alexanderplatz'
 ];
@@ -23,11 +22,15 @@ const STATION_CONFIG = {
         name: "Am Steinberg",
         walkingTime: 10 * 60 * 1000, // 10 minutes in milliseconds
         timetable: [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58] // minutes past each hour
+    },
+    "Heinersdorf": {
+        name: "Heinersdorf",
+        timetable: [8, 28, 48] // Every 20 minutes
     }
 };
 
 // Station timing intervals (in minutes)
-const STATION_INTERVALS = {
+const STATION_INTERVALS_A = {
     'Am Steinberg': 0, // Starting point
     'Prenzlauer Prom./Am Steinberg': 1, // 1 minute from Am Steinberg
     'Prenzlauer Allee/Ostseestr.': 3, // 2 more minutes (total 3 from start)
@@ -41,6 +44,15 @@ const STATION_INTERVALS = {
     'Mollstr.': 11,
     'Alex/Mem': 12,
     'Alexanderplatz': 14
+};
+
+const STATION_INTERVALS_B = {
+    'Heinersdorf': 0,
+    'Rothenbachstr.': 1,
+    'Heinersdorf Kirche': 2,
+    'Am Wasserturm': 3,
+    'Tino-Schwierzina-Str.': 4,
+    'Am Steinberg': 5,
 };
 
 // Simulation timing constants
@@ -58,7 +70,8 @@ if (typeof module !== 'undefined' && module.exports) {
         METRO_STATIONS_A,
         METRO_STATIONS_B,
         STATION_CONFIG,
-        STATION_INTERVALS,
+        STATION_INTERVALS_A,
+        STATION_INTERVALS_B,
         SIMULATION_CONFIG
     };
 } else {
@@ -66,6 +79,7 @@ if (typeof module !== 'undefined' && module.exports) {
     window.METRO_STATIONS_A = METRO_STATIONS_A;
     window.METRO_STATIONS_B = METRO_STATIONS_B;
     window.STATION_CONFIG = STATION_CONFIG;
-    window.STATION_INTERVALS = STATION_INTERVALS;
+    window.STATION_INTERVALS_A = STATION_INTERVALS_A;
+    window.STATION_INTERVALS_B = STATION_INTERVALS_B;
     window.SIMULATION_CONFIG = SIMULATION_CONFIG;
 }

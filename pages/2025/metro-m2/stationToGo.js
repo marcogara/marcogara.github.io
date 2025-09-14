@@ -41,7 +41,7 @@ function calculateStationDetails(station, currentTime) {
 
 // Main function to display both station options
 function updateStationDisplay() {
-    const stationsToChoose = Object.values(STATION_CONFIG);
+    const stationsToChoose = Object.values(STATION_CONFIG).filter(station => station.name !== 'Heinersdorf');
 
     const stationToGoElement = document.getElementById('stationToGo');
     

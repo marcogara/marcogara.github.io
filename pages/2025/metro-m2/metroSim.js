@@ -3,33 +3,31 @@ class MetroSimulation {
     constructor() {
         this.stations_a = METRO_STATIONS_A;
         this.stations_b = METRO_STATIONS_B;
-        this.trams = [];
-        this.metroLine = document.getElementById('metroLine');
+        this.tramsA = [];
+        this.tramsB = [];
+        this.metroLineA = document.getElementById('metroLineA');
+        this.metroLineB = document.getElementById('metroLineB');
         this.timerElement = document.getElementById('timer');
         this.stationToGoElement = document.getElementById('stationToGo');
         
         this.departureInterval = SIMULATION_CONFIG.departureInterval;
         this.journeyDuration = SIMULATION_CONFIG.journeyDuration;
         
-        this.renderer = new MetroRenderer(this.metroLine, this.stations_a, this.calculateTramPosition.bind(this));
+        this.rendererA = new MetroRenderer(this.metroLineA, this.stations_a, this.calculateTramPositionA.bind(this));
+        this.rendererB = new MetroRendererB(this.metroLineB, this.stations_b, this.calculateTramPositionB.bind(this));
         
-        this.calculateNextDepartureTime();
+        this.calculateNextDepartureTimeA();
+        this.calculateNextDepartureTimeB();
         
         this.init();
     }
 
-    calculateNextDepartureTime() {
+    calculateNextDepartureTimeA() {
         const now = new Date();
-        const currentMinute = now.getMinutes();
-        const currentSecond = now.getSeconds();
+        const amSteinbergTimetable = STATION_CONFIG["Am Steinberg"].timetable;
         
-        // Get the Am Steinberg timetable
-        const amSteinbergTimetable = STATION_CONFIG["Am Steinberg"].timetable; // [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58]
-        
-        // Find the next departure time based on the timetable
         let nextDeparture = null;
         
-        // Check if there's a departure in the current hour
         for (const minute of amSteinbergTimetable) {
             const departureTime = new Date(now);
             departureTime.setMinutes(minute, 0, 0);
@@ -40,44 +38,60 @@ class MetroSimulation {
             }
         }
         
-        // If no departure found in current hour, get first departure of next hour
         if (!nextDeparture) {
             nextDeparture = new Date(now);
             nextDeparture.setHours(now.getHours() + 1, amSteinbergTimetable[0], 0, 0);
         }
         
-        this.nextDepartureTime = nextDeparture.getTime();
-        console.log(`Next departure scheduled for: ${nextDeparture.toLocaleTimeString()}`);
+        this.nextDepartureTimeA = nextDeparture.getTime();
     }
 
-    // Calculate where a tram should be based on its departure time and current time
-    calculateTramPosition(departureTime, currentTime) {
-        const elapsedMinutes = (currentTime - departureTime) / (60 * 1000);
+    calculateNextDepartureTimeB() {
+        const now = new Date();
+        const heinersdorfTimetable = STATION_CONFIG["Heinersdorf"].timetable;
         
-        // Convert STATION_INTERVALS to array format for easier processing
-        const stationIntervals = Object.entries(STATION_INTERVALS)
+        let nextDeparture = null;
+        
+        for (const minute of heinersdorfTimetable) {
+            const departureTime = new Date(now);
+            departureTime.setMinutes(minute, 0, 0);
+            
+            if (departureTime.getTime() > now.getTime()) {
+                nextDeparture = departureTime;
+                break;
+            }
+        }
+        
+        if (!nextDeparture) {
+            nextDeparture = new Date(now);
+            nextDeparture.setHours(now.getHours() + 1, heinersdorfTimetable[0], 0, 0);
+        }
+        
+        this.nextDepartureTimeB = nextDeparture.getTime();
+    }
+
+    calculateTramPositionA(departureTime, currentTime) {
+        const elapsedMinutes = (currentTime - departureTime) / (60 * 1000);
+        const stationIntervals = Object.entries(STATION_INTERVALS_A)
             .map(([name, time]) => ({ name, time }))
             .sort((a, b) => a.time - b.time);
-        
-        // If tram hasn't departed yet, it should be at Am Steinberg
+
         if (elapsedMinutes < 0) {
             return { currentStation: 'Am Steinberg', stationProgress: 0 };
         }
-        
-        // If tram has completed its journey, it should be at the end
+
         const totalJourneyTime = stationIntervals[stationIntervals.length - 1].time;
         if (elapsedMinutes >= totalJourneyTime) {
             return { currentStation: stationIntervals[stationIntervals.length - 1].name, stationProgress: 0 };
         }
-        
-        // Find which station the tram should be at
+
         let currentStation = 'Am Steinberg';
         let stationProgress = 0;
-        
+
         for (let i = 0; i < stationIntervals.length - 1; i++) {
             const currentStationTime = stationIntervals[i].time;
             const nextStationTime = stationIntervals[i + 1].time;
-            
+
             if (elapsedMinutes >= currentStationTime && elapsedMinutes < nextStationTime) {
                 currentStation = stationIntervals[i].name;
                 stationProgress = (elapsedMinutes - currentStationTime) / (nextStationTime - currentStationTime);
@@ -87,125 +101,208 @@ class MetroSimulation {
                 stationProgress = 0;
             }
         }
-        
+
         return { currentStation, stationProgress };
     }
 
-    
+    calculateTramPositionB(departureTime, currentTime) {
+        const elapsedMinutes = (currentTime - departureTime) / (60 * 1000);
+        const stationIntervals = Object.entries(STATION_INTERVALS_B)
+            .map(([name, time]) => ({ name, time }))
+            .sort((a, b) => a.time - b.time);
+
+        if (elapsedMinutes < 0) {
+            return { currentStation: 'Heinersdorf', stationProgress: 0 };
+        }
+
+        const totalJourneyTime = stationIntervals[stationIntervals.length - 1].time;
+        if (elapsedMinutes >= totalJourneyTime) {
+            return { currentStation: stationIntervals[stationIntervals.length - 1].name, stationProgress: 0 };
+        }
+
+        let currentStation = 'Heinersdorf';
+        let stationProgress = 0;
+
+        for (let i = 0; i < stationIntervals.length - 1; i++) {
+            const currentStationTime = stationIntervals[i].time;
+            const nextStationTime = stationIntervals[i + 1].time;
+
+            if (elapsedMinutes >= currentStationTime && elapsedMinutes < nextStationTime) {
+                currentStation = stationIntervals[i].name;
+                stationProgress = (elapsedMinutes - currentStationTime) / (nextStationTime - currentStationTime);
+                break;
+            } else if (elapsedMinutes >= nextStationTime) {
+                currentStation = stationIntervals[i + 1].name;
+                stationProgress = 0;
+            }
+        }
+
+        return { currentStation, stationProgress };
+    }
+
+    getTramVisualPositionA(departureTime, currentTime) {
+        const { currentStation, stationProgress } = this.calculateTramPositionA(departureTime, currentTime);
+        
+        const lineHeight = this.metroLineA.offsetHeight;
+        
+        const stationPositions = {};
+        this.stations_a.forEach((station, index) => {
+            stationPositions[station] = index;
+        });
+        
+        const currentStationIndex = stationPositions[currentStation];
+        
+        if (currentStationIndex === undefined) {
+            return lineHeight - 40;
+        }
+        
+        const currentStationPos = (currentStationIndex / (this.stations_a.length - 1)) * (lineHeight - 40);
+        const nextStationIndex = Math.min(currentStationIndex + 1, this.stations_a.length - 1);
+        const nextStationPos = (nextStationIndex / (this.stations_a.length - 1)) * (lineHeight - 40);
+        
+        const finalPosition = currentStationPos + (stationProgress * (nextStationPos - currentStationPos));
+        
+        return finalPosition;
+    }
+
+    getTramVisualPositionB(departureTime, currentTime) {
+        const { currentStation, stationProgress } = this.calculateTramPositionB(departureTime, currentTime);
+        
+        const lineHeight = this.metroLineB.offsetHeight;
+        
+        const stationPositions = {};
+        this.stations_b.forEach((station, index) => {
+            stationPositions[station] = index;
+        });
+        
+        const currentStationIndex = stationPositions[currentStation];
+        
+        if (currentStationIndex === undefined) {
+            return lineHeight - 40;
+        }
+        
+        const currentStationPos = (currentStationIndex / (this.stations_b.length - 1)) * (lineHeight - 40);
+        const nextStationIndex = Math.min(currentStationIndex + 1, this.stations_b.length - 1);
+        const nextStationPos = (nextStationIndex / (this.stations_b.length - 1)) * (lineHeight - 40);
+        
+        const finalPosition = currentStationPos + (stationProgress * (nextStationPos - currentStationPos));
+        
+        return finalPosition;
+    }
 
     init() {
-        this.renderer.createStations();
+        this.rendererA.createStations();
+        this.rendererB.createStations();
         this.startSimulation();
         this.updateTimer();
     }
 
-    createTram(departureTime) {
-        const tramData = this.renderer.createTram(departureTime);
-        this.trams.push(tramData);
-        this.renderer.animateTram(tramData, this.trams);
+    createTramA(departureTime) {
+        const tramData = this.rendererA.createTram(departureTime);
+        this.tramsA.push(tramData);
+        this.rendererA.animateTram(tramData, this.tramsA, this.getTramVisualPositionA.bind(this));
+    }
+
+    createTramB(departureTime) {
+        const tramData = this.rendererB.createTram(departureTime);
+        this.tramsB.push(tramData);
+        this.rendererB.animateTram(tramData, this.tramsB, this.getTramVisualPositionB.bind(this));
     }
 
     updateTimer() {
         const updateDisplay = () => {
             const currentTime = Date.now();
-            const timeUntilNext = this.nextDepartureTime - currentTime;
-            
-            if (timeUntilNext <= 0) {
-                // Time for departure
-                this.createTram(this.nextDepartureTime);
-                this.calculateNextDepartureTime(); // Calculate next departure
+            const timeUntilNextA = this.nextDepartureTimeA - currentTime;
+            const timeUntilNextB = this.nextDepartureTimeB - currentTime;
+
+            if (timeUntilNextA <= 0) {
+                this.createTramA(this.nextDepartureTimeA);
+                this.calculateNextDepartureTimeA();
             }
-            
-            const timeUntilNextAdjusted = this.nextDepartureTime - Date.now();
+
+            if (timeUntilNextB <= 0) {
+                this.createTramB(this.nextDepartureTimeB);
+                this.calculateNextDepartureTimeB();
+            }
+
+            const nextDeparture = Math.min(this.nextDepartureTimeA, this.nextDepartureTimeB);
+            const timeUntilNextAdjusted = nextDeparture - Date.now();
             const minutes = Math.floor(timeUntilNextAdjusted / 60000);
             const seconds = Math.floor((timeUntilNextAdjusted % 60000) / 1000);
-            
+
             this.timerElement.textContent = `Next departure in: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-            
-            setTimeout(updateDisplay, SIMULATION_CONFIG.updateInterval);
+
+            setTimeout(updateDisplay, 1000);
         };
-        
+
         updateDisplay();
     }
 
     startSimulation() {
         const currentTime = Date.now();
         const now = new Date();
-        
-        console.log(`Current time: ${now.toLocaleTimeString()}`);
-        
-        // Get the Am Steinberg timetable
-        const amSteinbergTimetable = STATION_CONFIG["Am Steinberg"].timetable; // [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58]
-        
-        // Find all recent departures that should still be visible
-        const recentDepartures = [];
-        
-        // Check current hour and previous hour for departures
+
+        // Line A
+        const amSteinbergTimetable = STATION_CONFIG["Am Steinberg"].timetable;
+        const recentDeparturesA = [];
+
         for (let hourOffset = 0; hourOffset <= 1; hourOffset++) {
             const checkHour = now.getHours() - hourOffset;
             const checkDate = new Date(now);
             checkDate.setHours(checkHour, 0, 0, 0);
-            
+
             for (const minute of amSteinbergTimetable) {
                 const departureTime = new Date(checkDate);
                 departureTime.setMinutes(minute, 0, 0);
-                
+
                 const elapsedMinutes = (currentTime - departureTime.getTime()) / (60 * 1000);
-                
-                // If the tram departed within the last 14 minutes but more than 30 seconds ago, add it to the list
+
                 if (elapsedMinutes >= 0.5 && elapsedMinutes <= 14) {
-                    recentDepartures.push({
+                    recentDeparturesA.push({
                         time: departureTime.getTime(),
                         elapsed: elapsedMinutes
                     });
                 }
             }
         }
-        
-        // Sort by departure time (most recent first)
-        recentDepartures.sort((a, b) => b.time - a.time);
-        
-        console.log(`Found ${recentDepartures.length} recent departures`);
-        
-        // Create trams for recent departures (limit to 4 to avoid too many)
-        for (let i = 0; i < Math.min(recentDepartures.length, 4); i++) {
-            const departure = recentDepartures[i];
-            console.log(`Creating tram that departed ${departure.elapsed.toFixed(2)} minutes ago at ${new Date(departure.time).toLocaleTimeString()}`);
-            this.createTram(departure.time);
+
+        recentDeparturesA.sort((a, b) => b.time - a.time);
+
+        for (let i = 0; i < Math.min(recentDeparturesA.length, 4); i++) {
+            const departure = recentDeparturesA[i];
+            this.createTramA(departure.time);
         }
-        
-        // If no trams are visible, create one that departed a few minutes ago (for testing)
-        if (this.trams.length === 0) {
-            console.log('No trams visible, creating one that departed 2 minutes ago');
-            // Create a tram that departed 2 minutes ago to ensure it's not stuck at Am Steinberg
-            const testDeparture = new Date(now);
-            testDeparture.setMinutes(now.getMinutes() - 2, 0, 0);
-            this.createTram(testDeparture.getTime());
-        }
-        
-        console.log(`Total trams created: ${this.trams.length}`);
-        
-        // Set up regular departures for future trams
-        setInterval(() => {
-            const currentTime = Date.now();
-            const timeUntilNext = this.nextDepartureTime - currentTime;
-            
-            // Create tram 5 seconds before departure time so it can be positioned correctly
-            if (timeUntilNext <= 5000 && timeUntilNext > 0) {
-                // Check if we haven't already created this tram
-                const tramExists = this.trams.some(tram => 
-                    Math.abs(tram.departureTime - this.nextDepartureTime) < 1000
-                );
-                
-                if (!tramExists) {
-                    console.log('Creating tram 5 seconds before departure.');
-                    this.createTram(this.nextDepartureTime);
+
+        // Line B
+        const heinersdorfTimetable = STATION_CONFIG["Heinersdorf"].timetable;
+        const recentDeparturesB = [];
+
+        for (let hourOffset = 0; hourOffset <= 1; hourOffset++) {
+            const checkHour = now.getHours() - hourOffset;
+            const checkDate = new Date(now);
+            checkDate.setHours(checkHour, 0, 0, 0);
+
+            for (const minute of heinersdorfTimetable) {
+                const departureTime = new Date(checkDate);
+                departureTime.setMinutes(minute, 0, 0);
+
+                const elapsedMinutes = (currentTime - departureTime.getTime()) / (60 * 1000);
+
+                if (elapsedMinutes >= 0.5 && elapsedMinutes <= 5) { // 5 minutes journey for line B
+                    recentDeparturesB.push({
+                        time: departureTime.getTime(),
+                        elapsed: elapsedMinutes
+                    });
                 }
             }
-            
-            // Calculate next departure time
-            this.calculateNextDepartureTime();
-        }, 1000); // Check every second for new departures
+        }
+
+        recentDeparturesB.sort((a, b) => b.time - a.time);
+
+        for (let i = 0; i < Math.min(recentDeparturesB.length, 4); i++) {
+            const departure = recentDeparturesB[i];
+            this.createTramB(departure.time);
+        }
     }
 }
 
@@ -218,4 +315,3 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
     location.reload(); // Simple solution for demo
 });
-
