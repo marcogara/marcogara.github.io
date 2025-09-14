@@ -2,9 +2,9 @@
 
 // Station names for the metro line
 const METRO_STATIONS = [
-    'Alexanderplatz', 'Alex/Mem', 'Mollstr.', 'PAllee/Metzer Str.', 'Knaackstr.',
-    'Marienburger Str.', 'PAllee/Danziger', 'FroebelStr.', 'S P Allee', 'Enrich-Weinert.Str.', 
-    'Prenzlauer Allee/Ostseestr.', 'Prenzlauer Prom./Am Steinberg', 'Am Steinberg'
+    'Am Steinberg', 'Prenzlauer Prom./Am Steinberg', 'Prenzlauer Allee/Ostseestr.',
+    'Enrich-Weinert.Str.',  'S P Allee', 'FroebelStr.', 'PAllee/Danziger', 'Marienburger Str.',
+    'Knaackstr.', 'PAllee/Metzer Str.', 'Mollstr.', 'Alex/Mem', 'Alexanderplatz'
 ];
 
 // Station configuration with timetables and walking times

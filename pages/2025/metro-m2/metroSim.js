@@ -139,14 +139,11 @@ class MetroSimulation {
 
     createStations() {
         const lineHeight = this.metroLine.offsetHeight;
-        
-        // Reverse the station order so Am Steinberg is at top and Alexanderplatz at bottom
-        const reversedStations = [...this.stations].reverse();
-        
-        reversedStations.forEach((stationName, index) => {
+
+        this.stations.forEach((stationName, index) => {
             const station = document.createElement('div');
             station.className = 'station';
-            station.style.top = `${(index / (reversedStations.length - 1)) * (lineHeight - 20)}px`;
+            station.style.top = `${(index / (this.stations.length - 1)) * (lineHeight - 20)}px`;
             
             const label = document.createElement('div');
             label.className = 'station-label';
