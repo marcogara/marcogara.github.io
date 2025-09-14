@@ -34,16 +34,16 @@ const STATION_INTERVALS_A = {
     'Am Steinberg': 0, // Starting point
     'Prenzlauer Prom./Am Steinberg': 1, // 1 minute from Am Steinberg
     'Prenzlauer Allee/Ostseestr.': 3, // 2 more minutes (total 3 from start)
-    'Enrich-Weinert.Str.': 4, // 1 more minute (total 4 from start)
-    'S P Allee': 5, // 1 more minute (total 5 from start)
-    'FroebelStr.': 6,
-    'PAllee/Danziger': 7,
-    'Marienburger Str.':8,
-    'Knaackstr.': 9,
-    'PAllee/Metzer Str.': 10,
-    'Mollstr.': 11,
-    'Alex/Mem': 12,
-    'Alexanderplatz': 14
+    'Enrich-Weinert.Str.': 4, // 1 more minute 
+    'S P Allee': 6, // 2 more minute 
+    'FroebelStr.': 7,
+    'PAllee/Danziger': 8,
+    'Marienburger Str.':10,
+    'Knaackstr.': 11,
+    'PAllee/Metzer Str.': 12,
+    'Mollstr.': 14,
+    'Alex/Mem': 16,
+    'Alexanderplatz': 17 // End point (17 minutes from start)
 };
 
 const STATION_INTERVALS_B = {
@@ -58,7 +58,7 @@ const STATION_INTERVALS_B = {
 // Simulation timing constants
 const SIMULATION_CONFIG = {
     departureInterval: 5 * 60 * 1000, // 5 minutes in milliseconds (matches timetable frequency)
-    journeyDuration: 14 * 60 * 1000, // 14 minutes in milliseconds (complete route)
+    journeyDuration: 17 * 60 * 1000, // 17 minutes in milliseconds (complete route)
     updateInterval: 100, // milliseconds for timer updates
     displayUpdateInterval: 1000 // milliseconds for station display updates
 };
