@@ -25,7 +25,7 @@ const STATION_CONFIG = {
     },
     "Heinersdorf": {
         name: "Heinersdorf",
-        timetable: [8, 28, 48] // Every 20 minutes
+        timetable: [6, 26, 46] // Every 20 minutes
     }
 };
 
@@ -50,9 +50,9 @@ const STATION_INTERVALS_B = {
     'Heinersdorf': 0,
     'Rothenbachstr.': 1,
     'Heinersdorf Kirche': 2,
-    'Am Wasserturm': 3,
-    'Tino-Schwierzina-Str.': 4,
-    'Am Steinberg': 5,
+    'Am Wasserturm': 5,
+    'Tino-Schwierzina-Str.': 6,
+    'Am Steinberg': 7,
 };
 
 // Simulation timing constants
