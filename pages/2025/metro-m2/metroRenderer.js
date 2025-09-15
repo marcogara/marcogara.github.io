@@ -4,6 +4,7 @@ class MetroRenderer {
         this.metroLine = metroLine;
         this.stations_a = stations_a;
         this.calculateTramPosition = calculateTramPosition;
+        this.journeyDuration = SIMULATION_CONFIG.journeyDuration;
     }
 
     createStations() {
@@ -39,7 +40,7 @@ class MetroRenderer {
             const currentTime = Date.now();
             const elapsedMinutes = (currentTime - tramData.departureTime) / (60 * 1000);
             
-            if (elapsedMinutes > 17) {
+            if (elapsedMinutes > this.journeyDuration) {
                 tramData.element.remove();
                 const index = trams.indexOf(tramData);
                 if (index > -1) {
