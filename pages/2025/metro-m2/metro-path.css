@@ -1,0 +1,21 @@
+
+#metro-path {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.station-b {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    position: absolute;
+}
+
+.station-b-label {
+    position: absolute;
+    font-size: 10px;
+    white-space: nowrap;
+}
