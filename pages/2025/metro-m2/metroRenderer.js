@@ -57,7 +57,7 @@ class MetroRenderer {
                 tramData.element.style.top = `${tramPosition}px`;
                 
                 if (trams.indexOf(tramData) === 0) {
-                    console.log(`Tram elapsed: ${elapsedMinutes.toFixed(2)}min, position: ${tramPosition}px`);
+                    // console.log(`Tram elapsed: ${elapsedMinutes.toFixed(2)}min, position: ${tramPosition}px`);
                 }
             }
             

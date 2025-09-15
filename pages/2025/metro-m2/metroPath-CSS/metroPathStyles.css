@@ -1,0 +1,23 @@
+.station-on-path {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 2px;
+    transform: translate(-50%, -50%); /* Centered on the path */
+    z-index: 100;
+}
+
+.station-label-on-path {
+    position: absolute;
+    left: 35px; /* Adjust as needed to position next to the square */
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+    color: #c6b9b9;
+    background: rgba(35, 33, 33, 0.8);
+    padding: 2px 5px;
+    border-radius: 3px;
+    pointer-events: none; /* Allow clicks to pass through to the station */
+}

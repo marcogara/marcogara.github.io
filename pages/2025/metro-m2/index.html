@@ -180,7 +180,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="metro-path.css">   
+    </style>
+    <link rel="stylesheet" href="metroPath-CSS/metroPathStyles.css">   
 </head>
 <body>
     <h1>Metro Line Visualization</h1>
@@ -202,8 +203,8 @@
         </div>
     </div>
     <div id="metro-path" style="width: 400px; height: 600px; position: relative; margin: 20px 0;">
-        <svg width="100%" height="100%" viewBox="0 0 600 1000">
-            <path d="M 550 50 L 300 200 L 300 510 L 20 900 L 130 1000" stroke="green" stroke-width="8" fill="none" />
+        <svg width="100%" height="100%" viewBox="0 0 600 1000" style="position: absolute; top: 0; left: 0;">
+            <path d="M 550 50 L 300 200 L 300 510 L 20 900 L 130 970" stroke="green" stroke-width="8" fill="none" />
         </svg>
     </div>
     <script src="metroConfig.js"></script>
@@ -211,5 +212,7 @@
     <script src="metroRendererB.js"></script>
     <script src="metroSim.js"></script>
     <script src="stationToGo.js"></script>
+    <script src="metropath-JS/metroPathRenderer.js"></script>
+    <script src="metropath-JS/metroPathRendererA.js"></script>
 </body>
 </html>
