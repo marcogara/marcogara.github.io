@@ -39,7 +39,7 @@ class MetroRendererB {
             const currentTime = Date.now();
             const elapsedMinutes = (currentTime - tramData.departureTime) / (60 * 1000);
             
-            if (elapsedMinutes > 14) {
+            if (elapsedMinutes > 7) {
                 tramData.element.remove();
                 const index = trams.indexOf(tramData);
                 if (index > -1) {

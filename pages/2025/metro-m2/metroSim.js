@@ -257,7 +257,7 @@ class MetroSimulation {
 
                 const elapsedMinutes = (currentTime - departureTime.getTime()) / (60 * 1000);
 
-                if (elapsedMinutes >= 0.5 && elapsedMinutes <= 14) {
+                if (elapsedMinutes >= 0.5 && elapsedMinutes <= 17) { // 17 minutes journey for line A
                     recentDeparturesA.push({
                         time: departureTime.getTime(),
                         elapsed: elapsedMinutes
@@ -288,7 +288,7 @@ class MetroSimulation {
 
                 const elapsedMinutes = (currentTime - departureTime.getTime()) / (60 * 1000);
 
-                if (elapsedMinutes >= 0.5 && elapsedMinutes <= 5) { // 5 minutes journey for line B
+                if (elapsedMinutes >= 0.5 && elapsedMinutes <= 7) { // 7 minutes journey for line B
                     recentDeparturesB.push({
                         time: departureTime.getTime(),
                         elapsed: elapsedMinutes
