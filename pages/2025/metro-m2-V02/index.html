@@ -191,8 +191,8 @@
         
         const lineConfig = {
             // Starting point coordinates
-            startX: 200,
-            startY: 150,
+            startX: 700,
+            startY: 100,
             
             // Line segments with direction and stations
             segments: [
@@ -209,7 +209,7 @@
                     ]
                 },
                 {
-                    direction: 95,   // southwest direction
+                    direction: 95,  
                     length: 250,
                     stations: [
                         { name: "Promenade/Am Steinberg", position: 0.2 },
@@ -219,7 +219,7 @@
                     ]
                 },
                 {
-                    direction: 135,    // down again
+                    direction: 135,  
                     length: 280,
                     stations: [
                         { name: "P Alle/Danziger Str.", position: 0.1 },
@@ -230,7 +230,7 @@
                     ]
                 },
                 {
-                    direction: 45,    // northeast
+                    direction: 45,    
                     length: 50,
                     stations: [
                         { name: "Alex", position: 1 }
@@ -515,69 +515,10 @@
             document.getElementById('station-info').style.display = 'none';
         }
 
-        // Control functions
-        function zoomIn() {
-            zoom(1.2);
-        }
-
-        function zoomOut() {
-            zoom(0.8);
-        }
-
-        function resetView() {
-            currentZoom = 1;
-            currentTranslate = {x: 0, y: 0};
-            updateTransform();
-            updateUI();
-        }
-
-        function toggleLabels() {
-            labelsVisible = !labelsVisible;
-            const labels = document.querySelectorAll('.station-label');
-            labels.forEach(label => {
-                label.style.display = labelsVisible ? 'block' : 'none';
-            });
-        }
-
-        function showSegmentColors() {
-            segmentColorsVisible = !segmentColorsVisible;
-            drawTramLine();
-        }
-
         // Initialize the network when page loads
         document.addEventListener('DOMContentLoaded', initializeNetwork);
 
-        // ========================================
-        // UTILITY FUNCTIONS FOR CODE MODIFICATION
-        // ========================================
-
-        // Function to update line configuration programmatically
-        function updateLineConfig(newConfig) {
-            Object.assign(lineConfig, newConfig);
-            calculateSegmentPoints();
-            calculateStationPositions();
-            drawTramLine();
-            drawStations();
-            drawLabels();
-            updateLineInfo();
-        }
-
-        // Example usage (uncomment to test):
-        // setTimeout(() => {
-        //     updateLineConfig({
-        //         segments: [
-        //             {
-        //                 direction: 0,
-        //                 length: 300,
-        //                 stations: [
-        //                     { name: "Start", position: 0 },
-        //                     { name: "Middle", position: 0.5 },
-        //                     { name: "End", position: 1 }
-        //                 ]
-        //             }
-        //         ]
-        //     });
-        // }, 3000);
     </script>
+    <script src="control.js"></script>
 </body>
 </html>
