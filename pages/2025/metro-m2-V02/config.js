@@ -3,7 +3,6 @@
 // =======================================
 
 const animationConfig = {
-    departureInterval: 5, // 5 minutes
     segmentTimes: [
         1, // 1 minute
         1,
@@ -25,5 +24,9 @@ const animationConfig = {
         1,
         1,
         1,
-    ]
+    ],
+    heinersdorfTimetable: {
+        name: "Heinersdorf",
+        timetable: [6, 26, 46]
+    }
 };

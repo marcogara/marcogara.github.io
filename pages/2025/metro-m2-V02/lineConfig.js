@@ -13,7 +13,7 @@ const lineConfig = {
             direction: 135,    // degrees (0=right, 90=down, 180=left, 270=up)
             length: 300,      // length of this segment in pixels
             stations: [
-                { name: "Heiersdorf", position: 0 },      // position 0-1 along segment
+                { name: "Heinersdorf", position: 0 },      // position 0-1 along segment
                 { name: "Rothenbachstr.", position: 0.2 },
                 { name: "Heinersdorf Kirche", position: 0.4 },
                 { name: "Am Wasserturm", position: 0.6 },
