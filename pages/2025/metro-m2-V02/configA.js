@@ -1,0 +1,18 @@
+const animationConfigA = {
+    segmentTimes: [
+        1, // 1 minute
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+    ],
+    AmTimetable: {
+        name: "Am Steinberg",
+        timetable: [3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53, 58]
+    }
+};
