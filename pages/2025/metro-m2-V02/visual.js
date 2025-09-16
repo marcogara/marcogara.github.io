@@ -169,6 +169,15 @@ function updateLineInfo() {
         `;
         segmentList.appendChild(div);
     });
+
+    const stationSelect = document.getElementById('station-select');
+    stationSelect.innerHTML = '<option value="">Select a station</option>';
+    stationPositions.forEach(station => {
+        const option = document.createElement('option');
+        option.value = station.name;
+        option.textContent = station.name;
+        stationSelect.appendChild(option);
+    });
 }
 
 function setupEventListeners() {

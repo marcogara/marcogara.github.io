@@ -170,12 +170,17 @@
             <div class="control-group">
                 <button onclick="toggleLabels()">Toggle Labels</button>
                 <button onclick="showSegmentColors()">Show Segment Colors</button>
+                <button onclick="removeDot()">Remove Dot</button>
+                <button onclick="restartAnimation()">Restart Animation</button>
+                <button onclick="stopAnimation()">Stop Animation</button>
             </div>
         </div>
 
         <div class="zoom-info">
             Zoom: <span id="zoom-level">100%</span> | 
             Use mouse wheel to zoom, drag to pan
+            <br>
+            Current Time: <span id="current-time"></span>
         </div>
 
         <div class="station-info" id="station-info">
@@ -184,8 +189,10 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="visual.js"></script>
     <script src="control.js"></script>
     <script src="lineConfig.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>
