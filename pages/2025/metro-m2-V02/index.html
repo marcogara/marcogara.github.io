@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Segment Tram Line</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+        }
+
+        #network-canvas {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            background: radial-gradient(circle at center, #16213e 0%, #0f0f23 100%);
+        }
+
+        #network-canvas:active {
+            cursor: grabbing;
+        }
+
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-group {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .zoom-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .line-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 12px;
+            max-width: 250px;
+        }
+
+        .segment-info {
+            margin: 5px 0;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .station-info {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg id="network-canvas" viewBox="0 0 1000 800">
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge> 
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                </pattern>
+            </defs>
+            
+            <!-- Background grid -->
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- Main content group for zoom/pan -->
+            <g id="main-group" transform="translate(0,0) scale(1)">
+                <!-- Tram line will be added here -->
+                <g id="tram-line"></g>
+                <!-- Stations will be added here -->
+                <g id="stations"></g>
+                <!-- Station labels will be added here -->
+                <g id="labels"></g>
+            </g>
+        </svg>
+
+        <div class="line-info">
+            <h3 style="margin-bottom: 10px; color: #4ecdc4;">Red Line</h3>
+            <div>Total Segments: <span id="segment-count">0</span></div>
+            <div>Total Stations: <span id="station-count">0</span></div>
+            <div style="margin-top: 10px;">
+                <strong>Segments:</strong>
+                <div id="segment-list"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <button onclick="zoomIn()">Zoom In (+)</button>
+                <button onclick="zoomOut()">Zoom Out (-)</button>
+                <button onclick="resetView()">Reset View</button>
+            </div>
+            <div class="control-group">
+                <button onclick="toggleLabels()">Toggle Labels</button>
+                <button onclick="showSegmentColors()">Show Segment Colors</button>
+            </div>
+        </div>
+
+        <div class="zoom-info">
+            Zoom: <span id="zoom-level">100%</span> | 
+            Use mouse wheel to zoom, drag to pan
+        </div>
+
+        <div class="station-info" id="station-info">
+            <strong>Station Name</strong><br>
+            <span>Segment: 1, Position: 2/3</span>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // LINE CONFIGURATION - MODIFY THIS SECTION
+        // ========================================
+        
+        const lineConfig = {
+            // Starting point coordinates
+            startX: 200,
+            startY: 150,
+            
+            // Line segments with direction and stations
+            segments: [
+                {
+                    direction: 135,    // degrees (0=right, 90=down, 180=left, 270=up)
+                    length: 200,      // length of this segment in pixels
+                    stations: [
+                        { name: "Heiersdorf", position: 0 },      // position 0-1 along segment
+                        { name: "Industrial Park", position: 0.5 },
+                        { name: "Industrial Park", position: 0.6 },
+                        { name: "Industrial Park", position: 0.7 },
+                        { name: "Industrial Park", position: 0.8 },
+                        { name: "University", position: 1 }
+                    ]
+                },
+                {
+                    direction: 95,   // southwest direction
+                    length: 150,
+                    stations: [
+                        { name: "City Center", position: 0.3 },
+                        { name: "Main Square", position: 0.8 }
+                    ]
+                },
+                {
+                    direction: 135,    // down again
+                    length: 180,
+                    stations: [
+                        { name: "Shopping Mall", position: 0.2 },
+                        { name: "Residential", position: 0.6 },
+                        { name: "Residential", position: 0.8 },
+                        { name: "Terminal South", position: 1 }
+                    ]
+                },
+                {
+                    direction: 45,    // northeast
+                    length: 50,
+                    stations: [
+                        { name: "Alex", position: 1 }
+                    ]
+                }
+            ],
+            
+            // Line properties
+            name: "Red Line",
+            color: "#ff6b6b"
+        };
+
+        // ========================================
+        // CORE VISUALIZATION CODE
+        // ========================================
+
+        let segmentPoints = [];
+        let stationPositions = [];
+        let currentZoom = 1;
+        let currentTranslate = {x: 0, y: 0};
+        let isDragging = false;
+        let dragStart = {x: 0, y: 0};
+        let labelsVisible = true;
+        let segmentColorsVisible = false;
+
+        const svg = document.getElementById('network-canvas');
+        const mainGroup = document.getElementById('main-group');
+
+        // Segment colors for visualization
+        const segmentColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+
+        function initializeNetwork() {
+            calculateSegmentPoints();
+            calculateStationPositions();
+            drawTramLine();
+            drawStations();
+            drawLabels();
+            setupEventListeners();
+            updateLineInfo();
+        }
+
+        function calculateSegmentPoints() {
+            segmentPoints = [];
+            let currentX = lineConfig.startX;
+            let currentY = lineConfig.startY;
+            
+            segmentPoints.push({ x: currentX, y: currentY });
+            
+            lineConfig.segments.forEach((segment, index) => {
+                const radians = (segment.direction * Math.PI) / 180;
+                const dirX = Math.cos(radians);
+                const dirY = Math.sin(radians);
+                
+                currentX += dirX * segment.length;
+                currentY += dirY * segment.length;
+                
+                segmentPoints.push({ 
+                    x: currentX, 
+                    y: currentY,
+                    segmentIndex: index
+                });
+            });
+        }
+
+        function calculateStationPositions() {
+            stationPositions = [];
+            
+            lineConfig.segments.forEach((segment, segmentIndex) => {
+                const startPoint = segmentPoints[segmentIndex];
+                const endPoint = segmentPoints[segmentIndex + 1];
+                
+                const radians = (segment.direction * Math.PI) / 180;
+                const dirX = Math.cos(radians);
+                const dirY = Math.sin(radians);
+                
+                segment.stations.forEach(station => {
+                    const distance = segment.length * station.position;
+                    const x = startPoint.x + dirX * distance;
+                    const y = startPoint.y + dirY * distance;
+                    
+                    stationPositions.push({
+                        name: station.name,
+                        x: x,
+                        y: y,
+                        segmentIndex: segmentIndex,
+                        positionInSegment: station.position,
+                        segmentDirection: segment.direction
+                    });
+                });
+            });
+        }
+
+        function drawTramLine() {
+            const lineGroup = document.getElementById('tram-line');
+            lineGroup.innerHTML = ''; // Clear existing
+            
+            // Draw each segment
+            for (let i = 0; i < segmentPoints.length - 1; i++) {
+                const start = segmentPoints[i];
+                const end = segmentPoints[i + 1];
+                
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
+                
+                const color = segmentColorsVisible ? segmentColors[i % segmentColors.length] : lineConfig.color;
+                path.setAttribute('stroke', color);
+                path.setAttribute('stroke-width', '6');
+                path.setAttribute('stroke-linecap', 'round');
+                path.setAttribute('filter', 'url(#glow)');
+                path.setAttribute('opacity', '0.8');
+                path.classList.add('line-segment');
+                path.setAttribute('data-segment', i);
+                
+                lineGroup.appendChild(path);
+            }
+        }
+
+        function drawStations() {
+            const stationsGroup = document.getElementById('stations');
+            stationsGroup.innerHTML = ''; // Clear existing
+            
+            stationPositions.forEach((station, index) => {
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', station.x);
+                circle.setAttribute('cy', station.y);
+                
+                // Terminal stations (at position 0 or 1) are larger
+                const isTerminal = station.positionInSegment === 0 || station.positionInSegment === 1;
+                circle.setAttribute('r', isTerminal ? '10' : '7');
+                circle.setAttribute('fill', isTerminal ? '#fff' : '#ffdddd');
+                circle.setAttribute('stroke', lineConfig.color);
+                circle.setAttribute('stroke-width', '3');
+                circle.setAttribute('filter', 'url(#glow)');
+                circle.classList.add('station');
+                circle.setAttribute('data-station', station.name);
+                circle.setAttribute('data-segment', station.segmentIndex);
+                circle.setAttribute('data-position', station.positionInSegment);
+                
+                stationsGroup.appendChild(circle);
+            });
+        }
+
+        function drawLabels() {
+            const labelsGroup = document.getElementById('labels');
+            labelsGroup.innerHTML = ''; // Clear existing
+            
+            stationPositions.forEach((station, index) => {
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                
+                // Offset labels perpendicular to segment direction
+                const radians = (station.segmentDirection * Math.PI) / 180;
+                const perpX = -Math.sin(radians) * 25;
+                const perpY = Math.cos(radians) * 25;
+                
+                text.setAttribute('x', station.x + perpX);
+                text.setAttribute('y', station.y + perpY);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('fill', '#fff');
+                text.setAttribute('font-size', '11');
+                text.setAttribute('font-weight', '500');
+                text.textContent = station.name;
+                text.classList.add('station-label');
+                
+                labelsGroup.appendChild(text);
+            });
+        }
+
+        function updateLineInfo() {
+            document.getElementById('segment-count').textContent = lineConfig.segments.length;
+            document.getElementById('station-count').textContent = stationPositions.length;
+            
+            const segmentList = document.getElementById('segment-list');
+            segmentList.innerHTML = '';
+            
+            lineConfig.segments.forEach((segment, index) => {
+                const div = document.createElement('div');
+                div.className = 'segment-info';
+                div.innerHTML = `
+                    Segment ${index + 1}: ${segment.direction}°, ${segment.length}px<br>
+                    Stations: ${segment.stations.length}
+                `;
+                segmentList.appendChild(div);
+            });
+        }
+
+        function setupEventListeners() {
+            // Mouse wheel zoom
+            svg.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                zoom(delta, e.clientX, e.clientY);
+            });
+
+            // Mouse drag
+            svg.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                dragStart = {x: e.clientX, y: e.clientY};
+                svg.style.cursor = 'grabbing';
+            });
+
+            svg.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const dx = e.clientX - dragStart.x;
+                    const dy = e.clientY - dragStart.y;
+                    currentTranslate.x += dx;
+                    currentTranslate.y += dy;
+                    updateTransform();
+                    dragStart = {x: e.clientX, y: e.clientY};
+                }
+            });
+
+            svg.addEventListener('mouseup', () => {
+                isDragging = false;
+                svg.style.cursor = 'grab';
+            });
+
+            // Station hover
+            svg.addEventListener('mouseover', (e) => {
+                if (e.target.classList.contains('station')) {
+                    const stationName = e.target.getAttribute('data-station');
+                    const segmentIndex = parseInt(e.target.getAttribute('data-segment'));
+                    const position = parseFloat(e.target.getAttribute('data-position'));
+                    showStationInfo(stationName, segmentIndex, position);
+                }
+            });
+
+            svg.addEventListener('mouseout', (e) => {
+                if (e.target.classList.contains('station')) {
+                    hideStationInfo();
+                }
+            });
+        }
+
+        function zoom(factor, centerX = null, centerY = null) {
+            const newZoom = Math.max(0.1, Math.min(5, currentZoom * factor));
+            
+            if (centerX !== null && centerY !== null) {
+                const rect = svg.getBoundingClientRect();
+                const svgX = centerX - rect.left;
+                const svgY = centerY - rect.top;
+                
+                currentTranslate.x = svgX - (svgX - currentTranslate.x) * (newZoom / currentZoom);
+                currentTranslate.y = svgY - (svgY - currentTranslate.y) * (newZoom / currentZoom);
+            }
+            
+            currentZoom = newZoom;
+            updateTransform();
+            updateUI();
+        }
+
+        function updateTransform() {
+            mainGroup.setAttribute('transform', 
+                `translate(${currentTranslate.x}, ${currentTranslate.y}) scale(${currentZoom})`);
+        }
+
+        function updateUI() {
+            document.getElementById('zoom-level').textContent = Math.round(currentZoom * 100) + '%';
+            
+            // Adjust label visibility based on zoom
+            const labels = document.querySelectorAll('.station-label');
+            labels.forEach(label => {
+                label.style.opacity = currentZoom > 0.5 ? '1' : '0.3';
+            });
+        }
+
+        function showStationInfo(stationName, segmentIndex, position) {
+            const info = document.getElementById('station-info');
+            const segment = lineConfig.segments[segmentIndex];
+            const stationsInSegment = segment.stations.length;
+            const positionIndex = segment.stations.findIndex(s => s.name === stationName) + 1;
+            
+            info.innerHTML = `
+                <strong>${stationName}</strong><br>
+                <span>Segment: ${segmentIndex + 1}, Position: ${positionIndex}/${stationsInSegment}</span><br>
+                <span>Direction: ${segment.direction}°</span><br>
+                <span style="color: ${lineConfig.color};">${lineConfig.name}</span>
+            `;
+            info.style.display = 'block';
+        }
+
+        function hideStationInfo() {
+            document.getElementById('station-info').style.display = 'none';
+        }
+
+        // Control functions
+        function zoomIn() {
+            zoom(1.2);
+        }
+
+        function zoomOut() {
+            zoom(0.8);
+        }
+
+        function resetView() {
+            currentZoom = 1;
+            currentTranslate = {x: 0, y: 0};
+            updateTransform();
+            updateUI();
+        }
+
+        function toggleLabels() {
+            labelsVisible = !labelsVisible;
+            const labels = document.querySelectorAll('.station-label');
+            labels.forEach(label => {
+                label.style.display = labelsVisible ? 'block' : 'none';
+            });
+        }
+
+        function showSegmentColors() {
+            segmentColorsVisible = !segmentColorsVisible;
+            drawTramLine();
+        }
+
+        // Initialize the network when page loads
+        document.addEventListener('DOMContentLoaded', initializeNetwork);
+
+        // ========================================
+        // UTILITY FUNCTIONS FOR CODE MODIFICATION
+        // ========================================
+
+        // Function to update line configuration programmatically
+        function updateLineConfig(newConfig) {
+            Object.assign(lineConfig, newConfig);
+            calculateSegmentPoints();
+            calculateStationPositions();
+            drawTramLine();
+            drawStations();
+            drawLabels();
+            updateLineInfo();
+        }
+
+        // Example usage (uncomment to test):
+        // setTimeout(() => {
+        //     updateLineConfig({
+        //         segments: [
+        //             {
+        //                 direction: 0,
+        //                 length: 300,
+        //                 stations: [
+        //                     { name: "Start", position: 0 },
+        //                     { name: "Middle", position: 0.5 },
+        //                     { name: "End", position: 1 }
+        //                 ]
+        //             }
+        //         ]
+        //     });
+        // }, 3000);
+    </script>
+</body>
+</html>
