@@ -10,6 +10,8 @@ const animationConfigA = {
         1,
         1,
         1,
+        1,
+        1,
     ],
     AmTimetable: {
         name: "Am Steinberg",

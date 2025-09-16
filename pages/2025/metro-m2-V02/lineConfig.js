@@ -25,8 +25,9 @@ const lineConfig = {
             direction: 95,  
             length: 250,
             stations: [
-                { name: "Promenade/Am Steinberg", position: 0.2 },
-                { name: "P Alle/ Ostseestr.", position: 0.5 },
+                { name: "Promenade/Am Steinberg", position: 0.1 },
+                { name: "P Alle/ Ostseestr.", position: 0.3},
+                { name: "Enrich-Weinert.Str.", position: 0.5 },
                 { name: "S Bahn P Alee", position: 0.7 },
                 { name: "Froeblestr.", position: 0.9 }
             ]
