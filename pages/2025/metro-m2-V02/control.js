@@ -13,6 +13,8 @@ function resetView() {
     updateUI();
 }
 
+let stationDotsVisible = true;
+
 function toggleLabels() {
     labelsVisible = !labelsVisible;
     const labels = document.querySelectorAll('.station-label');
@@ -26,11 +28,16 @@ function showSegmentColors() {
     drawTramLine();
 }
 
-function removeStationDots() {
-    const dots = document.querySelectorAll('.station');
-    dots.forEach(dot => {
-        dot.remove();
-    });
+function toggleStationDots() {
+    stationDotsVisible = !stationDotsVisible;
+    if (stationDotsVisible) {
+        drawStations();
+    } else {
+        const stations = document.querySelectorAll('.station');
+        stations.forEach(station => {
+            station.remove();
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
