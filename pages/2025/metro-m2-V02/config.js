@@ -7,8 +7,8 @@ const animationConfig = {
         1, // 1 minute
         1,
         3,
-        1,
-        1,
+        1, // Am Wasserturm to Tino-Schwierzina-Str.
+        1, // 7 m Tino-Schwierzina-Str. to Am Steinberg
         1,
         2,
         1,
