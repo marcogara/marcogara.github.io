@@ -5,7 +5,7 @@
 const lineConfig = {
     // Starting point coordinates
     startX: 700,
-    startY: 100,
+    startY: 200,
     
     // Line segments with direction and stations
     segments: [
