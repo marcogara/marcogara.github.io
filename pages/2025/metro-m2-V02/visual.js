@@ -135,19 +135,15 @@ function drawLabels() {
     stationPositions.forEach((station, index) => {
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         
-        // Offset labels perpendicular to segment direction
-        const radians = (station.segmentDirection * Math.PI) / 180;
-        const perpX = -Math.sin(radians) * 25;
-        const perpY = Math.cos(radians) * 25;
+        // Offset labels to the right of the station dot
+        const offsetX = 15; // pixels
         
-        text.setAttribute('x', station.x + perpX);
-        text.setAttribute('y', station.y + perpY);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('fill', '#fff');
-        text.setAttribute('font-size', '11');
-        text.setAttribute('font-weight', '500');
+        text.setAttribute('x', station.x + offsetX);
+        text.setAttribute('y', station.y);
+        text.setAttribute('text-anchor', 'start'); // Anchor text to the start (left side)
         text.textContent = station.name;
         text.classList.add('station-label');
+        text.setAttribute('data-station', station.name);
         
         labelsGroup.appendChild(text);
     });
