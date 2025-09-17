@@ -1,4 +1,3 @@
-
 // =======================================
 // ANIMATION LOGIC
 // =======================================
@@ -30,19 +29,49 @@ function startMetroAnimation() {
     const dot = createPulsingDot();
     mainGroup.appendChild(dot);
 
-    let startTime = Date.now();
-
     function animate() {
-        if (stationPositions.length < 2) return;
+        if (stationPositions.length < 2) {
+            requestAnimationFrame(animate);
+            return;
+        }
 
-        const elapsedTime = Date.now() - startTime;
+        const now = new Date();
+        const currentMinute = now.getMinutes();
+        const currentHour = now.getHours();
+
+        let lastDepartureHour = -1;
+        let lastDepartureMinute = -1;
+
+        for (let i = animationConfig.heinersdorfTimetable.timetable.length - 1; i >= 0; i--) {
+            const departureMinute = animationConfig.heinersdorfTimetable.timetable[i];
+            if (currentHour > 0 && currentMinute >= departureMinute) {
+                lastDepartureHour = currentHour;
+                lastDepartureMinute = departureMinute;
+                break;
+            }
+        }
+
+        if (lastDepartureMinute === -1) {
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+            lastDepartureHour = yesterday.getHours();
+            lastDepartureMinute = animationConfig.heinersdorfTimetable.timetable[animationConfig.heinersdorfTimetable.timetable.length - 1];
+        }
+        
+        const lastDepartureTime = new Date();
+        lastDepartureTime.setHours(lastDepartureHour);
+        lastDepartureTime.setMinutes(lastDepartureMinute);
+        lastDepartureTime.setSeconds(0);
+        lastDepartureTime.setMilliseconds(0);
+
+        const elapsedTime = now.getTime() - lastDepartureTime.getTime();
 
         let accumulatedTime = 0;
-        let currentSegmentIndex = 0;
+        let currentSegmentIndex = -1;
         let timeInSegment = 0;
 
         for (let i = 0; i < animationConfig.segmentTimes.length; i++) {
-            const segmentTime = animationConfig.segmentTimes[i] * 60000;
+            const segmentTime = animationConfig.segmentTimes[i] * 60000; // Convert minutes to milliseconds
             if (elapsedTime < accumulatedTime + segmentTime) {
                 currentSegmentIndex = i;
                 timeInSegment = elapsedTime - accumulatedTime;
@@ -51,26 +80,29 @@ function startMetroAnimation() {
             accumulatedTime += segmentTime;
         }
 
-        const startStation = stationPositions[currentSegmentIndex];
-        const endStation = stationPositions[currentSegmentIndex + 1];
+        if (currentSegmentIndex !== -1 && currentSegmentIndex < stationPositions.length - 1) {
+            const startStation = stationPositions[currentSegmentIndex];
+            const endStation = stationPositions[currentSegmentIndex + 1];
 
-        if (!startStation || !endStation) {
-            // Loop back to the beginning
-            dot.remove();
-            return;
+            if (startStation && endStation) {
+                const segmentTime = animationConfig.segmentTimes[currentSegmentIndex] * 60000;
+                const segmentProgress = timeInSegment / segmentTime;
+
+                const dx = endStation.x - startStation.x;
+                const dy = endStation.y - startStation.y;
+
+                const currentX = startStation.x + dx * segmentProgress;
+                const currentY = startStation.y + dy * segmentProgress;
+
+                dot.setAttribute('cx', currentX);
+                dot.setAttribute('cy', currentY);
+                dot.style.display = 'block';
+            } else {
+                dot.style.display = 'none';
+            }
+        } else {
+            dot.style.display = 'none';
         }
-
-        const segmentTime = animationConfig.segmentTimes[currentSegmentIndex] * 60000;
-        const segmentProgress = timeInSegment / segmentTime;
-
-        const dx = endStation.x - startStation.x;
-        const dy = endStation.y - startStation.y;
-
-        const currentX = startStation.x + dx * segmentProgress;
-        const currentY = startStation.y + dy * segmentProgress;
-
-        dot.setAttribute('cx', currentX);
-        dot.setAttribute('cy', currentY);
 
         requestAnimationFrame(animate);
     }
@@ -78,91 +110,8 @@ function startMetroAnimation() {
     animate();
 }
 
-function calculateCirclePosition() {
-    const now = new Date();
-    const currentMinute = now.getMinutes();
-    const currentHour = now.getHours();
-
-    let lastDepartureHour = -1;
-    let lastDepartureMinute = -1;
-
-    for (let i = animationConfig.heinersdorfTimetable.timetable.length - 1; i >= 0; i--) {
-        const departureMinute = animationConfig.heinersdorfTimetable.timetable[i];
-        if (currentMinute >= departureMinute) {
-            lastDepartureHour = currentHour;
-            lastDepartureMinute = departureMinute;
-            break;
-        }
-    }
-
-    if (lastDepartureMinute === -1) {
-        lastDepartureHour = currentHour - 1;
-        lastDepartureMinute = animationConfig.heinersdorfTimetable.timetable[animationConfig.heinersdorfTimetable.timetable.length - 1];
-    }
-
-    const lastDepartureTime = new Date();
-    lastDepartureTime.setHours(lastDepartureHour);
-    lastDepartureTime.setMinutes(lastDepartureMinute);
-    lastDepartureTime.setSeconds(0);
-    lastDepartureTime.setMilliseconds(0);
-
-    const elapsedTime = now.getTime() - lastDepartureTime.getTime();
-
-    let accumulatedTime = 0;
-    let currentSegmentIndex = 0;
-    let timeInSegment = 0;
-
-    for (let i = 0; i < animationConfig.segmentTimes.length; i++) {
-        const segmentTime = animationConfig.segmentTimes[i] * 60000;
-        if (elapsedTime < accumulatedTime + segmentTime) {
-            currentSegmentIndex = i;
-            timeInSegment = elapsedTime - accumulatedTime;
-            break;
-        }
-        accumulatedTime += segmentTime;
-    }
-
-    const startStation = stationPositions[currentSegmentIndex];
-    const endStation = stationPositions[currentSegmentIndex + 1];
-
-    if (!startStation || !endStation) {
-        return;
-    }
-
-    const segmentTime = animationConfig.segmentTimes[currentSegmentIndex] * 60000;
-    const segmentProgress = timeInSegment / segmentTime;
-
-    const dx = endStation.x - startStation.x;
-    const dy = endStation.y - startStation.y;
-
-    const currentX = startStation.x + dx * segmentProgress;
-    const currentY = startStation.y + dy * segmentProgress;
-
-    const dot = createPulsingDot();
-    const mainGroup = document.getElementById('main-group');
-    mainGroup.appendChild(dot);
-    dot.setAttribute('cx', currentX);
-    dot.setAttribute('cy', currentY);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        calculateCirclePosition();
-
-        let lastStartedMinute = -1;
-
-        function checkTimetable() {
-            const now = new Date();
-            const currentMinute = now.getMinutes();
-
-            if (animationConfig.heinersdorfTimetable.timetable.includes(currentMinute)) {
-                if (lastStartedMinute !== currentMinute) {
-                    startMetroAnimation();
-                    lastStartedMinute = currentMinute;
-                }
-            }
-        }
-
-        setInterval(checkTimetable, 1000);
+        startMetroAnimation();
     }, 1000);
 });
