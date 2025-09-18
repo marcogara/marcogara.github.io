@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metro Lines</title>
-    <link rel="stylesheet" href="mobile.css">
     <style>
         * {
             margin: 0;
@@ -132,6 +131,12 @@
             font-size: 11px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        @media (max-width: 768px) {
+            .line-info {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -207,6 +212,5 @@
     <script src="control.js"></script>
     <script src="animation.js"></script>
     <script src="animationA.js"></script>
-    <script src="touch.js"></script>
 </body>
 </html>
