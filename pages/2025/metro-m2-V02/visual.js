@@ -176,8 +176,12 @@ function updateLineInfo() {
         }
 
         const lineDiv = document.createElement('div');
-        lineDiv.innerHTML = `<h3>${lineConfig.name}</h3>`;
+        lineDiv.innerHTML = `<h3><input type="checkbox" checked data-line="${lineConfig.name}"> ${lineConfig.name}</h3>`;
         segmentList.appendChild(lineDiv);
+
+        const segmentsDiv = document.createElement('div');
+        segmentsDiv.id = `segments-${lineConfig.name}`;
+        segmentList.appendChild(segmentsDiv);
 
         lineConfig.segments.forEach((segment, index) => {
             const div = document.createElement('div');
@@ -186,12 +190,21 @@ function updateLineInfo() {
                 Segment ${index + 1}: ${segment.direction}°, ${segment.length}px<br>
                 Stations: ${segment.stations.length}
             `;
-            segmentList.appendChild(div);
+            segmentsDiv.appendChild(div);
         });
     }
 
     document.getElementById('segment-count').textContent = totalSegments;
     document.getElementById('station-count').textContent = totalStations;
+
+    const checkboxes = document.querySelectorAll('#segment-list input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            const lineName = e.target.getAttribute('data-line');
+            const segmentsDiv = document.getElementById(`segments-${lineName}`);
+            segmentsDiv.style.display = e.target.checked ? 'block' : 'none';
+        });
+    });
 }
 
 function setupEventListeners() {
