@@ -26,7 +26,7 @@ function createPulsingDotA() {
 function startMetroAnimationA() {
     const mainGroup = document.getElementById('main-group');
     const dotPool = [];
-    const maxDots = 20; // Maximum number of dots to create
+    const maxDots = 10; // Maximum number of dots to create
 
     // Pre-create a pool of dots
     for (let i = 0; i < maxDots; i++) {
@@ -45,7 +45,6 @@ function startMetroAnimationA() {
         }
 
         const now = new Date();
-        const currentDay = now.getDay();
         const currentHour = now.getHours();
         const currentMinute = now.getMinutes();
         

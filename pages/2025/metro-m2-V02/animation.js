@@ -117,17 +117,13 @@ function startMetroAnimation() {
                 const currentX = startStation.x + dx * segmentProgress;
                 const currentY = startStation.y + dy * segmentProgress;
 
-                console.log(`White Dot Position: (${currentX.toFixed(2)}, ${currentY.toFixed(2)}), On Track: true`);
-
                 dot.setAttribute('cx', currentX);
                 dot.setAttribute('cy', currentY);
                 dot.style.display = 'block';
             } else {
-                console.log("White Dot: Off Track (start or end station not found)");
                 dot.style.display = 'none';
             }
         } else {
-            console.log("White Dot: Off Track (end of the line)");
             dot.style.display = 'none';
         }
     }
