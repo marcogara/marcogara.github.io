@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M2 Tram Line</title>
+    <title>Metro Lines</title>
     <style>
         * {
             margin: 0;
@@ -129,9 +129,7 @@
         }
 
         @media (max-width: 768px) {
-            #main-group {
-                transform: translateY(210px); /* Adjust this value as needed */
-            }
+            /* No transform needed here anymore */
         }
     </style>
 </head>
@@ -166,10 +164,11 @@
         </svg>
 
         <div class="line-info">
-            <h3 style="margin-bottom: 10px; color: #4ecdc4;">Line Info</h3>
+            <h3 style="margin-bottom: 10px; color: #4ecdc4;">Line Information</h3>
             <div>Total Segments: <span id="segment-count">0</span></div>
             <div>Total Stations: <span id="station-count">0</span></div>
             <div style="margin-top: 10px;">
+                <strong>Segments:</strong>
                 <div id="segment-list"></div>
             </div>
         </div>
