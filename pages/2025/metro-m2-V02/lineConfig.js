@@ -60,7 +60,7 @@ const lineConfigs = {
     },
     M3: {
         // Starting point coordinates
-        startX: 500,
+        startX: 520,
         startY: 1100,
         
         // Line segments with direction and stations
@@ -79,15 +79,15 @@ const lineConfigs = {
             },
             {
                 direction: 315,    // degrees (0=right, 90=down, 180=left, 270=up)
-                length: 280,      // length of this segment in pixels
+                length: 250,      // length of this segment in pixels
                 stations: [
                     { name: "", position: 0.3 },
                     { name: "S+U Frankfurter Allee", position: 0.5 }
                 ]
             },
             {
-                direction: 275,    // degrees (0=right, 90=down, 180=left, 270=up)
-                length: 280,      // length of this segment in pixels
+                direction: 271,    // degrees (0=right, 90=down, 180=left, 270=up)
+                length: 230,      // length of this segment in pixels
                 stations: [
                     { name: "", position: 0.3 },
                     { name: "Landsberger Allee/​Weißenseer W.", position: 0.5 }
@@ -95,22 +95,22 @@ const lineConfigs = {
             },
             {
                 direction: 225,    // degrees (0=right, 90=down, 180=left, 270=up)
-                length: 100,      // length of this segment in pixels
+                length: 135,      // length of this segment in pixels
                 stations: [
                     { name: "", position: 0.3 },
                     { name: "", position: 0.85 }
                 ]
             },
             {
-                direction: 175,    // degrees (0=right, 90=down, 180=left, 270=up)
-                length: 50,      // length of this segment in pixels
+                direction: 179,    // degrees (0=right, 90=down, 180=left, 270=up)
+                length: 100,      // length of this segment in pixels
                 stations: [
                     { name: "", position: 0.5 }
                 ]
             },
             {
                 direction: 215,    // degrees (0=right, 90=down, 180=left, 270=up)
-                length: 100,      // length of this segment in pixels
+                length: 150,      // length of this segment in pixels
                 stations: [
                     { name: "", position: 0.3 },
                     { name: "", position: 0.5 },
@@ -121,7 +121,7 @@ const lineConfigs = {
                 direction: 181,    // degrees (0=right, 90=down, 180=left, 270=up)
                 length: 700,      // length of this segment in pixels
                 stations: [
-                    { name: "", position: 0.37 },
+                    { name: "", position: 0.17 },
                     { name: "Stahlheimer Str.", position: 0.6 },
                     { name: "Schönhauser Allee", position: 0.8 },
                 ]
