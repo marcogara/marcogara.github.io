@@ -88,7 +88,7 @@ function startMetroAnimationA() {
     }
 
     function updateDotPosition(dot, elapsedTime) {
-        const startStationIndex = stationPositions.findIndex(station => station.name === "Am Steinberg");
+        const startStationIndex = stationPositions['M2'].findIndex(station => station.name === "Am Steinberg");
         let accumulatedTime = 0;
         let currentSegmentIndex = -1;
         let timeInSegment = 0;
@@ -103,9 +103,9 @@ function startMetroAnimationA() {
             accumulatedTime += segmentTime;
         }
 
-        if (currentSegmentIndex !== -1 && currentSegmentIndex < stationPositions.length - 1) {
-            const startStation = stationPositions[currentSegmentIndex];
-            const endStation = stationPositions[currentSegmentIndex + 1];
+        if (currentSegmentIndex !== -1 && currentSegmentIndex < stationPositions['M2'].length - 1) {
+            const startStation = stationPositions['M2'][currentSegmentIndex];
+            const endStation = stationPositions['M2'][currentSegmentIndex + 1];
 
             if (startStation && endStation) {
                 const segmentTime = animationConfigA.segmentTimes[currentSegmentIndex - startStationIndex] * 60000;

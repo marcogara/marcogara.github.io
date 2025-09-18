@@ -2,8 +2,8 @@
 // CORE VISUALIZATION CODE
 // ========================================
 
-let segmentPoints = [];
-let stationPositions = [];
+let segmentPoints = {};
+let stationPositions = {};
 let currentZoom = 1;
 let currentTranslate = {x: 0, y: 0};
 let isDragging = false;
@@ -18,21 +18,28 @@ const mainGroup = document.getElementById('main-group');
 const segmentColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
 
 function initializeNetwork() {
-    calculateSegmentPoints();
-    calculateStationPositions();
-    drawTramLine();
-    drawStations();
-    drawLabels();
+    for (const lineKey in lineConfigs) {
+        const lineConfig = lineConfigs[lineKey];
+        createLine(lineConfig);
+    }
     setupEventListeners();
     updateLineInfo();
 }
 
-function calculateSegmentPoints() {
-    segmentPoints = [];
+function createLine(lineConfig) {
+    calculateSegmentPoints(lineConfig);
+    calculateStationPositions(lineConfig);
+    drawTramLine(lineConfig);
+    drawStations(lineConfig);
+    drawLabels(lineConfig);
+}
+
+function calculateSegmentPoints(lineConfig) {
+    segmentPoints[lineConfig.name] = [];
     let currentX = lineConfig.startX;
     let currentY = lineConfig.startY;
     
-    segmentPoints.push({ x: currentX, y: currentY });
+    segmentPoints[lineConfig.name].push({ x: currentX, y: currentY });
     
     lineConfig.segments.forEach((segment, index) => {
         const radians = (segment.direction * Math.PI) / 180;
@@ -42,7 +49,7 @@ function calculateSegmentPoints() {
         currentX += dirX * segment.length;
         currentY += dirY * segment.length;
         
-        segmentPoints.push({ 
+        segmentPoints[lineConfig.name].push({ 
             x: currentX, 
             y: currentY,
             segmentIndex: index
@@ -50,12 +57,12 @@ function calculateSegmentPoints() {
     });
 }
 
-function calculateStationPositions() {
-    stationPositions = [];
+function calculateStationPositions(lineConfig) {
+    stationPositions[lineConfig.name] = [];
     
     lineConfig.segments.forEach((segment, segmentIndex) => {
-        const startPoint = segmentPoints[segmentIndex];
-        const endPoint = segmentPoints[segmentIndex + 1];
+        const startPoint = segmentPoints[lineConfig.name][segmentIndex];
+        const endPoint = segmentPoints[lineConfig.name][segmentIndex + 1];
         
         const radians = (segment.direction * Math.PI) / 180;
         const dirX = Math.cos(radians);
@@ -66,26 +73,25 @@ function calculateStationPositions() {
             const x = startPoint.x + dirX * distance;
             const y = startPoint.y + dirY * distance;
             
-            stationPositions.push({
+            stationPositions[lineConfig.name].push({
                 name: station.name,
                 x: x,
                 y: y,
                 segmentIndex: segmentIndex,
                 positionInSegment: station.position,
-                segmentDirection: segment.direction
+                segmentDirection: segment.direction,
+                lineName: lineConfig.name
             });
         });
     });
 }
 
-function drawTramLine() {
+function drawTramLine(lineConfig) {
     const lineGroup = document.getElementById('tram-line');
-    lineGroup.innerHTML = ''; // Clear existing
     
-    // Draw each segment
-    for (let i = 0; i < segmentPoints.length - 1; i++) {
-        const start = segmentPoints[i];
-        const end = segmentPoints[i + 1];
+    for (let i = 0; i < segmentPoints[lineConfig.name].length - 1; i++) {
+        const start = segmentPoints[lineConfig.name][i];
+        const end = segmentPoints[lineConfig.name][i + 1];
         
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
@@ -98,21 +104,20 @@ function drawTramLine() {
         path.setAttribute('opacity', '0.8');
         path.classList.add('line-segment');
         path.setAttribute('data-segment', i);
+        path.setAttribute('data-line', lineConfig.name);
         
         lineGroup.appendChild(path);
     }
 }
 
-function drawStations() {
+function drawStations(lineConfig) {
     const stationsGroup = document.getElementById('stations');
-    stationsGroup.innerHTML = ''; // Clear existing
     
-    stationPositions.forEach((station, index) => {
+    stationPositions[lineConfig.name].forEach((station, index) => {
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.setAttribute('cx', station.x);
         circle.setAttribute('cy', station.y);
         
-        // Terminal stations (at position 0 or 1) are larger
         const isTerminal = station.positionInSegment === 0 || station.positionInSegment === 1;
         circle.setAttribute('r', isTerminal ? '10' : '7');
         circle.setAttribute('fill', isTerminal ? '#fff' : '#ffdddd');
@@ -123,49 +128,70 @@ function drawStations() {
         circle.setAttribute('data-station', station.name);
         circle.setAttribute('data-segment', station.segmentIndex);
         circle.setAttribute('data-position', station.positionInSegment);
+        circle.setAttribute('data-line', lineConfig.name);
         
         stationsGroup.appendChild(circle);
     });
 }
 
-function drawLabels() {
+function drawLabels(lineConfig) {
     const labelsGroup = document.getElementById('labels');
-    labelsGroup.innerHTML = ''; // Clear existing
     
-    stationPositions.forEach((station, index) => {
+    stationPositions[lineConfig.name].forEach((station, index) => {
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         
-        // Offset labels to the right of the station dot
-        const offsetX = 15; // pixels
+        let offsetX = 0;
+        let offsetY = 0;
+
+        if (lineConfig.labelDirection === 'right') {
+            offsetX = 15;
+            text.setAttribute('text-anchor', 'start');
+        } else if (lineConfig.labelDirection === 'top') {
+            offsetY = -25;
+            text.setAttribute('text-anchor', 'middle');
+        }
         
         text.setAttribute('x', station.x + offsetX);
-        text.setAttribute('y', station.y);
-        text.setAttribute('text-anchor', 'start'); // Anchor text to the start (left side)
+        text.setAttribute('y', station.y + offsetY);
         text.textContent = station.name;
         text.classList.add('station-label');
         text.setAttribute('data-station', station.name);
+        text.setAttribute('data-line', lineConfig.name);
         
         labelsGroup.appendChild(text);
     });
 }
 
 function updateLineInfo() {
-    document.getElementById('segment-count').textContent = lineConfig.segments.length;
-    document.getElementById('station-count').textContent = stationPositions.length;
-    
     const segmentList = document.getElementById('segment-list');
     segmentList.innerHTML = '';
-    
-    lineConfig.segments.forEach((segment, index) => {
-        const div = document.createElement('div');
-        div.className = 'segment-info';
-        div.innerHTML = `
-            Segment ${index + 1}: ${segment.direction}°, ${segment.length}px<br>
-            Stations: ${segment.stations.length}
-        `;
-        segmentList.appendChild(div);
-    });
+    let totalSegments = 0;
+    let totalStations = 0;
 
+    for (const lineKey in lineConfigs) {
+        const lineConfig = lineConfigs[lineKey];
+        totalSegments += lineConfig.segments.length;
+        if(stationPositions[lineConfig.name]) {
+            totalStations += stationPositions[lineConfig.name].length;
+        }
+
+        const lineDiv = document.createElement('div');
+        lineDiv.innerHTML = `<h3>${lineConfig.name}</h3>`;
+        segmentList.appendChild(lineDiv);
+
+        lineConfig.segments.forEach((segment, index) => {
+            const div = document.createElement('div');
+            div.className = 'segment-info';
+            div.innerHTML = `
+                Segment ${index + 1}: ${segment.direction}°, ${segment.length}px<br>
+                Stations: ${segment.stations.length}
+            `;
+            segmentList.appendChild(div);
+        });
+    }
+
+    document.getElementById('segment-count').textContent = totalSegments;
+    document.getElementById('station-count').textContent = totalStations;
 }
 
 function setupEventListeners() {
@@ -205,7 +231,8 @@ function setupEventListeners() {
             const stationName = e.target.getAttribute('data-station');
             const segmentIndex = parseInt(e.target.getAttribute('data-segment'));
             const position = parseFloat(e.target.getAttribute('data-position'));
-            showStationInfo(stationName, segmentIndex, position);
+            const lineName = e.target.getAttribute('data-line');
+            showStationInfo(lineName, stationName, segmentIndex, position);
         }
     });
 
@@ -248,8 +275,9 @@ function updateUI() {
     });
 }
 
-function showStationInfo(stationName, segmentIndex, position) {
+function showStationInfo(lineName, stationName, segmentIndex, position) {
     const info = document.getElementById('station-info');
+    const lineConfig = lineConfigs[lineName];
     const segment = lineConfig.segments[segmentIndex];
     const stationsInSegment = segment.stations.length;
     const positionIndex = segment.stations.findIndex(s => s.name === stationName) + 1;
@@ -269,4 +297,3 @@ function hideStationInfo() {
 
 // Initialize the network when page loads
 document.addEventListener('DOMContentLoaded', initializeNetwork);
-

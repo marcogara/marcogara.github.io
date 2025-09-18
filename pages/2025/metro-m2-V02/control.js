@@ -30,14 +30,8 @@ function showSegmentColors() {
 
 function toggleStationDots() {
     stationDotsVisible = !stationDotsVisible;
-    if (stationDotsVisible) {
-        drawStations();
-    } else {
-        const stations = document.querySelectorAll('.station');
-        stations.forEach(station => {
-            station.remove();
-        });
-    }
+    const stationsGroup = document.getElementById('stations');
+    stationsGroup.style.display = stationDotsVisible ? 'block' : 'none';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
