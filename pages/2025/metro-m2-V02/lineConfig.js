@@ -66,12 +66,15 @@ const lineConfigs = {
         // Line segments with direction and stations
         segments: [
             {
-                direction: 0,    // 1
+                direction: 359,    // 1
                 length: 200,      // length of this segment in pixels
                 stations: [
                     { name: "S Warschauer Str.", position: 0 },
-                    { name: "", position: 0.3 },
-                    { name: "", position: 0.5 }
+                    { name: "", position: 0.2 },
+                    { name: "", position: 0.35 },
+                    { name: "", position: 0.50 },
+                    { name: "", position: 0.65 },
+                    { name: "", position: 0.8 }
                 ]
             },
             {
